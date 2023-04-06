@@ -1,0 +1,28 @@
+<div class="slider-container">
+    <ngx-slick-carousel class="carousel"
+        #slickModal="slick-carousel"
+        [config]="slideConfig"
+        (breakpoint)="breakpoint($event)"
+      >
+        <div ngxSlickItem *ngFor="let slide of slides ; let i=index;" (click)="showDetails(i)" class="slide">
+            <!-- <img src="{{ slide.img }}" alt="" width="100%" height="100%"> -->
+            <!-- <div class="card">
+                <img src="{{ slide.img }}" alt="" width="100%" height="100%">
+                <div class="card-body">
+                    <h5 class="card-title">{{slide.title}}</h5>
+                    <p class="card-text">{{slide.subTitle}}</p>
+                </div>
+            </div> -->
+
+            <app-card  [title]="slide.title" [src]="slide.img" [content]="slide.subTitle" ></app-card>
+
+        </div>
+    </ngx-slick-carousel>
+
+</div>
+
+<!-- 
+(init)="slickInit($event)"
+(breakpoint)="breakpoint($event)"
+(afterChange)="afterChange($event)"
+(beforeChange)="beforeChange($event)" -->

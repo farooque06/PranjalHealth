@@ -1,0 +1,54 @@
+.container {
+  max-width: 100%;
+  border-bottom: 10px solid rgba(26, 199, 179, 0.5);
+  border-radius: 15%;
+  padding: 0;
+}
+.container .carousel .slide {
+  height: 800px;
+}
+.container .carousel .slide img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+
+::ng-deep .slick-prev {
+  background-color: silver;
+  left: 0;
+  height: 125px;
+  width: 51px;
+  cursor: pointer;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+::ng-deep .slick-next {
+  background-color: silver;
+  height: 123px;
+  width: 51px;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+::ng-deep .slick-arrow {
+  color: silver;
+  right: 0;
+}
+
+@media (max-width: 1399px) {
+  .container .carousel .slide {
+    height: 700px;
+  }
+}
+@media (max-width: 1199px) {
+  .container .carousel .slide {
+    height: 680px;
+  }
+}
+@media (max-width: 991px) {
+  .container .carousel .slide {
+    height: 650px;
+  }
+}/*# sourceMappingURL=slider.component.css.map */

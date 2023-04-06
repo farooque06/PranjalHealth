@@ -1,0 +1,16 @@
+<section class="gallery-main">
+    <div class="custom-container">
+        <div class="gallery-item-container">
+            <div class="gallery-item common-items">
+                <div class="title">
+                    <h5>gallery</h5>
+                    <h1>Photos</h1>
+                </div>
+                <div class="item">
+                    <app-card class="main-gallery-card" *ngFor="let item of gallery;"  [src]="item.image" ></app-card>
+                    <!-- <app-gallery-opt></app-gallery-opt> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

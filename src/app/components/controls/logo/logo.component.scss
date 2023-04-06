@@ -1,0 +1,130 @@
+.logo-container{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    .image-container{
+        width: 75px;
+        // height: 85px;
+           img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+           }
+    }
+    .text-container{
+        .text{
+           width: 100%;
+           margin-top: 8px;
+            h1{
+                text-transform: uppercase;
+                font-family:Arial, Helvetica, sans-serif;
+                color:#0C8A7C;
+                font-size: 2.4em;
+                margin: 0;
+                padding: 0;
+            }
+            h4{
+                color: rgba(237,64,30,0.9920343137254902);
+                margin: 0%;
+                font-size: 1em;
+                line-height: 0.4;
+            }
+            span{
+                font-size: larger;
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+// @media (max-width:1399px){
+//     .logo-container{
+//         .image-container{
+//             width: 75px;
+//             height: 75px;
+//         }
+//         .text-container{
+//             .text{
+//                margin-top: 9px;
+//                 h1{
+//                     font-size: 40px;
+//                 }
+//                 h4{
+//                     font-size: 18px;
+//                     line-height: 0.3;
+//                 }
+//             }
+//         }
+//     }
+
+// }
+
+// @media (max-width:1199px){
+//     .logo-container{
+//         .image-container{
+//             width: 65px;
+//             height: 65px;
+//         }
+//         .text-container{
+//             .text{
+//                margin-top: 7px;
+//                 h1{
+//                     font-size: 35px;
+//                 }
+//                 h4{
+//                     font-size: 18px;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// @media(max-width:991px){
+//     @media (max-width:1199px){
+//         .logo-container{
+//             .image-container{
+//                 width: 55px;
+//                 height: 55px;
+//             }
+//             .text-container{
+//                 .text{
+//                    margin-top: 5px;
+//                     h1{
+//                         font-size: 28px;
+//                     }
+//                     h4{
+//                         font-size: 16px;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+    
+// }
+
+:host{
+    min-width: 330px
+}
+
+@media(max-width:415px){
+    .logo-container{
+        .image-container{
+            width: 55px;
+        }
+        .text-container{
+            .text{
+               margin-top: 8px;
+                h1{
+                    font-size: 1.8em;
+                }
+                h4{
+                    font-size: 0.8em;
+                }
+            }
+        }
+    }
+    :host{
+        min-width: 250px
+    }
+    
+}

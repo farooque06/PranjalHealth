@@ -1,0 +1,93 @@
+.contact-section .custom-container .contact-details-container .heading {
+  color: rgb(237, 64, 30);
+}
+.contact-section .custom-container .contact-details-container .heading h1 {
+  color: aquamarine;
+  font-size: 70px;
+}
+.contact-section .custom-container .contact-details-container .contact-details {
+  display: flex;
+  margin: -50px;
+}
+.contact-section .custom-container .contact-details-container .contact-details .contact {
+  width: 50%;
+  margin: 50px;
+  padding-top: 40px;
+}
+.contact-section .custom-container .contact-details-container .contact-details .contact .text .title {
+  margin-bottom: 20px;
+  color: rgb(237, 64, 30);
+}
+.contact-section .custom-container .contact-details-container .contact-details .contact .text .title h3 {
+  font-size: 30px;
+}
+.contact-section .custom-container .contact-details-container .contact-details .contact .text .content {
+  font-size: 18px;
+  margin-bottom: 80px;
+}
+.contact-section .custom-container .contact-details-container .contact-details .contact .text .content a {
+  text-decoration: none;
+  color: black;
+}
+.contact-section .custom-container .contact-details-container .contact-details .map-container {
+  width: 50%;
+  margin: 50px;
+}
+.contact-section .custom-container .contact-details-container .contact-details .map-container .map {
+  height: 100%;
+  width: 100%;
+}
+.contact-section .custom-container .contact-details-container .contact-details .map-container .map iframe {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1399px) {
+  .contact-section .custom-container .contact-details-container .heading h1 {
+    font-size: 60px;
+  }
+  .contact-section .custom-container .contact-details-container .contact-details {
+    margin: -40px;
+  }
+  .contact-section .custom-container .contact-details-container .contact-details .contact {
+    width: 50%;
+    margin: 40px;
+    padding-top: 30px;
+  }
+  .contact-section .custom-container .contact-details-container .contact-details .contact .text .title {
+    margin-bottom: 18px;
+  }
+  .contact-section .custom-container .contact-details-container .contact-details .contact .text .content {
+    font-size: 18px;
+    margin-bottom: 70px;
+  }
+  .contact-section .custom-container .contact-details-container .contact-details .map-container {
+    margin: 40px;
+  }
+}
+@media (max-width: 1199px) {
+  .contact-section .custom-container .contact-details-container .heading h1 {
+    font-size: 45px;
+  }
+  .contact-section .custom-container .contact-details-container .contact-details {
+    margin: -25px;
+  }
+  .contact-section .custom-container .contact-details-container .contact-details .contact {
+    width: 50%;
+    margin: 25px;
+    padding-top: 25px;
+  }
+  .contact-section .custom-container .contact-details-container .contact-details .contact .text .title {
+    margin-bottom: 16px;
+  }
+  .contact-section .custom-container .contact-details-container .contact-details .contact .text .title h3 {
+    font-size: 23px;
+  }
+  .contact-section .custom-container .contact-details-container .contact-details .contact .text .content {
+    font-size: 18px;
+    margin-bottom: 55px;
+  }
+  .contact-section .custom-container .contact-details-container .contact-details .map-container {
+    margin: 25px;
+  }
+}/*# sourceMappingURL=contact.component.css.map */

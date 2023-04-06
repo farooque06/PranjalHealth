@@ -1,0 +1,37 @@
+.our-services .custom-container .service-items {
+  position: relative;
+}
+.our-services .custom-container .service-items .item-card {
+  text-align: center;
+}
+.our-services .custom-container .service-items .item-card h3 {
+  text-transform: capitalize;
+  margin-bottom: 0.6em;
+}
+.our-services .custom-container .service-items .item-card h2 {
+  text-shadow: 5px 5px 10px aqua;
+  color: rgb(237, 64, 30);
+  text-transform: uppercase;
+  margin-bottom: 1.5em;
+}
+.our-services .custom-container .service-items .item-card .our-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: -20px;
+  width: 100%;
+}
+.our-services .custom-container .service-items .item-card .our-cards-container .our-service {
+  min-width: 300px;
+  max-width: 500px;
+}
+.our-services .custom-container .service-items .action-container {
+  position: absolute;
+  bottom: -10%;
+  right: 0%;
+  transform: translateY(10%);
+}
+
+.co-btn {
+  font-size: 20px;
+}/*# sourceMappingURL=our-services.component.css.map */

@@ -1,0 +1,53 @@
+.footer-section {
+  background: linear-gradient(rgb(26, 199, 179), rgba(237, 64, 30, 0.3));
+}
+.footer-section .footer-container {
+  padding-top: 100px;
+}
+.footer-section .footer-container .custom-container .main-footer {
+  display: flex;
+}
+.footer-section .footer-container .custom-container .main-footer .text-container {
+  text-transform: capitalize;
+  color: aliceblue;
+  font-weight: 600;
+  width: 40%;
+}
+.footer-section .footer-container .custom-container .main-footer .text-container .text ul li {
+  margin-bottom: 10px;
+}
+.footer-section .footer-container .custom-container .main-footer .text-container .info-item ul {
+  display: flex;
+  position: relative;
+}
+.footer-section .footer-container .custom-container .main-footer .text-container .info-item ul li {
+  width: 35px;
+  margin-right: 20px;
+}
+.footer-section .footer-container .custom-container .main-footer .text-container .info-item ul li a:hover {
+  position: absolute;
+  width: 40px;
+  transition: 0.3s;
+  transform: rotate(360deg);
+}
+.footer-section .footer-container .custom-container .main-footer .text-container .info-item ul li a img {
+  width: 100%;
+}
+
+@media (max-width: 1399px) {
+  .footer-section .footer-container {
+    padding-top: 80px;
+  }
+}
+@media (max-width: 1199px) {
+  .footer-section .footer-container {
+    padding-top: 60px;
+  }
+  .footer-section .footer-container .custom-container .main-footer .text-container {
+    font-weight: 500;
+  }
+  .footer-section .footer-container .custom-container .main-footer .text-container .info-item ul li {
+    width: 30px;
+    margin-right: 20px;
+  }
+}/*# sourceMappingURL=footer.component.css.map */

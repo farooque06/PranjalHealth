@@ -1,0 +1,21 @@
+.gallery-section .gallery-container .gallery {
+  display: flex;
+  flex-wrap: wrap;
+}
+.gallery-section .gallery-container .gallery .colum {
+  width: 50%;
+}
+.gallery-section .gallery-container .gallery .colum:nth-last-child(1) {
+  width: 100%;
+}
+.gallery-section .gallery-container .gallery .colum .image-container .image {
+  padding: 8px;
+}
+.gallery-section .gallery-container .gallery .colum .image-container .image img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}/*# sourceMappingURL=gallery-opt.component.css.map */

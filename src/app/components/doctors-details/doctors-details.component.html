@@ -1,0 +1,71 @@
+<div class=" doctors-details-container card mb-3">
+    <div class="custom-container">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img
+                    src="{{data.image}}"
+                    class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <!-- <h5 class="card-title">Dr. Farooque Allam</h5>
+          <p class="card-text">Consultant Orthopedic Surgeon</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> 
+        </div> -->
+                    <div class="text">
+                        <div class="card-title">
+                            <h1>{{data.title}}</h1>
+                        </div>
+                        <div class="card-text"><h4>{{data.content}}</h4></div>
+                    </div>
+                    <div class="text">
+                        <div class="card-title">
+                            <h5>Work Experience:</h5>
+                        </div>
+                        <div class="card-text">
+                            <ul>
+                                <li *ngFor="let item of data.experience">
+                                   <p>
+                                    {{item}}
+                                   </p> 
+                                </li>
+                                <!-- <li> <p>Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Ad sunt autem
+                                        possimus! Odit, eos accusamus.</p></li>
+                                <li> <p>Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Ad sunt autem
+                                        possimus! Odit, eos accusamus.</p></li>
+                                <li> <p>Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Ad sunt autem
+                                        possimus! Odit, eos accusamus.</p></li>
+                                <li> <p>Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Ad sunt autem
+                                        possimus! Odit, eos accusamus.</p></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="text">
+                        <div class="card-title">
+                            <h5>Educations:</h5>
+                        </div>
+                        <div class="card-text">
+                            <ul>
+                                <li *ngFor="let item of data.education">
+                                    <p>{{item}}</p>
+                                </li>
+                                <!-- <li> <p>Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Ad sunt autem
+                                        possimus! Odit, eos accusamus.</p></li>
+                                <li> <p>Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Ad sunt autem
+                                        possimus! Odit, eos accusamus.</p></li>
+                                <li> <p>Lorem ipsum dolor sit amet consectetur
+                                        adipisicing elit. Ad sunt autem
+                                        possimus! Odit, eos accusamus.</p></li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

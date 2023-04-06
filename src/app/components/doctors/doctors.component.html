@@ -1,0 +1,16 @@
+
+<section class="doctors-main-section">
+    <div class="custom-container">
+        <div class="doctors-item-container">
+            <div class="doctors-item common-items">
+                <div class="title">
+                    <h5>meet our doctors</h5>
+                    <h1>our doctors</h1>
+                </div>
+                <div class="item">
+                    <app-card class="main-doctors-card" *ngFor="let item of doctors; " [title]="item.title" [src]="item.image" [content]="item.content" (click)="showDetails(item.index)" ></app-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

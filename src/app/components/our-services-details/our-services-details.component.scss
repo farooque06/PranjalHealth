@@ -1,0 +1,97 @@
+.services-details-section {
+    .custom-container {
+        .service-item {
+            .title {
+                margin-bottom: 20px;
+                h5 {
+                    text-transform: capitalize;
+                    color:  rgba(237,64,30,0.9920343137254902);
+                }
+            }
+
+            .item {
+                .card-section{
+                    .card{
+                        padding: 20px;
+                        .card-body{
+                            .card-title{
+                                text-transform: uppercase;
+                                color: aquamarine;
+                                font-size: 60px;
+
+                            }
+                            .card-text{
+                                margin-bottom: 40px;
+                                font-size: 18px;
+                            }
+                        }
+                        .image-container{
+                            padding: 20px;
+                            img{
+                                height: 100%;
+                                width: 100%;
+                                border-radius: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:767px){
+    .services-details-section {
+        .custom-container {
+            .service-item {    
+                .item {
+                    .card-section{
+                        .card{
+                            padding: 10px;
+                            .card-body{
+                                .card-title{
+                                    font-size: 2.5em;
+                                }
+                                .card-text{
+                                    margin-bottom: 20px;
+                                }
+                            }
+                            .image-container{
+                                padding: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+@media(max-width:440px){
+    .services-details-section {
+        .custom-container {
+            .service-item {    
+                .item {
+                    .card-section{
+                        .card{
+                            padding: 2px;
+                            .card-body{
+                                .card-title{
+                                    font-size: 2em;
+                                }
+                                .card-text{
+                                    font-size: 1em;
+                                }
+                            }
+                            .image-container{
+                                padding: 2px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

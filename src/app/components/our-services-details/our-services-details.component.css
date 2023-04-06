@@ -1,0 +1,30 @@
+.services-details-section .custom-container {
+  padding: 5% 15%;
+}
+.services-details-section .custom-container .service-item .title {
+  margin-bottom: 20px;
+}
+.services-details-section .custom-container .service-item .title h5 {
+  text-transform: capitalize;
+  color: rgba(237, 64, 30, 0.9920343137);
+}
+.services-details-section .custom-container .service-item .item .card-section .card {
+  padding: 20px;
+}
+.services-details-section .custom-container .service-item .item .card-section .card .card-body .card-title {
+  text-transform: uppercase;
+  color: aquamarine;
+  font-size: 70px;
+}
+.services-details-section .custom-container .service-item .item .card-section .card .card-body .card-text {
+  margin-bottom: 40px;
+  font-size: 18px;
+}
+.services-details-section .custom-container .service-item .item .card-section .card .image-container {
+  padding: 20px;
+}
+.services-details-section .custom-container .service-item .item .card-section .card .image-container img {
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+}/*# sourceMappingURL=our-services-details.component.css.map */

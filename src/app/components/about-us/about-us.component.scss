@@ -1,0 +1,163 @@
+.about-section {
+
+  // background: url(../../../assets/images/home-page/banner/Building1.jpg);
+  // background-attachment: fixed;
+  // background-size: cover;
+  .custom-container {
+    .title {
+      font-size: 28px;
+      text-transform: capitalize;
+      // text-align: center;
+      margin-top: 35px;
+      margin-left: 40px;
+      padding-left: 80px;
+    }
+    .section-item-container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+
+      .block-item {
+        width: 50%;
+        padding: 30px;
+        .text-container {
+          padding-right: 20px;
+
+          .content {
+            position: relative;
+          }
+        }
+
+        .image-container {
+          position: relative;
+          border-radius: 200px 0px 200px 200px;
+          box-shadow: 15px 20px 20px 0 rgb(26, 199, 179);
+          overflow: hidden;
+
+          &::after {
+            content: '';
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            bottom: 0%;
+            left: 0%;
+            background: linear-gradient(rgba(26, 199, 179, 0.7), rgb(237, 64, 30));
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5;
+          }
+
+          img {
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+// @media (max-width:1399px){
+//   .about-section{
+//       .custom-container{
+//         padding-top: 6%;
+//         .section-item-container{
+//           margin: -20px;
+//           .block-item{
+//             padding: 20px;
+//             .text-container{
+//               padding-right: 80px;
+//               .title{
+//                 font-size: 25px;
+//                 margin-bottom: 28px;
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+
+// }
+
+@media(max-width:1100px) {
+  .about-section {
+    .custom-container {
+      .section-item-container {
+        flex-direction: row-reverse;
+
+        .block-item {
+          width: 90%;
+          padding: 18px;
+
+          .text-container {
+            padding-right: 0px;
+            p {
+              margin-bottom: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media(max-width:767px) {
+  .about-section {
+    background: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(../../../assets/images/home-page/banner/Building1.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+
+    .custom-container {
+      padding: 40px 30px;
+      .title{
+        color: #fff;
+        text-align: center;
+        margin: 0;
+        padding: 40px 0;
+      }
+
+      .section-item-container {
+        flex-direction: column-reverse;
+        .block-item {
+          width: 100%;
+
+          .text-container {
+            color: #fff;
+            padding-right: 0px;
+            font-size: 17px;
+          }
+        }
+      }
+    }
+  }
+
+  a {
+    color: #fff;
+
+    img {
+      filter: brightness(0) invert(1);
+
+    }
+  }
+
+}
+
+@media(max-width:440px) {
+  .about-section {
+    .custom-container {
+      padding: 40px 10px;
+
+      .section-item-container {
+        .block-item {
+          .image-container {
+            border-radius: 200px 0px 200px 200px;
+            box-shadow: 5px 5px 5px 0 rgb(26, 199, 179);
+          }
+        }
+      }
+    }
+  }
+}

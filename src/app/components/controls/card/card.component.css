@@ -1,0 +1,22 @@
+.card-section {
+  padding: 20px;
+}
+.card-section .card {
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 0 10px 0px rgba(248, 8, 8, 0.3);
+  cursor: pointer;
+}
+.card-section .card:hover {
+  box-shadow: 10px 10px 30px 10px rgb(26, 199, 179);
+}
+.card-section .card .image-container {
+  height: 400px;
+}
+.card-section .card .image-container img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}/*# sourceMappingURL=card.component.css.map */

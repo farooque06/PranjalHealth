@@ -1,0 +1,18 @@
+
+ <section class="our-services">
+    <div class="custom-container">
+        <div class="service-items">
+            <div class="item-card">
+                <h3>our services</h3>
+                <h2>Providing best service to you is our moto </h2>
+                <div class="our-cards-container">
+                     <app-card class="our-service" *ngFor="let item of services; let i=index;" [title]="item.title" [src]="item.image" (click)="showDetails(i)"></app-card>
+                </div>   
+            </div>   
+            <div class="action-container"><a routerLink="/services-main" class="co-btn">More &nbsp;<img src="../../../assets/images/icons/right-arrow.png" alt=""></a></div>       
+        </div>
+    </div>
+ </section>
+ <div *ngIf="source">
+    From Routing
+ </div>  

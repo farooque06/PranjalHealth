@@ -1,0 +1,140 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color:black !important; //#E3E6E3
+}
+ul{
+    margin: 0 !important;
+    padding: 0% !important;
+}
+
+ul li{
+list-style: none;
+}
+a{
+ text-decoration: none;
+}
+h1, h2, h3, h4, h5, h6{
+margin: 0;
+margin-bottom: 0%;
+}
+.co-btn{
+    min-width: 100px;
+    display: inline-block;
+    text-decoration: none;
+    width: auto;
+    outline: none;
+    border-radius: 20px;
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1em;
+    text-transform: capitalize;
+    color:black;
+    background-color:transparent;
+    &:hover,&:focus,&:active{
+        color:rgb(237, 64, 30);
+        font-size: 20px;
+        opacity: 0.4;
+    }
+  }
+
+  /*-------common for custom padding---------*/
+  .custom-container{
+   // padding: 5% 12%;
+   padding: 40px;
+  }
+  /*------common items for gallery ,services,and doctors page -------*/
+
+  .common-items{
+    .title{
+        margin-bottom: 50px ;
+        h5{
+            text-transform: capitalize;
+            color: rgba(237,64,30,0.9920343137254902); 
+        }
+        h1{
+            text-transform: uppercase;
+            color:aquamarine;
+        }
+
+    }
+    .item{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        .main-ser-card{
+            min-width: 300px;
+            max-width: 450px;
+            margin-bottom: 40px ;
+        }
+        .main-gallery-card{
+            min-width: 300px;
+            max-width: 450px;
+            margin-bottom: 40px ;
+        }
+        .main-doctors-card{
+            min-width: 300px;
+            max-width: 450px;
+            margin-bottom: 40px ;
+        }
+
+    }
+}
+
+
+  /*------common items END -------*/
+
+
+  $breakpoint-desktop: 1024px;
+  $breakpoint-tablet: 8px;
+  $breakpoint-mobile: 480px;
+
+  /* Using SCSS variables to store breakpoints */
+
+
+  /* Using SCSS variables to store breakpoints */
+
+  /*------media query start-------*/
+//   @media (max-width:1399px){
+//     .custom-container{
+//         padding: 5% 10%;
+//       }
+//   }
+  
+//   @media (max-width:1199px){
+//     .custom-container{
+//         padding: 5% 8%;
+//       }
+//       .common-items{
+//         .title{
+//             margin-bottom: 30px ;
+//         }
+//         .item{
+//           .main-ser-card{
+//                 margin-bottom: 25px ;
+//             }
+//             .main-gallery-card{
+//                 margin-bottom: 25px ;
+//             }
+//             .main-doctors-card{
+//                 margin-bottom: 25px ;
+//             }
+    
+//         }
+//     }
+//   }
+
+@media(max-width:440px){
+    .custom-container{
+        padding: 40px 5px;
+    }
+}
+
+  /*------media query END-------*/
+
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';

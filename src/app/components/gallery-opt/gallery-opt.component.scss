@@ -1,0 +1,28 @@
+.gallery-section{
+      .gallery-container{
+        .gallery{
+          display: flex;
+          flex-wrap: wrap;
+          .colum{
+            width: 50%;
+            &:nth-last-child(1){
+              width: 100%;
+            }
+            .image-container{
+              .image{
+                padding: 8px;
+                img{
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  object-position: center;
+
+                }
+
+              }
+            }
+          }
+        }
+      }
+    }
+  
