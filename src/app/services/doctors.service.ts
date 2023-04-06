@@ -76,7 +76,7 @@ export class DoctorsService {
       title: "Dr. Prajwal Dhakal ",
       image: "assets/images/home-page/doctors-image/prajwal.png",
       content: "MD Paediatrics",
-      experience:["lhk nfxabna hvxjhbx", "kkjndjbcnscckl ", "asyugchfcjv","wexhbjhbbyc ","jhbhudvjbas chasbsx vaxhax"],
+      experience:["lhk nfxabna hvxjhbx", "kkjndjbcnscckl ", "asyugchfcjv","wexhbjhbbyc ","jhbhudvjbas chasbsx vaxhax hhgjhghghghgh"],
       education:["MSD","MD","MBBS"]
     })
     this.doctors.push({
