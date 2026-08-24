@@ -8,31 +8,31 @@ export class GalleryService {
 
   constructor() {
     this.gallery.push({
-      image: "assets/images/gallery/DSC_0153.jpg",
+      image: "assets/images/gallery/gallery1.jpg",
     })
     this.gallery.push({
-      image: "assets/images/gallery/DSC_0162.jpg",
+      image: "assets/images/gallery/gallery2.jpg",
     })
     this.gallery.push({
-      image: "assets/images/gallery/DSC_0164.jpg",
+      image: "assets/images/gallery/gallery3.jpg",
     })
     this.gallery.push({
-      image: "assets/images/gallery/DSC_0175.jpg",
+      image: "assets/images/gallery/gallery4.jpg",
     })
     this.gallery.push({
-      image: "assets/images/gallery/DSC_0140.jpg",
+      image: "assets/images/gallery/gallery5.jpg",
     })
     this.gallery.push({
-      image: "assets/images/gallery/DSC_0141.jpg",
+      image: "assets/images/gallery/gallery6.jpg",
     })
     this.gallery.push({
-      image: "assets/images/gallery/DSC_0148.jpg",
+      image: "assets/images/gallery/gallery7.jpg",
     })
     this.gallery.push({
-      image: "assets/images/gallery/DSC_0176.jpg",
+      image: "assets/images/gallery/gallery8.jpg",
     })
     this.gallery.push({
-      image: "assets/images/gallery/DSC_0153.jpg",
+      image: "assets/images/gallery/gallery9.jpg",
     })
     this.gallery.push({
       image: "assets/images/gallery/DSC_0162.jpg",

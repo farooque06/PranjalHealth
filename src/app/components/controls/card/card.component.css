@@ -6,17 +6,36 @@
   border-radius: 20px;
   box-shadow: 0 0 10px 0px rgba(248, 8, 8, 0.3);
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 .card-section .card:hover {
   box-shadow: 10px 10px 30px 10px rgb(26, 199, 179);
 }
 .card-section .card .image-container {
-  height: 400px;
+  height: 500px;
+  max-width: 500px;
+  min-width: 400px;
 }
 .card-section .card .image-container img {
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
+  width: 100%;
+}
+.card-section .card .card-body {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  background-color: aliceblue;
+  width: 100%;
+  border-radius: 10px 10px 0px 0;
+}
+
+@media (max-width: 991px) {
+  .card-section {
+    padding: 8px;
+  }
+  .card-section .card .image-container {
+    height: 480px;
+    min-width: 320px;
+  }
 }/*# sourceMappingURL=card.component.css.map */

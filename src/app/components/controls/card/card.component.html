@@ -3,9 +3,9 @@
     <div class="image-container">
       <img [src]="src" class="card-img-top" alt="...">
     </div>
-    <div class="card-body">
+    <div *ngIf="showBody" class="card-body">
       <h5 class="card-title">{{title}}</h5>
-      <p class="card-text">{{content}}</p>
+      <p  class="card-text">{{content}}</p>
     </div>
   </div>
 </div>

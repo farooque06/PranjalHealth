@@ -8,12 +8,12 @@ import { SlickCarouselComponent } from 'ngx-slick-carousel';
 })
 export class SliderComponent implements OnInit {
   slides = [
-    {img: "assets/images/home-page/banner/insight.jpg"},
     {img: "assets/images/home-page/banner/Building1.jpg"},
-    {img: "assets/images/home-page/banner/midicine.jpg"},
-    {img: "assets/images/home-page/banner/insight.jpg"},
-    {img: "assets/images/home-page/banner/Building1.jpg"},
-    {img: "assets/images/home-page/banner/midicine.jpg"},
+    {img: "assets/images/home-page/banner/banner02.jpg"},
+    {img: "assets/images/home-page/banner/banner03.jpg"},
+    {img: "assets/images/home-page/banner/banner04.jpg"},
+    {img: "assets/images/home-page/banner/banner05.jpg"},
+    {img: "assets/images/home-page/banner/banner06.jpg"},
   ];
   slideConfig = {
     "slidesToShow": 1, 

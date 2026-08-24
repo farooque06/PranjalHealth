@@ -1,7 +1,7 @@
 export interface IServices {
     index: number,
     title: string,
-    image: string,
+    image: string[],
     content: string
 }
 
@@ -10,10 +10,10 @@ export interface IServices {
     title: string,
     image: string,
     content: string,
-    experience:string[],
+    // experience:string[],
     education:string[]
   }
   export interface IGallery {
     // index: number,
-    image: string,
+    image: string
   }

@@ -1,1 +1,5 @@
-/*# sourceMappingURL=app.component.css.map */
+router-outlet > * {
+  max-width: 1440px;
+  justify-content: center;
+  margin: auto;
+}/*# sourceMappingURL=app.component.css.map */

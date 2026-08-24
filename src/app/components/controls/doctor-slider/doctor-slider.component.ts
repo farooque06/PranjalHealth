@@ -29,7 +29,7 @@ export class DoctorSliderComponent implements OnInit {
      "slidesToScroll": 1,
      "autoplay":true ,
      "dots":true,
-     "autoplaySpeed":500 ,
+     "autoplaySpeed":1000 ,
      "responsive": [
       {
         breakpoint: 680,

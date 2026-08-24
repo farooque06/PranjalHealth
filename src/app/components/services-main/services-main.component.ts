@@ -9,8 +9,9 @@ import { ServicesService } from 'src/app/services/services.service';
 })
 export class ServicesMainComponent implements OnInit {
   services: any[] = [];
-
+  
   constructor(
+    
     private servicesservice: ServicesService,
     private router: Router
   ) {
@@ -21,8 +22,9 @@ export class ServicesMainComponent implements OnInit {
     this.services =this.servicesservice.getServices();
 
   }
+
   showDetails(index: number){
       console.log(index);
-      this.router.navigate(["our-services-details", index])
+      this.router.navigate(["our-services-details",index])
     }
 }

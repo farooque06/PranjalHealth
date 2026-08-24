@@ -20,7 +20,7 @@ data: IDoctors | any;
     if(index){
       this.data= this.doctors.getDoctorBYIndexNO(+index);
 
-      console.log(this.data.experience)
+      // console.log(this.data.experience)
       console.log(this.data.education)
     }
   }

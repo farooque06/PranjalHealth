@@ -9,14 +9,19 @@
   background: linear-gradient(rgb(26, 199, 179), rgba(237, 64, 30, 0.3));
 }
 .ourdoctors-section .our-doctors .custom-container {
-  padding-right: 9%;
+  padding-top: 100px;
 }
 .ourdoctors-section .our-doctors .custom-container .doctors-container {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .ourdoctors-section .our-doctors .custom-container .doctors-container .text-container {
-  width: 40%;
+  width: 500px;
   margin: auto;
+}
+.ourdoctors-section .our-doctors .custom-container .doctors-container .text-container .text {
+  width: 100%;
 }
 .ourdoctors-section .our-doctors .custom-container .doctors-container .text-container .text .title {
   margin-bottom: 20px;
@@ -25,23 +30,24 @@
   margin-bottom: 25px;
 }
 .ourdoctors-section .our-doctors .custom-container .doctors-container .item-card {
-  width: 60%;
+  min-width: 300px;
+  max-width: 1000px;
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 767px) {
   .ourdoctors-section .our-doctors .custom-container {
-    padding-right: 5%;
+    padding-top: 40px 30px;
   }
   .ourdoctors-section .our-doctors .custom-container .doctors-container .text-container {
-    width: 35%;
+    width: 85%;
   }
   .ourdoctors-section .our-doctors .custom-container .doctors-container .text-container .text .title {
-    margin-bottom: 18px;
+    margin-bottom: 10px;
   }
   .ourdoctors-section .our-doctors .custom-container .doctors-container .text-container .text .content {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
   .ourdoctors-section .our-doctors .custom-container .doctors-container .item-card {
-    width: 65%;
+    width: 100%;
   }
 }/*# sourceMappingURL=our-doctors.component.css.map */

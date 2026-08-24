@@ -16,6 +16,9 @@
                     margin: auto;                   
                     .text{
                         width: 100%;
+                        h3{
+                            text-transform: uppercase;
+                        }
                         .title{
                             margin-bottom: 20px;
                         }
@@ -26,7 +29,7 @@
                     }
                 }
                 .item-card{
-                    min-width: 700px;
+                    min-width: 300px;
                     max-width: 1000px;
                 }
     
@@ -83,7 +86,6 @@
                     }
                     .item-card{
                         width:100%;
-                        min-width: 0px;
                     }
         
                 }

@@ -1,3 +1,22 @@
+
+<!-- <ng-container #container *ngTemplateOutlet="content; context:{link: imageSrc}">
+
+</ng-container> -->
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Image Preview</h4>
+        <button type="button" class="btn-close" aria-label="Close"
+            (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body" style="width: 100vw;">
+
+
+        <img [src]="imageSrc" width="100%">
+        <!-- <app-modal [imageSrc]="imageSrc"></app-modal> -->
+    </div>
+</ng-template>
+
 <section class="gallery-main">
     <div class="custom-container">
         <div class="gallery-item-container">
@@ -7,10 +26,14 @@
                     <h1>Photos</h1>
                 </div>
                 <div class="item">
-                    <app-card class="main-gallery-card" *ngFor="let item of gallery;"  [src]="item.image" ></app-card>
-                    <!-- <app-gallery-opt></app-gallery-opt> -->
+                    <app-card class="main-gallery-card"
+                        *ngFor="let item of gallery;"
+                        [src]="item.image" [showBody]="false"
+                        (click)="showPreview(content, item.image)"></app-card>
+
                 </div>
+
             </div>
         </div>
     </div>
-</section>
+</section>"

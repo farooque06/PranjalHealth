@@ -16,9 +16,16 @@
                         <div class="card-title">
                             <h1>{{data.title}}</h1>
                         </div>
+                        <div class="card-text">
+                            <ul>
+                                <li *ngFor="let item of data.education">
+                                    <H4>{{item}}</H4>
+                                </li>
+                            </ul>
+                        </div>
                         <div class="card-text"><h4>{{data.content}}</h4></div>
                     </div>
-                    <div class="text">
+                    <!-- <div class="text">
                         <div class="card-title">
                             <h5>Work Experience:</h5>
                         </div>
@@ -29,22 +36,10 @@
                                     {{item}}
                                    </p> 
                                 </li>
-                                <!-- <li> <p>Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Ad sunt autem
-                                        possimus! Odit, eos accusamus.</p></li>
-                                <li> <p>Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Ad sunt autem
-                                        possimus! Odit, eos accusamus.</p></li>
-                                <li> <p>Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Ad sunt autem
-                                        possimus! Odit, eos accusamus.</p></li>
-                                <li> <p>Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Ad sunt autem
-                                        possimus! Odit, eos accusamus.</p></li> -->
                             </ul>
                         </div>
-                    </div>
-                    <div class="text">
+                    </div> -->
+                    <!-- <div class="text">
                         <div class="card-title">
                             <h5>Educations:</h5>
                         </div>
@@ -53,18 +48,9 @@
                                 <li *ngFor="let item of data.education">
                                     <p>{{item}}</p>
                                 </li>
-                                <!-- <li> <p>Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Ad sunt autem
-                                        possimus! Odit, eos accusamus.</p></li>
-                                <li> <p>Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Ad sunt autem
-                                        possimus! Odit, eos accusamus.</p></li>
-                                <li> <p>Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Ad sunt autem
-                                        possimus! Odit, eos accusamus.</p></li> -->
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

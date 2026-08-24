@@ -14,7 +14,21 @@
                     width: 40%;
                     .text{
                         ul{
-                            li{margin-bottom: 10px;}
+                            li{margin-bottom: 10px;
+                            a{
+                                text-decoration: none;
+                                color: aliceblue;
+                                &:hover{
+                                    overflow: hidden;
+                                    margin-left: 20px;
+                                    color: blue;
+                                    transition: 0.3s;
+                                }
+                            }
+                            }
+                        }
+                        .email{
+                            text-transform: lowercase;
                         }
                     }
 

@@ -23,6 +23,8 @@ import { ContactComponent } from './components/contact/contact.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { DoctorsDetailsComponent } from './components/doctors-details/doctors-details.component';
 import { GalleryOptComponent } from './components/gallery-opt/gallery-opt.component';
+import { ModalGalleryComponent } from './components/controls/modal-gallery/modal-gallery.component';
+import { AboutPageComponent } from './components/about-page/about-page.component';
 
 
 
@@ -46,17 +48,16 @@ import { GalleryOptComponent } from './components/gallery-opt/gallery-opt.compon
     ContactComponent,
     GalleryComponent,
     DoctorsDetailsComponent,
-    GalleryOptComponent
+    GalleryOptComponent,
+    ModalGalleryComponent,
+    AboutPageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SlickCarouselModule,
     NgbModule
-
-
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

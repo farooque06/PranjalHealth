@@ -9,6 +9,8 @@ import { DoctorsComponent } from './components/doctors/doctors.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { DoctorsDetailsComponent } from './components/doctors-details/doctors-details.component';
+import { AboutPageComponent } from './components/about-page/about-page.component';
+import { GalleryOptComponent } from './components/gallery-opt/gallery-opt.component';
 const routes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' }, // redirect to 
   { path: "home", component: HomeComponent },
@@ -19,7 +21,10 @@ const routes: Routes = [
   { path: "doctors", component: DoctorsComponent },
   { path: "contact", component: ContactComponent },
   { path: "gallery", component: GalleryComponent },
-  { path: "doctors-details/:index", component: DoctorsDetailsComponent }
+  { path: "gallery-opt" , component: GalleryOptComponent},
+  { path: "about-page", component: AboutPageComponent },
+  { path: "doctors-details/:index", component: DoctorsDetailsComponent },
+  //{path:"full-image", component......}
 ];
 
 

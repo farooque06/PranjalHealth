@@ -1,10 +1,10 @@
 .logo-container {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .logo-container .image-container {
-  width: 85px;
-  height: 85px;
+  width: 75px;
 }
 .logo-container .image-container img {
   width: 100%;
@@ -14,21 +14,23 @@
 }
 .logo-container .text-container .text {
   width: 100%;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 .logo-container .text-container .text h1 {
   text-transform: uppercase;
   font-family: Arial, Helvetica, sans-serif;
   color: #0C8A7C;
-  font-size: 45px;
+  font-size: 2.4em;
+  font-weight: 700;
   margin: 0;
   padding: 0;
 }
 .logo-container .text-container .text h4 {
   color: rgba(237, 64, 30, 0.9920343137);
   margin: 0%;
-  font-size: 20px;
+  font-size: 1em;
   line-height: 0.4;
+  font-weight: 800;
 }
 .logo-container .text-container .text span {
   font-size: larger;
@@ -36,5 +38,23 @@
 }
 
 :host {
-  min-width: 300px;
+  min-width: 330px;
+}
+
+@media (max-width: 415px) {
+  .logo-container .image-container {
+    width: 55px;
+  }
+  .logo-container .text-container .text {
+    margin-top: 8px;
+  }
+  .logo-container .text-container .text h1 {
+    font-size: 1.8em;
+  }
+  .logo-container .text-container .text h4 {
+    font-size: 0.8em;
+  }
+  :host {
+    min-width: 250px;
+  }
 }/*# sourceMappingURL=logo.component.css.map */
