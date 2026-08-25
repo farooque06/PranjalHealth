@@ -1,21 +1,86 @@
-<section class="ourdoctors-section">
-<div class="our-doctors">
-    <div class="custom-container">
-        <div class="doctors-container">
-            <div class="text-container">
-                 <div class="text">
-                    <!-- <h2 class="title">Our Doctors</h2> -->
-                    <h3>know your doctor</h3>
-                    <!-- <p class="content"> Our doctors are dedicated to providing the best possible care for their patients.  They are highly skilled and experienced in their respective fields.They work together as a team to ensure that each patient receives quality care. The doctors are passionate about what they do and are always striving to improve the quality of care that they provide.</p> -->
-                    <a routerLink="/doctors" class="co-btn">More&nbsp;&nbsp;<img src="../../../assets/images/icons/right-arrow.png" alt=""></a>
-                  </div>
-                </div>
-            <div class="item-card">
-                <div class="our-cards-container">
-                   <app-doctor-slider></app-doctor-slider>
-                </div>   
-            </div>
+<section class="doctors-section" id="our-doctors">
+  <div class="custom-container">
+    <!-- Section Header -->
+    <div class="doctors-header">
+      <div class="header-left">
+        <div class="section-label">
+          <span class="label-line"></span>
+          <span class="label-text"><i class="fa-solid fa-user-doctor"></i> Medical Experts</span>
         </div>
+        <h2 class="doctors-heading">
+          Meet Our <span class="heading-highlight">Specialist Doctors</span>
+        </h2>
+        <p class="doctors-subtitle">
+          Our team of highly qualified medical professionals is committed to providing the best healthcare experience with compassion and expertise.
+        </p>
+      </div>
+      <div class="header-right">
+        <a routerLink="/doctors" class="co-btn co-btn-outline view-all-btn">
+          View All Specialists <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
     </div>
-</div>
- </section>
+
+    <!-- Doctor Slider Wrapper -->
+    <div class="doctors-carousel-wrapper">
+      <app-doctor-slider></app-doctor-slider>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="doctors-stats-bar">
+      <div class="stat-item">
+        <div class="stat-icon">
+          <i class="fa-solid fa-user-doctor"></i>
+        </div>
+        <div class="stat-content">
+          <span class="stat-number">20+</span>
+          <span class="stat-label">Expert Doctors</span>
+        </div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-icon">
+          <i class="fa-solid fa-stethoscope"></i>
+        </div>
+        <div class="stat-content">
+          <span class="stat-number">15+</span>
+          <span class="stat-label">Specializations</span>
+        </div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-icon">
+          <i class="fa-solid fa-hospital"></i>
+        </div>
+        <div class="stat-content">
+          <span class="stat-number">50K+</span>
+          <span class="stat-label">Patients Treated</span>
+        </div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-icon">
+          <i class="fa-solid fa-award"></i>
+        </div>
+        <div class="stat-content">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Patient Satisfaction</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile CTA -->
+    <div class="mobile-cta">
+      <a routerLink="/doctors" class="co-btn co-btn-outline view-all-btn">
+        View All Specialists <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Background Decorations -->
+  <div class="doctors-bg-decor">
+    <div class="decor-circle decor-1"></div>
+    <div class="decor-circle decor-2"></div>
+    <div class="decor-line"></div>
+  </div>
+</section>

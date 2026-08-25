@@ -1,11 +1,12 @@
-<div class="card-section">
-  <div class="card">
-    <div class="image-container">
-      <img [src]="src" class="card-img-top" alt="...">
+<div class="modern-card-wrapper">
+  <div class="card-image-box">
+    <img [src]="src" [alt]="title || 'Diagnostic Card Image'" class="card-img" (error)="onImageError($event)">
+    <div class="card-overlay">
+      <span class="view-badge"><i class="fa-solid fa-arrow-right"></i> View Details</span>
     </div>
-    <div *ngIf="showBody" class="card-body">
-      <h5 class="card-title">{{title}}</h5>
-      <p  class="card-text">{{content}}</p>
-    </div>
+  </div>
+  <div *ngIf="showBody" class="card-content-box">
+    <h5 class="card-title">{{title}}</h5>
+    <p class="card-desc">{{content}}</p>
   </div>
 </div>

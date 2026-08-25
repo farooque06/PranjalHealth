@@ -1,80 +1,218 @@
-.container {
-    max-width: 100%;
-    border-bottom: 10px solid rgb(26, 199, 179,0.5);
-    border-radius: 15%;
-    padding: 0;
-    .carousel{
-        .slide{
-            height: 89vh;
-            img{
-                object-fit: cover;
-                object-position: center;
-            }
-        }
+.hero-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--bg-dark);
+
+  .hero-container {
+    width: 100%;
+    position: relative;
+
+    /* Remove slick margin-bottom */
+    .slick-slider {
+      margin-bottom: 0 !important;
     }
-}
+  }
 
-::ng-deep .slick-prev {
-    background-color: silver;
-    left: 0;
-    height: 125px;
-    width: 51px;
-    cursor: pointer;
-    z-index: 1;
-    opacity: 0.5;
-}
+  .hero-slide {
+    position: relative;
+    min-height: 620px;
+    display: flex !important;
+    align-items: center;
 
-::ng-deep .slick-next {
-    background-color: silver;
-    height: 123px;
-    width: 51px;
-    cursor: pointer;
-    opacity: 0.5;
-}
-
-::ng-deep .slick-arrow {
-    color:silver;
-    right: 0;
-}
-
-// @media (max-width:1399px){
-//     .container {
-//         .carousel{
-//             .slide{
-//                 height: 700px;
-//             }
-//         }
-//     }
-    
-// }
-// @media (max-width:1199px){
-//     .container {
-//         .carousel{
-//             .slide{
-//                 height: 680px;
-//             }
-//         }
-//     }
-// }
-// @media(max-width:991px){
-//         .container {
-//             .carousel{
-//                 .slide{
-//                     height: 650px;
-//                 }
-//             }
-//         }   
-// }
-
-
-@media(max-width:440px){
-    .container {
-        border-bottom: 5px solid rgb(26, 199, 179,0.5);
-        border-radius: 25%;
-        .carousel{
-            .slide{
-                height: 60vh;
-            }
-        }
+    @media (max-width: 768px) {
+      min-height: 520px;
     }
+  }
+
+  .slide-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+
+    /* Clean natural dark vignette overlay */
+    .gradient-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg, 
+        rgba(15, 23, 42, 0.88) 0%, 
+        rgba(13, 138, 117, 0.4) 50%, 
+        rgba(15, 23, 42, 0.25) 100%
+      );
+    }
+  }
+
+  .slide-caption-container {
+    position: relative;
+    z-index: 10;
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 60px;
+    width: 100%;
+
+    @media (max-width: 992px) {
+      padding: 40px 30px;
+    }
+    @media (max-width: 576px) {
+      padding: 30px 20px;
+    }
+  }
+
+  .caption-content {
+    max-width: 660px;
+    color: #ffffff;
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 700;
+      color: #5EEAD4;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 46px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+
+      @media (max-width: 992px) {
+        font-size: 34px;
+      }
+      @media (max-width: 576px) {
+        font-size: 26px;
+      }
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.92);
+      line-height: 1.6;
+      margin-bottom: 32px;
+      font-weight: 400;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+
+      @media (max-width: 576px) {
+        font-size: 14px;
+      }
+    }
+
+    .hero-buttons {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+
+      .hero-btn {
+        padding: 13px 30px;
+        font-size: 15px;
+      }
+
+      .btn-white {
+        border-color: rgba(255, 255, 255, 0.7);
+        color: #ffffff !important;
+
+        &:hover {
+          background: #ffffff;
+          color: var(--primary-teal-dark) !important;
+        }
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+   ngx-slick-carousel Navigation Arrows & Dots Pagination Styling
+   ========================================================================== */
+::ng-deep {
+  .hero-carousel {
+    .slick-slider {
+      margin-bottom: 0 !important;
+    }
+
+    .slick-list {
+      margin-bottom: 0 !important;
+    }
+
+    /* Prev/Next Arrow Styling */
+    .slick-prev,
+    .slick-next {
+      width: 48px;
+      height: 48px;
+      z-index: 20;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: var(--transition);
+
+      &:before {
+        font-family: 'FontAwesome';
+        font-size: 18px;
+        color: #ffffff;
+        opacity: 1;
+      }
+
+      &:hover {
+        background: var(--secondary-coral);
+        border-color: var(--secondary-coral);
+        transform: scale(1.1);
+      }
+    }
+
+    .slick-prev {
+      left: 24px;
+      &:before {
+        content: "\f053"; /* FontAwesome fa-chevron-left */
+      }
+    }
+
+    .slick-next {
+      right: 24px;
+      &:before {
+        content: "\f054"; /* FontAwesome fa-chevron-right */
+      }
+    }
+
+    /* Dots Pagination Position Inside Overlay Slider */
+    .slick-dots {
+      bottom: 20px;
+      z-index: 20;
+      margin: 0;
+
+      li {
+        margin: 0 4px;
+
+        button {
+          padding: 0;
+          &:before {
+            font-size: 12px;
+            color: #ffffff;
+            opacity: 0.5;
+            transition: var(--transition);
+          }
+        }
+
+        &.slick-active button:before {
+          color: var(--secondary-coral);
+          opacity: 1;
+          font-size: 14px;
+        }
+      }
+    }
+  }
 }

@@ -1,16 +1,257 @@
+<div class="doctors-page-wrapper">
 
-<section class="doctors-main-section">
+  <!-- 1. Hero Section -->
+  <section class="doctors-hero-section">
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-glow hero-glow-teal"></div>
+    <div class="hero-glow hero-glow-coral"></div>
+
     <div class="custom-container">
-        <div class="doctors-item-container">
-            <div class="doctors-item common-items">
-                <div class="title">
-                    <h5>meet our doctors</h5>
-                    <h1>our doctors</h1>
-                </div>
-                <div class="item">
-                    <app-card class="main-doctors-card" *ngFor="let item of doctors; " [title]="item.title" [src]="item.image" [content]="item.content" (click)="showDetails(item.index)" ></app-card>
-                </div>
-            </div>
+      <div class="hero-inner">
+        <div class="hero-badge-wrap">
+          <span class="hero-pill-badge">
+            <i class="fa-solid fa-user-doctor"></i> Dedicated Medical Faculty
+          </span>
         </div>
+
+        <h1 class="hero-main-title">
+          Meet Our Renowned <br>
+          <span class="gradient-text">Specialist Doctors & Surgeons</span>
+        </h1>
+
+        <p class="hero-subtext">
+          Our esteemed medical faculty brings decades of distinguished clinical experience from leading institutions like TUTH, KU, and BPKIHS to provide compassionate, personalized patient care in Kathmandu.
+        </p>
+
+        <!-- Breadcrumbs & Quick Metrics -->
+        <div class="hero-meta-row">
+          <div class="breadcrumb-trail">
+            <a routerLink="/"><i class="fa-solid fa-house"></i> Home</a>
+            <span class="separator"><i class="fa-solid fa-chevron-right"></i></span>
+            <span class="current">Our Doctors</span>
+          </div>
+
+          <div class="hero-stats-pills">
+            <div class="stat-pill">
+              <i class="fa-solid fa-award"></i>
+              <span>20+ Senior Specialists</span>
+            </div>
+            <div class="stat-pill">
+              <i class="fa-solid fa-hospital-user"></i>
+              <span>12+ Clinical Departments</span>
+            </div>
+            <div class="stat-pill">
+              <i class="fa-solid fa-calendar-check"></i>
+              <span>Daily Morning & Evening OPD</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
+
+  <!-- 2. Search & Department Filters Bar -->
+  <section class="doctors-filter-section">
+    <div class="custom-container">
+      
+      <div class="filter-controls-container">
+        
+        <!-- Search Input -->
+        <div class="search-input-wrap">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input 
+            type="text" 
+            [(ngModel)]="searchQuery" 
+            (input)="onSearchChange()" 
+            placeholder="Search by doctor name, specialty, qualification, or department..." 
+            class="doctor-search-input"
+          />
+          <button *ngIf="searchQuery" (click)="searchQuery = ''; onSearchChange()" class="clear-search-btn" title="Clear Search">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- Department Filter Pills -->
+        <div class="dept-filter-pills-wrap">
+          <button 
+            *ngFor="let dept of departments" 
+            class="dept-pill" 
+            [class.active]="selectedDepartment === dept"
+            (click)="setDepartment(dept)">
+            <span>{{ dept }}</span>
+          </button>
+        </div>
+
+        <!-- Filter Results Status -->
+        <div class="filter-status-row">
+          <span class="results-count">
+            Showing <strong>{{ filteredDoctors.length }}</strong> of {{ doctors.length }} Specialists
+          </span>
+          <button *ngIf="selectedDepartment !== 'All' || searchQuery" (click)="clearFilters()" class="reset-filter-btn">
+            <i class="fa-solid fa-rotate-left"></i> Reset Filters
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. Doctors Grid Layout -->
+  <section class="doctors-grid-section">
+    <div class="custom-container">
+
+      <!-- Doctors Cards Grid -->
+      <div *ngIf="filteredDoctors.length > 0" class="doctors-cards-grid">
+        <div *ngFor="let doctor of filteredDoctors" class="doctor-card" (click)="showDetails(doctor.index)">
+          
+          <!-- Portrait Frame -->
+          <div class="doctor-image-frame">
+            <img [src]="doctor.image" [alt]="doctor.title" class="doctor-portrait">
+            
+            <div class="image-overlay-gradient"></div>
+            
+            <span *ngIf="doctor.department" class="dept-badge">
+              {{ doctor.department }}
+            </span>
+
+            <div class="available-badge">
+              <span class="pulse-dot"></span> OPD Available
+            </div>
+          </div>
+
+          <!-- Doctor Body Details -->
+          <div class="doctor-card-body">
+            
+            <h3 class="doctor-name">
+              {{ doctor.title }} <i class="fa-solid fa-circle-check verified-icon" title="Verified Specialist"></i>
+            </h3>
+
+            <p class="doctor-designation">{{ doctor.content }}</p>
+
+            <!-- Qualifications List -->
+            <div class="doctor-qualifications">
+              <span *ngFor="let edu of doctor.education" class="edu-chip">
+                <i class="fa-solid fa-graduation-cap"></i> {{ edu }}
+              </span>
+            </div>
+
+            <!-- OPD Schedule Pill -->
+            <div *ngIf="doctor.opdSchedule" class="opd-schedule-pill">
+              <i class="fa-regular fa-clock"></i>
+              <span>{{ doctor.opdSchedule }}</span>
+            </div>
+
+            <!-- Specializations List (First 2) -->
+            <div *ngIf="doctor.specializations && doctor.specializations.length" class="specializations-tags">
+              <span *ngFor="let spec of doctor.specializations.slice(0, 2)" class="spec-tag">
+                <i class="fa-solid fa-stethoscope"></i> {{ spec }}
+              </span>
+            </div>
+
+            <!-- Card Action Footer -->
+            <div class="doctor-card-footer">
+              <button class="co-btn co-btn-outline view-profile-btn">
+                <span>View Profile</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+              
+              <a [routerLink]="['/contact']" (click)="$event.stopPropagation()" class="co-btn co-btn-accent book-apt-btn">
+                <i class="fa-solid fa-calendar-plus"></i>
+                <span>Book</span>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- No Results Found State -->
+      <div *ngIf="filteredDoctors.length === 0" class="no-results-box">
+        <div class="no-results-icon"><i class="fa-solid fa-user-doctor"></i></div>
+        <h3>No Specialists Found</h3>
+        <p>We couldn't find any doctor matching your search "<strong>{{ searchQuery }}</strong>" in the selected department.</p>
+        <button (click)="clearFilters()" class="co-btn">
+          <i class="fa-solid fa-rotate-left"></i> View All Doctors
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. Why Consult at Pranjal Healthcare -->
+  <section class="doctors-features-section">
+    <div class="custom-container">
+      
+      <div class="features-header-center">
+        <span class="badge-pill-sub"><i class="fa-solid fa-shield-heart"></i> Why Consult Us</span>
+        <h2 class="section-title">Exceptional Clinical Standards & Patient Care</h2>
+        <p class="section-subtitle">Experience comprehensive medical consultations without long hospital queues.</p>
+      </div>
+
+      <div class="features-grid">
+        
+        <div class="feature-card">
+          <div class="feature-icon teal"><i class="fa-solid fa-user-graduate"></i></div>
+          <h4>Experienced Faculty</h4>
+          <p>Consultants and professors with high clinical credentials from top medical teaching hospitals in Nepal and abroad.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon coral"><i class="fa-solid fa-flask-vial"></i></div>
+          <h4>Instant Lab Integration</h4>
+          <p>Undergo blood tests, X-Ray, USG, and ECG during the same visit with immediate reporting for doctors.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon blue"><i class="fa-solid fa-pills"></i></div>
+          <h4>On-Site Pharmacy</h4>
+          <p>Receive prescribed authentic medicines immediately after your consultation from our licensed pharmacy.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon green"><i class="fa-solid fa-clock"></i></div>
+          <h4>Minimal Waiting Times</h4>
+          <p>Organized appointment slots and comfortable waiting lounges to respect your busy schedule.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. Consultation & Appointment Callout Banner -->
+  <section class="doctors-cta-section">
+    <div class="custom-container">
+      <div class="cta-banner-card">
+        <div class="cta-glow-1"></div>
+        <div class="cta-glow-2"></div>
+
+        <div class="cta-content">
+          <span class="cta-tag"><i class="fa-solid fa-calendar-check"></i> Easy Appointment Booking</span>
+          <h2 class="cta-title">Need to Consult a Doctor Today?</h2>
+          <p class="cta-desc">
+            Schedule an OPD appointment with our senior consultants or speak with our front desk for doctor availability and timings.
+          </p>
+
+          <div class="cta-actions">
+            <a routerLink="/contact" class="co-btn co-btn-accent">
+              <i class="fa-solid fa-calendar-plus"></i> Book Consultation Online
+            </a>
+            <a href="tel:+977-9865370270" class="co-btn co-btn-outline cta-outline-btn">
+              <i class="fa-solid fa-phone-volume"></i> Call: +977-9865370270
+            </a>
+          </div>
+
+          <div class="cta-footer-meta">
+            <span><i class="fa-solid fa-location-dot"></i> Pepsicola Townplanning, KTM</span>
+            <span class="dot">•</span>
+            <span><i class="fa-solid fa-clock"></i> Sun - Fri: 7:00 AM - 7:00 PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

@@ -1,19 +1,42 @@
-
-
-<div class="container">
-    <ngx-slick-carousel class="carousel" 
+<section class="hero-section">
+  <!-- Modern Hero Content Overlay & Carousel Container -->
+  <div class="hero-container">
+    <ngx-slick-carousel class="hero-carousel" 
         #slickModal="slick-carousel"
         [config]="slideConfig"
-        (init)="slickInit($event)"
-        (breakpoint)="breakpoint($event)"
-        (afterChange)="afterChange($event)"
-        (beforeChange)="beforeChange($event)">
-        <div ngxSlickItem *ngFor="let slide of slides" class="slide">
-            <img src="{{ slide.img }}" alt="" width="100%" height="100%">
-            
+        (init)="slickInit($event)">
+        
+        <div ngxSlickItem *ngFor="let slide of slides; let i = index" class="hero-slide">
+          <!-- Background Image with Soft Balanced Dark Overlay -->
+          <div class="slide-bg" [style.background-image]="'url(' + slide.img + ')'">
+            <div class="gradient-overlay"></div>
+          </div>
+
+          <!-- Slide Content Caption -->
+          <div class="slide-caption-container">
+            <div class="caption-content">
+              <span class="hero-tag">
+                <i class="fa-solid fa-square-plus"></i> {{ slide.tag }}
+              </span>
+              <h1 class="hero-title">
+                {{ slide.title }}
+              </h1>
+              <p class="hero-subtitle">
+                {{ slide.desc }}
+              </p>
+              
+              <div class="hero-buttons">
+                <a routerLink="/contact" class="co-btn co-btn-accent hero-btn">
+                  <i class="fa-solid fa-calendar-check"></i> Book Appointment
+                </a>
+                <a routerLink="/services-main" class="co-btn co-btn-outline hero-btn btn-white">
+                  <i class="fa-solid fa-stethoscope"></i> Our Services
+                </a>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <!-- <div class="text-container">
-            
-        </div>  -->
     </ngx-slick-carousel>
-</div>
+  </div>
+</section>

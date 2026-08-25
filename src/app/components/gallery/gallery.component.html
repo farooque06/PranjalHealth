@@ -1,39 +1,329 @@
+<div class="gallery-page-wrapper">
 
-<!-- <ng-container #container *ngTemplateOutlet="content; context:{link: imageSrc}">
+  <!-- 1. Hero Section -->
+  <section class="gallery-hero-section">
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-glow hero-glow-teal"></div>
+    <div class="hero-glow hero-glow-coral"></div>
+    <div class="hero-particles"></div>
 
-</ng-container> -->
-
-<ng-template #content let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title">Image Preview</h4>
-        <button type="button" class="btn-close" aria-label="Close"
-            (click)="modal.dismiss('Cross click')"></button>
-    </div>
-    <div class="modal-body" style="width: 100vw;">
-
-
-        <img [src]="imageSrc" width="100%">
-        <!-- <app-modal [imageSrc]="imageSrc"></app-modal> -->
-    </div>
-</ng-template>
-
-<section class="gallery-main">
     <div class="custom-container">
-        <div class="gallery-item-container">
-            <div class="gallery-item common-items">
-                <div class="title">
-                    <h5>gallery</h5>
-                    <h1>Photos</h1>
-                </div>
-                <div class="item">
-                    <app-card class="main-gallery-card"
-                        *ngFor="let item of gallery;"
-                        [src]="item.image" [showBody]="false"
-                        (click)="showPreview(content, item.image)"></app-card>
-
-                </div>
-
-            </div>
+      <div class="hero-inner">
+        
+        <div class="hero-badge-wrap">
+          <span class="hero-pill-badge">
+            <i class="fa-solid fa-camera-retro"></i> Architectural & Facility Showcase
+          </span>
         </div>
+
+        <h1 class="hero-main-title">
+          Inside Our Modern <br>
+          <span class="gradient-text">Healthcare & Diagnostic Complex</span>
+        </h1>
+
+        <p class="hero-subtext">
+          A visual walkthrough of Kathmandu’s trusted neighborhood diagnostic center — featuring automated clinical pathology suites, high-definition digital radiology, specialist consultation chambers, and welcoming patient care environments.
+        </p>
+
+        <!-- Breadcrumbs & Quick Metrics -->
+        <div class="hero-meta-row">
+          <div class="breadcrumb-trail">
+            <a routerLink="/"><i class="fa-solid fa-house"></i> Home</a>
+            <span class="separator"><i class="fa-solid fa-chevron-right"></i></span>
+            <span class="current">Gallery</span>
+          </div>
+
+          <div class="hero-stats-pills">
+            <div class="stat-pill">
+              <i class="fa-solid fa-building-circle-check"></i>
+              <span>4-Floor Medical Complex</span>
+            </div>
+            <div class="stat-pill">
+              <i class="fa-solid fa-microscope"></i>
+              <span>Automated Lab Analyzers</span>
+            </div>
+            <div class="stat-pill">
+              <i class="fa-solid fa-shield-virus"></i>
+              <span>ISO Sterile Protocols</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-</section>"
+  </section>
+
+  <!-- 2. Interactive Filter & Layout Toolbar -->
+  <section class="gallery-toolbar-section">
+    <div class="custom-container">
+      
+      <div class="toolbar-glass-panel">
+        
+        <!-- Category Filter Pills with Icons & Counts -->
+        <div class="category-pills-container">
+          <button 
+            *ngFor="let cat of categories" 
+            class="filter-pill-btn" 
+            [class.active]="selectedCategory === cat"
+            (click)="setCategory(cat)">
+            <i class="fa-solid" [ngClass]="getCategoryIcon(cat)"></i>
+            <span>{{ cat }}</span>
+            <span class="pill-counter">{{ getCategoryCount(cat) }}</span>
+          </button>
+        </div>
+
+        <!-- View Mode Switcher -->
+        <div class="view-mode-controls">
+          <span class="mode-label">View Layout:</span>
+          <div class="mode-toggle-group">
+            <button 
+              class="mode-btn" 
+              [class.active]="viewMode === 'bento'" 
+              (click)="setViewMode('bento')"
+              title="Bento Dynamic Showcase">
+              <i class="fa-solid fa-table-cells-large"></i> <span>Bento</span>
+            </button>
+            <button 
+              class="mode-btn" 
+              [class.active]="viewMode === 'grid'" 
+              (click)="setViewMode('grid')"
+              title="Dense Grid View">
+              <i class="fa-solid fa-border-all"></i> <span>Grid</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. Photo Gallery Layout (Bento Showcase or Dense Grid) -->
+  <section class="gallery-display-section">
+    <div class="custom-container">
+
+      <!-- Bento Dynamic Layout -->
+      <div *ngIf="viewMode === 'bento'" class="bento-gallery-layout">
+        <div 
+          *ngFor="let item of filteredGallery; let i = index" 
+          class="bento-gallery-item"
+          [ngClass]="'bento-' + (item.aspect || 'normal')"
+          [class.is-featured]="item.featured"
+          (click)="openLightbox(i)">
+
+          <div class="bento-item-inner">
+            <img [src]="item.image" [alt]="item.title || 'Pranjal Healthcare Facility'" class="bento-image" loading="lazy">
+            
+            <div class="bento-glass-overlay">
+              <div class="overlay-top">
+                <span *ngIf="item.category" class="bento-cat-tag">
+                  <i class="fa-solid" [ngClass]="getCategoryIcon(item.category)"></i> {{ item.category }}
+                </span>
+                
+                <div class="bento-expand-btn">
+                  <i class="fa-solid fa-expand"></i>
+                </div>
+              </div>
+
+              <div class="overlay-bottom">
+                <h3 class="bento-title">{{ item.title }}</h3>
+                <p *ngIf="item.description" class="bento-description">{{ item.description }}</p>
+                
+                <div *ngIf="item.tags && item.tags.length" class="bento-tags-row">
+                  <span *ngFor="let tag of item.tags" class="tag-chip">
+                    <i class="fa-solid fa-circle-check"></i> {{ tag }}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Static Corner Badge for Non-Hover State -->
+            <span *ngIf="item.category" class="static-corner-badge">
+              {{ item.category }}
+            </span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Dense Grid Layout -->
+      <div *ngIf="viewMode === 'grid'" class="dense-grid-layout">
+        <div 
+          *ngFor="let item of filteredGallery; let i = index" 
+          class="grid-photo-card" 
+          (click)="openLightbox(i)">
+
+          <div class="grid-card-frame">
+            <img [src]="item.image" [alt]="item.title || 'Pranjal Healthcare'" class="grid-card-img" loading="lazy">
+            <div class="grid-card-overlay">
+              <div class="zoom-circle"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <span *ngIf="item.category" class="grid-cat-badge">{{ item.category }}</span>
+          </div>
+
+          <div class="grid-card-info">
+            <h4 class="grid-item-title">{{ item.title }}</h4>
+            <p *ngIf="item.description" class="grid-item-desc">{{ item.description }}</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Empty Filter State -->
+      <div *ngIf="filteredGallery.length === 0" class="empty-gallery-state">
+        <div class="empty-icon"><i class="fa-solid fa-images"></i></div>
+        <h3>No Photographs Found</h3>
+        <p>No photos available under the selected filter.</p>
+        <button (click)="setCategory('All Photos')" class="co-btn">
+          View All Photos
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. Facility Highlights Strip -->
+  <section class="facility-highlights-section">
+    <div class="custom-container">
+      
+      <div class="highlights-panel">
+        
+        <div class="highlight-feature">
+          <div class="icon-ring teal"><i class="fa-solid fa-shield-virus"></i></div>
+          <div class="feature-text">
+            <h4>Strict Bio-Safety Protocols</h4>
+            <p>Sanitized examination rooms, single-use sterile consumables, and daily fumigation.</p>
+          </div>
+        </div>
+
+        <div class="feature-divider"></div>
+
+        <div class="highlight-feature">
+          <div class="icon-ring coral"><i class="fa-solid fa-microchip"></i></div>
+          <div class="feature-text">
+            <h4>High-Precision Automation</h4>
+            <p>Computer-interfaced biochemistry, hematology, and digital X-Ray equipment.</p>
+          </div>
+        </div>
+
+        <div class="feature-divider"></div>
+
+        <div class="highlight-feature">
+          <div class="icon-ring blue"><i class="fa-solid fa-wheelchair"></i></div>
+          <div class="feature-text">
+            <h4>Accessible & Patient-Friendly</h4>
+            <p>Wheelchair accessibility, comfortable lounges, and priority elderly care.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. Center Tour CTA Section -->
+  <section class="gallery-cta-section">
+    <div class="custom-container">
+      <div class="cta-banner-card">
+        <div class="cta-glow-1"></div>
+        <div class="cta-glow-2"></div>
+
+        <div class="cta-content">
+          <span class="cta-tag"><i class="fa-solid fa-hospital"></i> Visit Us In Person</span>
+          <h2 class="cta-title">Experience Modern Clinical Healthcare in Person</h2>
+          <p class="cta-desc">
+            Visit our center in Pepsicola Townplanning for diagnostic blood tests, digital X-Ray, ultrasound scans, doctor consultations, and pharmacy services.
+          </p>
+
+          <div class="cta-actions">
+            <a routerLink="/contact" class="co-btn co-btn-accent">
+              <i class="fa-solid fa-location-dot"></i> Get Directions & Contact
+            </a>
+            <a routerLink="/services-main" class="co-btn co-btn-outline cta-outline-btn">
+              <i class="fa-solid fa-notes-medical"></i> View Diagnostic Services
+            </a>
+          </div>
+
+          <div class="cta-footer-meta">
+            <span><i class="fa-solid fa-clock"></i> Open: Sun - Fri (7:00 AM - 7:00 PM)</span>
+            <span class="dot">•</span>
+            <span><i class="fa-solid fa-phone"></i> Helpline: +977-9865370270</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Ultra-Luxury Fullscreen Lightbox Modal -->
+  <div class="lightbox-modal-backdrop" *ngIf="isLightboxOpen" (click)="closeLightbox()">
+    <div class="lightbox-dialog" (click)="$event.stopPropagation()">
+      
+      <!-- Top Control Bar -->
+      <div class="lightbox-top-bar">
+        <div class="lightbox-meta-pill">
+          <i class="fa-solid fa-image text-coral"></i>
+          <span>Photo {{ activeImageIndex + 1 }} of {{ filteredGallery.length }}</span>
+          <span class="pill-divider">•</span>
+          <span class="lightbox-category-name">{{ filteredGallery[activeImageIndex].category }}</span>
+        </div>
+        
+        <div class="lightbox-controls">
+          <button (click)="toggleZoom()" class="lightbox-btn" [class.active]="isZoomed" title="Toggle Zoom">
+            <i class="fa-solid" [ngClass]="isZoomed ? 'fa-magnifying-glass-minus' : 'fa-magnifying-glass-plus'"></i>
+          </button>
+          
+          <button (click)="closeLightbox()" class="lightbox-btn close-btn" title="Close (ESC)">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Image Viewport with Nav Arrows -->
+      <div class="lightbox-viewport">
+        
+        <!-- Previous Arrow -->
+        <button (click)="prevImage()" class="lightbox-nav-btn prev-btn" title="Previous Image (Left Arrow)">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <!-- Active Image Container -->
+        <div class="lightbox-image-container" [class.zoomed]="isZoomed">
+          <img 
+            [src]="filteredGallery[activeImageIndex].image" 
+            [alt]="filteredGallery[activeImageIndex].title || 'Pranjal Healthcare'" 
+            class="lightbox-active-img"
+          />
+        </div>
+
+        <!-- Next Arrow -->
+        <button (click)="nextImage()" class="lightbox-nav-btn next-btn" title="Next Image (Right Arrow)">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+      </div>
+
+      <!-- Bottom Caption Bar -->
+      <div class="lightbox-bottom-bar">
+        <div class="lightbox-caption-box">
+          <h3 class="lightbox-caption-title">{{ filteredGallery[activeImageIndex].title }}</h3>
+          <p *ngIf="filteredGallery[activeImageIndex].description" class="lightbox-caption-desc">
+            {{ filteredGallery[activeImageIndex].description }}
+          </p>
+        </div>
+
+        <!-- Interactive Horizontal Thumbnail Strip -->
+        <div class="lightbox-thumbnails-strip">
+          <div 
+            *ngFor="let thumb of filteredGallery; let idx = index" 
+            class="thumbnail-item"
+            [class.active]="idx === activeImageIndex"
+            (click)="jumpToImage(idx)">
+            <img [src]="thumb.image" [alt]="thumb.title" class="thumb-img">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -25,8 +25,12 @@ import { DoctorsDetailsComponent } from './components/doctors-details/doctors-de
 import { GalleryOptComponent } from './components/gallery-opt/gallery-opt.component';
 import { ModalGalleryComponent } from './components/controls/modal-gallery/modal-gallery.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
+import { FeatureCardsComponent } from './components/controls/feature-cards/feature-cards.component';
+import { WhyChooseUsComponent } from './components/controls/why-choose-us/why-choose-us.component';
 
 
+
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -51,9 +55,12 @@ import { AboutPageComponent } from './components/about-page/about-page.component
     GalleryOptComponent,
     ModalGalleryComponent,
     AboutPageComponent,
+    FeatureCardsComponent,
+    WhyChooseUsComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     SlickCarouselModule,
     NgbModule

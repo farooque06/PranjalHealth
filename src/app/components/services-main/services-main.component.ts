@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { ServicesService } from 'src/app/services/services.service';
 
 @Component({
-  selector: 'app-services-main',
-  templateUrl: './services-main.component.html',
-  styleUrls: ['./services-main.component.scss']
+    selector: 'app-services-main',
+    templateUrl: './services-main.component.html',
+    styleUrls: ['./services-main.component.scss'],
+    standalone: false
 })
 export class ServicesMainComponent implements OnInit {
   services: any[] = [];

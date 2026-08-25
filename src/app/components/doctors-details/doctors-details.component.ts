@@ -1,28 +1,46 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IDoctors } from 'src/app/interfaces/service.interface';
 import { DoctorsService } from 'src/app/services/doctors.service';
 
 @Component({
-  selector: 'app-doctors-details',
-  templateUrl: './doctors-details.component.html',
-  styleUrls: ['./doctors-details.component.scss']
+    selector: 'app-doctors-details',
+    templateUrl: './doctors-details.component.html',
+    styleUrls: ['./doctors-details.component.scss'],
+    standalone: false
 })
 export class DoctorsDetailsComponent implements OnInit {
-data: IDoctors | any;
+  data: IDoctors | undefined;
+  relatedDoctors: IDoctors[] = [];
+  currentIndex: number = 0;
+
   constructor(
-    private activateRoute:ActivatedRoute,
-    private doctors:DoctorsService
-  ) { }
+    private route: ActivatedRoute,
+    private router: Router,
+    public doctorsService: DoctorsService
+  ) {}
 
   ngOnInit(): void {
-    const index = this.activateRoute.snapshot.paramMap.get("index");
-    if(index){
-      this.data= this.doctors.getDoctorBYIndexNO(+index);
+    this.route.paramMap.subscribe(params => {
+      const indexStr = params.get('index');
+      if (indexStr !== null) {
+        this.currentIndex = +indexStr;
+        this.data = this.doctorsService.getDoctorBYIndexNO(this.currentIndex);
+        
+        if (this.data) {
+          // Get other doctors for the sidebar
+          this.relatedDoctors = this.doctorsService
+            .getDoctors()
+            .filter(d => d.index !== this.currentIndex)
+            .slice(0, 5);
+        }
 
-      // console.log(this.data.experience)
-      console.log(this.data.education)
-    }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
   }
 
+  navigateToDoctor(index: number): void {
+    this.router.navigate(['/doctors-details', index]);
+  }
 }

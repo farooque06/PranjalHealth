@@ -1,57 +1,262 @@
-<div class=" doctors-details-container card mb-3">
+<div class="doctor-details-wrapper" *ngIf="data">
+
+  <!-- 1. Hero & Breadcrumbs -->
+  <section class="doctor-details-hero">
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-glow"></div>
+
     <div class="custom-container">
-        <div class="row no-gutters">
-            <div class="col-md-4">
-                <img
-                    src="{{data.image}}"
-                    class="card-img" alt="...">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <!-- <h5 class="card-title">Dr. Farooque Allam</h5>
-          <p class="card-text">Consultant Orthopedic Surgeon</p>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> 
-        </div> -->
-                    <div class="text">
-                        <div class="card-title">
-                            <h1>{{data.title}}</h1>
-                        </div>
-                        <div class="card-text">
-                            <ul>
-                                <li *ngFor="let item of data.education">
-                                    <H4>{{item}}</H4>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-text"><h4>{{data.content}}</h4></div>
-                    </div>
-                    <!-- <div class="text">
-                        <div class="card-title">
-                            <h5>Work Experience:</h5>
-                        </div>
-                        <div class="card-text">
-                            <ul>
-                                <li *ngFor="let item of data.experience">
-                                   <p>
-                                    {{item}}
-                                   </p> 
-                                </li>
-                            </ul>
-                        </div>
-                    </div> -->
-                    <!-- <div class="text">
-                        <div class="card-title">
-                            <h5>Educations:</h5>
-                        </div>
-                        <div class="card-text">
-                            <ul>
-                                <li *ngFor="let item of data.education">
-                                    <p>{{item}}</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div> -->
-                </div>
-            </div>
+      <div class="hero-content">
+        
+        <div class="breadcrumb-trail">
+          <a routerLink="/"><i class="fa-solid fa-house"></i> Home</a>
+          <span class="separator"><i class="fa-solid fa-chevron-right"></i></span>
+          <a routerLink="/doctors">Our Doctors</a>
+          <span class="separator"><i class="fa-solid fa-chevron-right"></i></span>
+          <span class="current">{{ data.title }}</span>
         </div>
+
+        <div class="hero-badge-row">
+          <span *ngIf="data.department" class="hero-dept-badge">
+            <i class="fa-solid fa-hospital-user"></i> {{ data.department }}
+          </span>
+          <span *ngIf="data.opdSchedule" class="hero-opd-badge">
+            <i class="fa-regular fa-clock"></i> {{ data.opdSchedule }}
+          </span>
+        </div>
+
+        <h1 class="doctor-hero-title">
+          {{ data.title }} <i class="fa-solid fa-circle-check verified-icon" title="Verified Specialist"></i>
+        </h1>
+        <p class="doctor-hero-designation">{{ data.content }}</p>
+
+      </div>
     </div>
+  </section>
+
+  <!-- 2. Main Content Grid -->
+  <section class="doctor-details-body-section">
+    <div class="custom-container">
+      <div class="doctor-details-grid">
+        
+        <!-- Left: Main Profile Column -->
+        <div class="main-profile-col">
+          
+          <!-- Top Doctor Summary Header Card -->
+          <div class="profile-header-card">
+            <div class="doctor-avatar-box">
+              <img [src]="data.image" [alt]="data.title" class="doctor-avatar-img">
+              <div class="avatar-badge">
+                <i class="fa-solid fa-shield-heart"></i> Verified Faculty
+              </div>
+            </div>
+
+            <div class="doctor-info-box">
+              <div class="name-rating-row">
+                <h2>{{ data.title }}</h2>
+                <div class="ratings-stars">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <span>5.0 (Top Rated)</span>
+                </div>
+              </div>
+
+              <p class="doctor-designation-text">{{ data.content }}</p>
+
+              <!-- Fast Info Badges -->
+              <div class="info-chips-row">
+                <span class="info-chip">
+                  <i class="fa-solid fa-hospital"></i> Pranjal Diagnostic Center
+                </span>
+                <span *ngIf="data.department" class="info-chip chip-teal">
+                  <i class="fa-solid fa-stethoscope"></i> {{ data.department }}
+                </span>
+              </div>
+
+              <div class="header-action-row">
+                <a routerLink="/contact" class="co-btn co-btn-accent book-now-btn">
+                  <i class="fa-solid fa-calendar-check"></i> Book Consultation
+                </a>
+                <a href="tel:+977-9865370270" class="co-btn co-btn-outline call-btn">
+                  <i class="fa-solid fa-phone-volume"></i> Call Clinic
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Doctor Bio / Overview -->
+          <div *ngIf="data.bio" class="detail-content-card">
+            <div class="card-heading-row">
+              <div class="icon-chip"><i class="fa-solid fa-user-doctor"></i></div>
+              <h3>About {{ data.title }}</h3>
+            </div>
+            <p class="bio-text">{{ data.bio }}</p>
+          </div>
+
+          <!-- Education & Medical Qualifications -->
+          <div *ngIf="data.education && data.education.length" class="detail-content-card">
+            <div class="card-heading-row">
+              <div class="icon-chip teal-chip"><i class="fa-solid fa-graduation-cap"></i></div>
+              <h3>Medical Qualifications & Degrees</h3>
+            </div>
+            
+            <div class="qualifications-grid">
+              <div *ngFor="let edu of data.education" class="edu-item">
+                <div class="edu-icon"><i class="fa-solid fa-certificate"></i></div>
+                <div class="edu-details">
+                  <h4>{{ edu }}</h4>
+                  <span>Recognized Medical Degree / Accreditation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Clinical Specializations & Focus Areas -->
+          <div *ngIf="data.specializations && data.specializations.length" class="detail-content-card">
+            <div class="card-heading-row">
+              <div class="icon-chip coral-chip"><i class="fa-solid fa-stethoscope"></i></div>
+              <h3>Clinical Specializations & Treatments</h3>
+            </div>
+
+            <div class="specializations-grid">
+              <div *ngFor="let spec of data.specializations" class="spec-card">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>{{ spec }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience & Institutional Background -->
+          <div *ngIf="data.experience && data.experience.length" class="detail-content-card">
+            <div class="card-heading-row">
+              <div class="icon-chip blue-chip"><i class="fa-solid fa-briefcase-medical"></i></div>
+              <h3>Professional Experience & Background</h3>
+            </div>
+
+            <ul class="experience-list">
+              <li *ngFor="let exp of data.experience">
+                <i class="fa-solid fa-award"></i>
+                <span>{{ exp }}</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- OPD Consultation Schedule Banner -->
+          <div *ngIf="data.opdSchedule" class="opd-schedule-banner">
+            <div class="schedule-icon-wrap">
+              <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            <div class="schedule-text-wrap">
+              <span class="schedule-tag">OPD Availability</span>
+              <h3>{{ data.opdSchedule }}</h3>
+              <p>Consultations are conducted in comfortable, private OPD examination rooms at Pepsicola Townplanning.</p>
+            </div>
+            <div class="schedule-action">
+              <a routerLink="/contact" class="co-btn co-btn-accent">
+                <i class="fa-solid fa-calendar-plus"></i> Book Slot
+              </a>
+            </div>
+          </div>
+
+          <!-- Bottom Navigation Links -->
+          <div class="details-nav-row">
+            <a routerLink="/doctors" class="co-btn co-btn-outline">
+              <i class="fa-solid fa-arrow-left"></i> Back to All Doctors
+            </a>
+            <a routerLink="/services-main" class="co-btn co-btn-outline">
+              <i class="fa-solid fa-notes-medical"></i> Explore Diagnostic Services
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right: Sticky Information Sidebar -->
+        <aside class="sidebar-col">
+          
+          <!-- Appointment Quick Box -->
+          <div class="sidebar-box appointment-box">
+            <div class="appointment-top">
+              <div class="box-icon"><i class="fa-solid fa-calendar-check"></i></div>
+              <h4>Schedule An Appointment</h4>
+              <p>Skip hospital lines. Book an appointment slot with <strong>{{ data.title }}</strong>.</p>
+            </div>
+
+            <div class="consultation-fee-row">
+              <span class="fee-label">Consultation Mode:</span>
+              <span class="fee-val">In-Person OPD Clinic</span>
+            </div>
+
+            <a routerLink="/contact" class="co-btn co-btn-accent w-100 text-center mb-2">
+              <i class="fa-solid fa-calendar-plus"></i> Book Appointment Online
+            </a>
+            
+            <a href="tel:+977-9865370270" class="co-btn co-btn-outline w-100 text-center">
+              <i class="fa-solid fa-phone-volume"></i> Call Desk: 01-4994108
+            </a>
+          </div>
+
+          <!-- Doctor Quick Summary Info -->
+          <div class="sidebar-box doctor-facts-box">
+            <h4 class="box-title"><i class="fa-solid fa-id-card-clip"></i> Quick Info</h4>
+            
+            <ul class="facts-list">
+              <li>
+                <span class="fact-label"><i class="fa-solid fa-hospital-user"></i> Department:</span>
+                <span class="fact-val">{{ data.department || 'Clinical Medicine' }}</span>
+              </li>
+              <li>
+                <span class="fact-label"><i class="fa-regular fa-clock"></i> OPD Timing:</span>
+                <span class="fact-val text-teal">{{ data.opdSchedule || 'Regular OPD' }}</span>
+              </li>
+              <li>
+                <span class="fact-label"><i class="fa-solid fa-language"></i> Languages:</span>
+                <span class="fact-val">Nepali, English, Hindi</span>
+              </li>
+              <li>
+                <span class="fact-label"><i class="fa-solid fa-location-dot"></i> Location:</span>
+                <span class="fact-val">Pepsicola, Kathmandu</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Other Specialists Navigation List -->
+          <div *ngIf="relatedDoctors && relatedDoctors.length" class="sidebar-box related-doctors-box">
+            <h4 class="box-title"><i class="fa-solid fa-user-doctor"></i> Other Specialists</h4>
+
+            <div class="related-doctors-list">
+              <div *ngFor="let doc of relatedDoctors" class="mini-doc-item" (click)="navigateToDoctor(doc.index)">
+                <img [src]="doc.image" [alt]="doc.title" class="mini-doc-img">
+                <div class="mini-doc-info">
+                  <h5>{{ doc.title }}</h5>
+                  <span class="mini-doc-dept">{{ doc.content }}</span>
+                </div>
+                <i class="fa-solid fa-chevron-right mini-arrow"></i>
+              </div>
+            </div>
+
+            <div class="view-all-box">
+              <a routerLink="/doctors" class="view-all-link">
+                View All {{ doctorsService.getDoctors().length }} Specialists <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Helpline Card -->
+          <div class="sidebar-box helpline-box">
+            <div class="helpline-icon"><i class="fa-solid fa-headset"></i></div>
+            <h4>Clinic Helpline</h4>
+            <p>For OPD schedule confirmations and general queries:</p>
+            <a href="tel:+977-9865370270" class="helpline-num">+977-9865370270</a>
+            <span class="helpline-hours">Sun - Fri: 7:00 AM - 7:00 PM</span>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+</div>

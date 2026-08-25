@@ -2,14 +2,14 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-modal-gallery',
-  templateUrl: './modal-gallery.component.html',
-  styleUrls: ['./modal-gallery.component.scss'],
-  //selector: 'ngbd-modal-options',
-	// standalone: true,
-	// templateUrl: './modal-options.html',
-	encapsulation: ViewEncapsulation.None,
-
+    selector: 'app-modal-gallery',
+    templateUrl: './modal-gallery.component.html',
+    styleUrls: ['./modal-gallery.component.scss'],
+    //selector: 'ngbd-modal-options',
+    // standalone: true,
+    // templateUrl: './modal-options.html',
+    encapsulation: ViewEncapsulation.None,
+    standalone: false
 })
 export class ModalGalleryComponent  {
 

@@ -1,24 +1,197 @@
-<section class="services-details-section">
+<div class="service-details-wrapper" *ngIf="data">
+
+  <!-- 1. Header & Breadcrumb Hero -->
+  <section class="details-hero-section">
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-glow"></div>
+
     <div class="custom-container">
-        <div class="service-item-container">
-            <div class="service-item">
-                <div class="title">
-                    <h5>we are here to provide our best </h5>
-                </div>
-                <div class="item">
-                    <div class="card-section">
-                        <div class="card">
-                            <div class="card-body">
-                                <h2 class="card-title">{{data.title}}</h2>
-                                <p class="card-text">{{data.content}}</p>
-                            </div>
-                            <div class="image-container" *ngFor="let image of data.image">
-                                <img src={{image}} class="card-img-top" alt="...">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="hero-content">
+        
+        <div class="breadcrumb-trail">
+          <a routerLink="/"><i class="fa-solid fa-house"></i> Home</a>
+          <span class="separator"><i class="fa-solid fa-chevron-right"></i></span>
+          <a routerLink="/services-main">Services</a>
+          <span class="separator"><i class="fa-solid fa-chevron-right"></i></span>
+          <span class="current">{{ data.title }}</span>
         </div>
+
+        <div class="hero-category-wrap">
+          <span class="hero-badge">
+            <i class="fa-solid" [ngClass]="data.icon || 'fa-notes-medical'"></i> {{ data.category || 'Diagnostic Service' }}
+          </span>
+          <span *ngIf="data.turnaround" class="hero-turnaround-badge">
+            <i class="fa-regular fa-clock"></i> {{ data.turnaround }}
+          </span>
+        </div>
+
+        <h1 class="details-main-title">{{ data.title }}</h1>
+        <p *ngIf="data.subtitle" class="details-subtitle">{{ data.subtitle }}</p>
+
+      </div>
     </div>
-</section>
+  </section>
+
+  <!-- 2. Main Two-Column Layout -->
+  <section class="details-content-section">
+    <div class="custom-container">
+      <div class="details-grid-layout">
+        
+        <!-- Left: Main Detail Content -->
+        <div class="main-content-col">
+          
+          <!-- Featured Image Frame -->
+          <div class="service-featured-image-card">
+            <img [src]="data.image[0]" [alt]="data.title" class="featured-img">
+            <div class="img-glow-accent"></div>
+            <div class="floating-verified-pill">
+              <i class="fa-solid fa-shield-halved"></i> Certified Clinical Facility
+            </div>
+          </div>
+
+          <!-- Overview & Description -->
+          <div class="content-block overview-block">
+            <div class="block-heading-row">
+              <div class="icon-bubble"><i class="fa-solid fa-file-waveform"></i></div>
+              <h2>Service Overview</h2>
+            </div>
+            <p class="description-text">{{ data.content }}</p>
+          </div>
+
+          <!-- Key Diagnostic Highlights & Procedures -->
+          <div *ngIf="data.features && data.features.length" class="content-block features-block">
+            <div class="block-heading-row">
+              <div class="icon-bubble teal-bubble"><i class="fa-solid fa-list-check"></i></div>
+              <h2>Diagnostic Scope & Procedures</h2>
+            </div>
+            
+            <div class="features-checklist-grid">
+              <div *ngFor="let feat of data.features" class="feature-item-card">
+                <div class="check-icon"><i class="fa-solid fa-check"></i></div>
+                <span>{{ feat }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Patient Preparation Guidelines -->
+          <div *ngIf="data.preparation" class="content-block preparation-block">
+            <div class="block-heading-row">
+              <div class="icon-bubble coral-bubble"><i class="fa-solid fa-circle-info"></i></div>
+              <h2>Patient Preparation Instructions</h2>
+            </div>
+            
+            <div class="prep-alert-box">
+              <div class="alert-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+              <div class="alert-text">
+                <strong>Important Testing Guidelines:</strong>
+                <p>{{ data.preparation }}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Key Patient Benefits -->
+          <div *ngIf="data.benefits && data.benefits.length" class="content-block benefits-block">
+            <div class="block-heading-row">
+              <div class="icon-bubble blue-bubble"><i class="fa-solid fa-heart-circle-check"></i></div>
+              <h2>Why Choose Pranjal For This Service</h2>
+            </div>
+
+            <div class="benefits-cards-grid">
+              <div *ngFor="let ben of data.benefits" class="benefit-card">
+                <i class="fa-solid fa-circle-check text-teal"></i>
+                <p>{{ ben }}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Back Navigation Bar -->
+          <div class="details-bottom-nav">
+            <a routerLink="/services-main" class="co-btn co-btn-outline">
+              <i class="fa-solid fa-arrow-left"></i> Back to All Services
+            </a>
+            <a routerLink="/contact" class="co-btn co-btn-accent">
+              <i class="fa-solid fa-calendar-check"></i> Book Consultation
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Right: Sticky Information Sidebar -->
+        <aside class="sidebar-content-col">
+          
+          <!-- Quick Facts Summary Card -->
+          <div class="sidebar-card quick-facts-card">
+            <h3 class="sidebar-card-title">
+              <i class="fa-solid fa-clipboard-list"></i> Service Summary
+            </h3>
+            
+            <ul class="facts-list">
+              <li>
+                <span class="fact-label"><i class="fa-solid fa-layer-group"></i> Department:</span>
+                <span class="fact-value">{{ data.category || 'Clinical Diagnostics' }}</span>
+              </li>
+              <li>
+                <span class="fact-label"><i class="fa-regular fa-clock"></i> Turnaround:</span>
+                <span class="fact-value text-teal">{{ data.turnaround || 'Same-Day' }}</span>
+              </li>
+              <li>
+                <span class="fact-label"><i class="fa-solid fa-file-lines"></i> Report Format:</span>
+                <span class="fact-value">Digital PDF & Hard Copy</span>
+              </li>
+              <li>
+                <span class="fact-label"><i class="fa-solid fa-shield-virus"></i> Safety Protocol:</span>
+                <span class="fact-value">Sterile & Barcoded</span>
+              </li>
+              <li>
+                <span class="fact-label"><i class="fa-solid fa-hospital"></i> Location:</span>
+                <span class="fact-value">Pepsicola Center, KTM</span>
+              </li>
+            </ul>
+
+            <div class="sidebar-card-footer">
+              <a routerLink="/contact" class="co-btn w-100 text-center">
+                <i class="fa-solid fa-calendar-plus"></i> Inquire / Book Test
+              </a>
+            </div>
+          </div>
+
+          <!-- All Diagnostic Services List -->
+          <div class="sidebar-card services-nav-card">
+            <h3 class="sidebar-card-title">
+              <i class="fa-solid fa-notes-medical"></i> Diagnostic Services
+            </h3>
+
+            <ul class="services-nav-list">
+              <li *ngFor="let s of allServices" [class.active]="s.index === currentIndex">
+                <a (click)="navigateToService(s.index)">
+                  <div class="nav-service-item">
+                    <span class="nav-service-title">
+                      <i class="fa-solid" [ngClass]="s.icon || 'fa-notes-medical'"></i> {{ s.title }}
+                    </span>
+                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Direct Helpline Assistance Card -->
+          <div class="sidebar-card helpline-card">
+            <div class="helpline-icon-wrap">
+              <i class="fa-solid fa-headset"></i>
+            </div>
+            <h4>Have Questions?</h4>
+            <p>Call our diagnostic desk for pricing, test preparation advice, or home sample collection.</p>
+            <a href="tel:+977-9865370270" class="helpline-phone-btn">
+              <i class="fa-solid fa-phone-volume"></i> +977-9865370270
+            </a>
+            <span class="helpline-timing">Sun - Fri: 7:00 AM - 7:00 PM</span>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+</div>

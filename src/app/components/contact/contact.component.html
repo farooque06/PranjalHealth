@@ -1,54 +1,327 @@
-<section class="contact-section">
-    <div class="custom-container">
-        <div class="contact-details-container">
-            <div class="heading">
-                <h4>Get in touch with us</h4>
-                <h1>CONTACT</h1>
-                <p>Without any hesitation feel free to reach us</p>
-            </div>
-            <div class="contact-details">
-                <div class="contact">
-                    <div class="text">
-                        <div class="title">
-                            <h3>EMAIL</h3>
-                        </div>
-                        <div class="content">
-                            <a href="mailto:pranjaldhc@gmail.com"><span>pranjaldhc@gmail.com</span></a>
-                        </div>
-                    </div>
-                    <div class="text">
-                        <div class="title">
-                            <h3>PHONE NO</h3>
-                        </div>
-                        <div class="content">
-                           <a href="tel:01-5910285"><span>01-5910285</span></a><br>
-                           <a href="tel:+977-9865370270"><span>+977-9865370270</span></a>
-                        </div>
-                    </div>
-                    <div class="text">
-                        <div class="title">
-                            <h3>OPENING HOURS</h3>
-                        </div>
-                        <div class="content">
-                            <span>7 AM to 9 PM</span>
-                        </div>
-                    </div>
-                    <div class="text">
-                        <div class="title">
-                            <h3>ADDRESS</h3>
-                        </div>
-                        <div class="content">
-                            <span>Pepsicola Townplanning , Kathmandu</span>
-                        </div>
-                    </div>
-                </div>
+<div class="contact-page-wrapper">
 
-                <div class="map-container">
-                    <div class="map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.780701504399!2d85.36302955076013!3d27.693172032637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1b2516752c77%3A0xb1b22538a9ad460a!2sPranjal%20Diagnostic%20And%20Health%20Care%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1679487112756!5m2!1sen!2snp" max-width="790" max-height="790" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                </div>
-            </div>
+  <!-- 1. Hero Section -->
+  <section class="contact-hero-section">
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-glow hero-glow-teal"></div>
+    <div class="hero-glow hero-glow-coral"></div>
+
+    <div class="custom-container">
+      <div class="hero-inner">
+        <div class="hero-badge-wrap">
+          <span class="hero-pill-badge">
+            <i class="fa-solid fa-headset"></i> Direct Department Helpline Directory
+          </span>
         </div>
+
+        <h1 class="hero-main-title">
+          Connect Directly With Our <br>
+          <span class="gradient-text">Medical Department Desks</span>
+        </h1>
+
+        <p class="hero-subtext">
+          Skip switchboards. Call our specialized department desks directly or message us on WhatsApp for doctor appointments, digital lab reports, X-Ray & USG scheduling, and pharmacy inquiries.
+        </p>
+
+        <!-- Breadcrumbs & Quick Highlights -->
+        <div class="hero-meta-row">
+          <div class="breadcrumb-trail">
+            <a routerLink="/"><i class="fa-solid fa-house"></i> Home</a>
+            <span class="separator"><i class="fa-solid fa-chevron-right"></i></span>
+            <span class="current">Contact Us</span>
+          </div>
+
+          <div class="hero-stats-pills">
+            <div class="stat-pill">
+              <i class="fa-solid fa-phone-volume"></i>
+              <span>One-Tap Direct Calling</span>
+            </div>
+            <div class="stat-pill">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>Instant WhatsApp Desks</span>
+            </div>
+            <div class="stat-pill">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Pepsicola Townplanning, KTM</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
+
+  <!-- 2. Dedicated Department Helpline Numbers Grid -->
+  <section class="department-contacts-section">
+    <div class="custom-container">
+      
+      <div class="section-header-center">
+        <span class="badge-pill-sub"><i class="fa-solid fa-address-book"></i> Instant Communication</span>
+        <h2 class="section-title">Department Helplines & Direct Lines</h2>
+        <p class="section-subtitle">Reach the exact clinical desk you need via direct phone call or instant WhatsApp message.</p>
+      </div>
+
+      <div class="departments-grid">
+        <div *ngFor="let dept of departmentContacts" class="dept-contact-card" [ngClass]="'theme-' + dept.themeColor">
+          
+          <div class="dept-card-top">
+            <div class="dept-icon-ring">
+              <i class="fa-solid" [ngClass]="dept.icon"></i>
+            </div>
+            <span class="dept-badge">{{ dept.badge }}</span>
+          </div>
+
+          <h3 class="dept-name">{{ dept.name }}</h3>
+          
+          <div class="dept-location-tag">
+            <i class="fa-solid fa-location-dot"></i> {{ dept.location }}
+          </div>
+
+          <p class="dept-desc">{{ dept.description }}</p>
+
+          <!-- Direct Phone Numbers List -->
+          <div class="dept-phones-wrap">
+            <a 
+              *ngFor="let phone of dept.phoneNumbers" 
+              [href]="'tel:' + phone.number" 
+              class="dept-phone-btn">
+              <div class="phone-btn-icon"><i class="fa-solid fa-phone"></i></div>
+              <div class="phone-btn-text">
+                <span class="phone-label">{{ phone.label }}</span>
+                <span class="phone-number">{{ phone.formatted }}</span>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square call-arrow"></i>
+            </a>
+          </div>
+
+          <!-- Instant WhatsApp Action -->
+          <div class="dept-whatsapp-action">
+            <a 
+              [href]="getWhatsAppLink(dept.whatsappNumber, dept.whatsappMessage)" 
+              target="_blank" 
+              class="dept-whatsapp-btn">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span>WhatsApp This Department</span>
+            </a>
+          </div>
+
+          <!-- Card Timing & Info Footer -->
+          <div class="dept-card-footer">
+            <span class="timing-info">
+              <i class="fa-regular fa-clock"></i> {{ dept.timing }}
+            </span>
+            <a *ngIf="dept.email" [href]="'mailto:' + dept.email" class="email-info">
+              <i class="fa-solid fa-envelope"></i> {{ dept.email }}
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. Home Sample Collection & Urgent Helpline Banner -->
+  <section class="home-collection-banner-section">
+    <div class="custom-container">
+      <div class="home-collection-card">
+        <div class="banner-icon-box">
+          <i class="fa-solid fa-house-medical-circle-check"></i>
+        </div>
+        
+        <div class="banner-content">
+          <span class="banner-tag">Doorstep Healthcare Support</span>
+          <h3>Need Home Blood Sample Collection or Urgent Care?</h3>
+          <p>Our certified phlebotomists provide safe, hygienic blood sample pickup at your home in Kathmandu.</p>
+        </div>
+
+        <div class="banner-actions">
+          <a href="tel:+9779865370270" class="co-btn co-btn-accent">
+            <i class="fa-solid fa-phone"></i> Call: +977-9865370270
+          </a>
+          <a 
+            [href]="getWhatsAppLink('9779865370270', 'Hello, I want to book a home blood sample collection.')" 
+            target="_blank" 
+            class="co-btn whatsapp-cta-btn">
+            <i class="fa-brands fa-whatsapp"></i> Book via WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Location, Visiting Hours & Interactive Map Showcase -->
+  <section class="location-details-section">
+    <div class="custom-container">
+      
+      <div class="location-showcase-grid">
+        
+        <!-- Left: Center Info, Operating Matrix & Amenities -->
+        <div class="center-info-col">
+          
+          <!-- Location Details Card -->
+          <div class="center-card address-card">
+            <div class="card-header-row">
+              <div class="header-icon"><i class="fa-solid fa-building-circle-check"></i></div>
+              <div>
+                <h3 class="card-title">Center Location & Access</h3>
+                <span class="card-sub">Pepsicola Townplanning, Kathmandu</span>
+              </div>
+            </div>
+
+            <div class="address-details">
+              <p class="address-line">
+                <strong>Pranjal Diagnostic & Healthcare Center Pvt. Ltd.</strong><br>
+                Pepsicola Townplanning, Kathmandu 44600, Nepal
+              </p>
+              <div class="landmark-pill">
+                <i class="fa-solid fa-diamond-turn-right text-coral"></i> Centrally located near Pepsicola Townplanning Chowk
+              </div>
+            </div>
+
+            <!-- Amenities Grid -->
+            <div class="amenities-grid">
+              <div class="amenity-item">
+                <i class="fa-solid fa-square-parking text-teal"></i>
+                <span>Spacious Parking Area</span>
+              </div>
+              <div class="amenity-item">
+                <i class="fa-solid fa-wheelchair text-teal"></i>
+                <span>Wheelchair Accessible</span>
+              </div>
+              <div class="amenity-item">
+                <i class="fa-solid fa-elevator text-teal"></i>
+                <span>Elevator / Lift Facility</span>
+              </div>
+              <div class="amenity-item">
+                <i class="fa-solid fa-wifi text-teal"></i>
+                <span>Free Patient Wi-Fi</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Operating Hours Matrix -->
+          <div class="center-card hours-card">
+            <div class="card-header-row">
+              <div class="header-icon coral-icon"><i class="fa-solid fa-clock"></i></div>
+              <div>
+                <h3 class="card-title">Operating Hours Schedule</h3>
+                <span class="card-sub">Sunday through Friday</span>
+              </div>
+            </div>
+
+            <div class="schedule-matrix">
+              <div class="schedule-row">
+                <span class="service-name"><i class="fa-solid fa-flask-vial"></i> Pathology Lab & Fasting:</span>
+                <span class="time-badge">7:00 AM - 7:00 PM</span>
+              </div>
+              <div class="schedule-row">
+                <span class="service-name"><i class="fa-solid fa-user-doctor"></i> Doctor OPD Clinics:</span>
+                <span class="time-badge">Morning & Evening OPD</span>
+              </div>
+              <div class="schedule-row">
+                <span class="service-name"><i class="fa-solid fa-x-ray"></i> Digital X-Ray & USG:</span>
+                <span class="time-badge">8:00 AM - 6:00 PM</span>
+              </div>
+              <div class="schedule-row">
+                <span class="service-name"><i class="fa-solid fa-pills"></i> On-Site Pharmacy:</span>
+                <span class="time-badge">7:00 AM - 7:30 PM</span>
+              </div>
+              <div class="schedule-row alt">
+                <span class="service-name"><i class="fa-solid fa-calendar-xmark"></i> Saturday:</span>
+                <span class="time-badge emergency-badge">Emergency & Urgent Care</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Channels Connect -->
+          <div class="center-card social-connect-card">
+            <h4 class="social-title">Follow & Connect With Us:</h4>
+            <div class="social-links-row">
+              <a href="https://www.facebook.com/pepsitown" target="_blank" class="social-btn fb">
+                <i class="fa-brands fa-facebook-f"></i> Facebook Page
+              </a>
+              <a href="mailto:pranjaldhc@gmail.com" class="social-btn mail">
+                <i class="fa-solid fa-envelope"></i> Email Us
+              </a>
+              <a href="tel:+9779865370270" class="social-btn phone">
+                <i class="fa-solid fa-phone"></i> Call Direct
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: Interactive Map with Navigation Button -->
+        <div class="map-showcase-col">
+          <div class="map-wrapper-card">
+            
+            <div class="map-top-bar">
+              <div class="map-badge">
+                <i class="fa-solid fa-map-location-dot"></i> Live Navigation Map
+              </div>
+              <a 
+                href="https://maps.google.com/?q=Pranjal+Diagnostic+And+Health+Care+Pvt.+Ltd." 
+                target="_blank" 
+                class="open-maps-btn">
+                <i class="fa-solid fa-diamond-turn-right"></i> Open In Google Maps
+              </a>
+            </div>
+
+            <div class="map-iframe-frame">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.780701504399!2d85.36302955076013!3d27.693172032637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1b2516752c77%3A0xb1b22538a9ad460a!2sPranjal%20Diagnostic%20And%20Health%20Care%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1679487112756!5m2!1sen!2snp" 
+                class="map-iframe" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Pranjal Healthcare Location Google Map">
+              </iframe>
+            </div>
+
+            <div class="map-footer-bar">
+              <span><i class="fa-solid fa-circle-info text-teal"></i> Parking space and drop-off zone available directly in front of the building.</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. Frequently Asked Questions Accordion -->
+  <section class="contact-faq-section">
+    <div class="custom-container">
+      
+      <div class="section-header-center">
+        <span class="badge-pill-sub"><i class="fa-solid fa-circle-question"></i> Help & FAQs</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Quick answers to common patient questions regarding reports, appointments, and testing.</p>
+      </div>
+
+      <div class="faq-accordion-container">
+        <div 
+          *ngFor="let faq of faqs; let i = index" 
+          class="faq-item-card"
+          [class.open]="activeFaqIndex === i"
+          (click)="toggleFaq(i)">
+          
+          <div class="faq-question-row">
+            <h4 class="faq-question">{{ faq.question }}</h4>
+            <div class="faq-toggle-icon">
+              <i class="fa-solid" [ngClass]="activeFaqIndex === i ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+            </div>
+          </div>
+
+          <div class="faq-answer-body" *ngIf="activeFaqIndex === i">
+            <p>{{ faq.answer }}</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>

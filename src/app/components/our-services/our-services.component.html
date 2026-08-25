@@ -1,19 +1,284 @@
+<section class="our-services-section" [class.home-view]="isHomePage" [class.services-page-view]="!isHomePage">
 
- <section class="our-services">
+  <!-- 1. FULL SERVICES PAGE HERO (Only shown on /services-main) -->
+  <div *ngIf="!isHomePage" class="services-hero-banner">
+    <div class="hero-glow hero-glow-teal"></div>
+    <div class="hero-glow hero-glow-coral"></div>
+    
     <div class="custom-container">
-        <div class="service-items">
-            <div class="item-card">
-                <!-- <h3>our services</h3> -->
-                <h2>services</h2>
-                <!-- <h2>Feel Better and Live Longer..... </h2> -->
-                <div class="our-cards-container">
-                     <app-card class="our-service" *ngFor="let item of services; let i=index;" [title]="item.title" [src]="item.image[0]" (click)="showDetails(i)"></app-card>
-                </div>   
-            </div>   
-            <div class="action-container"><a routerLink="/services-main" class="co-btn">More &nbsp;<img src="../../../assets/images/icons/right-arrow.png" alt=""></a></div>       
+      <div class="services-hero-inner">
+        <div class="hero-badge-wrap">
+          <span class="hero-pill-badge">
+            <i class="fa-solid fa-microscope"></i> Clinical & Diagnostic Excellence
+          </span>
         </div>
+
+        <h1 class="services-hero-title">
+          Advanced Medical Diagnostics & <br>
+          <span class="gradient-text">Specialized Clinical Care</span>
+        </h1>
+
+        <p class="services-hero-desc">
+          State-of-the-art automated pathology, low-radiation digital radiography, high-definition ultrasonography, echocardiography, and multi-specialty outpatient services under one roof in Pepsicola Townplanning, Kathmandu.
+        </p>
+
+        <!-- Breadcrumb & Fast Info Badges -->
+        <div class="services-hero-meta">
+          <div class="breadcrumb-trail">
+            <a routerLink="/"><i class="fa-solid fa-house"></i> Home</a>
+            <span class="separator"><i class="fa-solid fa-chevron-right"></i></span>
+            <span class="current">Services</span>
+          </div>
+
+          <div class="quick-highlights">
+            <div class="highlight-item">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              <span>Same-Day Lab Reports</span>
+            </div>
+            <div class="highlight-item">
+              <i class="fa-solid fa-award"></i>
+              <span>ISO Quality Protocols</span>
+            </div>
+            <div class="highlight-item">
+              <i class="fa-solid fa-shield-virus"></i>
+              <span>100% Sterile Environment</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
- </section>
- <div *ngIf="source">
-    From Routing
- </div>  
+  </div>
+
+  <div class="custom-container">
+    
+    <!-- HOME PAGE SECTION HEADER -->
+    <div *ngIf="isHomePage" class="section-header">
+      <div class="header-left">
+        <span class="subtitle-badge"><i class="fa-solid fa-notes-medical"></i> Our Expertise</span>
+        <h2 class="section-title">Diagnostic Services We Provide</h2>
+      </div>
+      <div class="header-right">
+        <a routerLink="/services-main" class="co-btn co-btn-outline">
+          View All Services <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- HOME PAGE VIEW: Stunning Bento Grid Layout -->
+    <div *ngIf="isHomePage" class="bento-services-grid">
+      
+      <!-- Large Featured Card -->
+      <div class="bento-card bento-large" (click)="showDetails(0)">
+        <img [src]="services[0] ? services[0].image[0] : ''" alt="Pathology Lab" class="bento-bg-img">
+        <div class="bento-gradient"></div>
+        <div class="bento-content">
+          <span class="bento-tag"><i class="fa-solid fa-flask-vial"></i> Core Facility</span>
+          <h3>{{ services[0] ? services[0].title : '' }}</h3>
+          <p>Fully automated pathology lab with advanced clinical chemistry analyzers and same-day report delivery.</p>
+          <span class="bento-link">Learn More <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+
+      <!-- Small Cards Column -->
+      <div class="bento-card bento-small" (click)="showDetails(1)">
+        <div class="bento-icon-row">
+          <div class="bento-icon icon-blue"><i class="fa-solid fa-x-ray"></i></div>
+          <span class="bento-number">02</span>
+        </div>
+        <h4>{{ services[1] ? services[1].title : '' }}</h4>
+        <p>High-definition digital radiography with ultra-low radiation dosage.</p>
+      </div>
+
+      <div class="bento-card bento-small bento-accent" (click)="showDetails(2)">
+        <div class="bento-icon-row">
+          <div class="bento-icon icon-coral"><i class="fa-solid fa-heart-pulse"></i></div>
+          <span class="bento-number">03</span>
+        </div>
+        <h4>{{ services[2] ? services[2].title : '' }}</h4>
+        <p>Complete cardiac diagnostic evaluation with 4D echocardiography & color Doppler.</p>
+      </div>
+
+      <!-- Wide Bottom Card -->
+      <div class="bento-card bento-wide" (click)="showDetails(3)">
+        <img [src]="services[3] ? services[3].image[0] : ''" alt="USG" class="bento-bg-img">
+        <div class="bento-gradient"></div>
+        <div class="bento-content">
+          <span class="bento-tag"><i class="fa-solid fa-wave-square"></i> Advanced Imaging</span>
+          <h3>{{ services[3] ? services[3].title : '' }}</h3>
+          <p>High-resolution diagnostic ultrasound scans by expert certified sonologists.</p>
+          <span class="bento-link">Learn More <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FULL SERVICES PAGE VIEW: Comprehensive Layout -->
+    <ng-container *ngIf="!isHomePage">
+      
+      <!-- Category Filter Tabs -->
+      <div class="services-category-filter">
+        <button 
+          *ngFor="let cat of categories" 
+          class="cat-filter-pill"
+          [class.active]="selectedCategory === cat"
+          (click)="setCategory(cat)">
+          <span>{{ cat }}</span>
+        </button>
+      </div>
+
+      <!-- Services Grid -->
+      <div class="specialized-services-grid">
+        <div *ngFor="let item of filteredServices" class="service-block-card" (click)="showDetails(item.index)">
+          
+          <div class="block-thumb">
+            <img [src]="item.image[0]" [alt]="item.title" class="thumb-img">
+            <span class="category-badge">{{ item.category || 'Diagnostic' }}</span>
+            <div class="thumb-tag">
+              <i class="fa-solid" [ngClass]="getServiceIcon(item.index)"></i>
+            </div>
+          </div>
+
+          <div class="block-body">
+            <div class="block-meta-row">
+              <span class="block-index">Service 0{{ item.index + 1 }}</span>
+              <span *ngIf="item.turnaround" class="turnaround-pill">
+                <i class="fa-regular fa-clock"></i> {{ item.turnaround }}
+              </span>
+            </div>
+
+            <h3 class="block-title">{{ item.title }}</h3>
+            
+            <p *ngIf="item.subtitle" class="block-subtitle">{{ item.subtitle }}</p>
+            <p class="block-excerpt">{{ getShortExcerpt(item.content) }}</p>
+
+            <!-- Features Highlights List -->
+            <ul *ngIf="item.features && item.features.length" class="service-key-points">
+              <li *ngFor="let feat of item.features.slice(0, 2)">
+                <i class="fa-solid fa-circle-check"></i> {{ feat }}
+              </li>
+            </ul>
+
+            <div class="block-footer">
+              <span class="read-more-link">
+                View Full Details & Tests <i class="fa-solid fa-arrow-right"></i>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Diagnostic Testing Workflow Steps -->
+      <div class="diagnostic-workflow-section">
+        <div class="workflow-header">
+          <span class="badge-pill-sub"><i class="fa-solid fa-list-ol"></i> Step-By-Step Process</span>
+          <h2 class="workflow-title">How Our Diagnostic Testing Works</h2>
+          <p class="workflow-desc">Simple, hygienic, and swift testing workflow designed for patient convenience.</p>
+        </div>
+
+        <div class="workflow-steps-grid">
+          
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <div class="step-icon"><i class="fa-solid fa-calendar-check"></i></div>
+            <h4>Walk-In or Appointment</h4>
+            <p>Visit our center anytime between 7 AM - 7 PM or schedule in advance for specialized doctor consultations.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <div class="step-icon"><i class="fa-solid fa-vial"></i></div>
+            <h4>Safe Sample Collection</h4>
+            <p>Gentle, sterile blood draw or painless digital imaging conducted by certified lab technicians.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <div class="step-icon"><i class="fa-solid fa-microscope"></i></div>
+            <h4>Automated Precise Analysis</h4>
+            <p>Samples are processed in automated analyzers with multi-level quality verification.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">04</div>
+            <div class="step-icon"><i class="fa-solid fa-file-medical"></i></div>
+            <h4>Prompt Digital Reports</h4>
+            <p>Receive digitally verified reports on WhatsApp/email and collect printed copies anytime.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Preventive Health Packages Section -->
+      <div class="health-packages-section">
+        <div class="packages-header">
+          <span class="badge-pill-sub"><i class="fa-solid fa-shield-heart"></i> Preventive Care</span>
+          <h2 class="packages-title">Comprehensive Health Checkup Packages</h2>
+          <p class="packages-desc">Specially curated screening packages to detect early health risks and safeguard your family's vitality.</p>
+        </div>
+
+        <div class="packages-grid">
+          <div *ngFor="let pkg of healthPackages" class="package-card" [class.popular-package]="pkg.isPopular">
+            
+            <div *ngIf="pkg.isPopular" class="popular-ribbon">
+              <i class="fa-solid fa-fire"></i> {{ pkg.badge }}
+            </div>
+
+            <div class="package-top">
+              <span *ngIf="!pkg.isPopular" class="package-badge">{{ pkg.badge }}</span>
+              <h3 class="package-card-title">{{ pkg.title }}</h3>
+              <p class="package-tagline">{{ pkg.tagline }}</p>
+              
+              <div class="package-tests-pill">
+                <i class="fa-solid fa-clipboard-check"></i> {{ pkg.testsCount }}
+              </div>
+            </div>
+
+            <div class="package-body">
+              <div class="recommended-row">
+                <span class="label">Recommended for:</span>
+                <span class="val">{{ pkg.recommendedFor }}</span>
+              </div>
+
+              <div class="tests-checklist">
+                <span class="checklist-title">Key Tests Included:</span>
+                <ul>
+                  <li *ngFor="let test of pkg.testsList">
+                    <i class="fa-solid fa-check"></i> {{ test }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="package-footer">
+              <a routerLink="/contact" class="co-btn w-100 text-center" [class.co-btn-accent]="pkg.isPopular">
+                <i class="fa-solid fa-calendar-plus"></i> Inquire & Book Package
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Assistance Callout -->
+      <div class="services-bottom-cta">
+        <div class="cta-inner">
+          <div class="cta-text">
+            <span class="cta-tag"><i class="fa-solid fa-phone-volume"></i> 24/7 Helpline Support</span>
+            <h3>Need Help Selecting The Right Test or Doctor?</h3>
+            <p>Our medical team is ready to guide you on test preparation, report timings, and doctor appointment scheduling.</p>
+          </div>
+          <div class="cta-btn-group">
+            <a routerLink="/contact" class="co-btn co-btn-accent">
+              <i class="fa-solid fa-calendar-check"></i> Book Appointment
+            </a>
+            <a href="tel:+977-9865370270" class="co-btn co-btn-outline hotline-btn">
+              <i class="fa-solid fa-phone"></i> +977-9865370270
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </ng-container>
+
+  </div>
+</section>

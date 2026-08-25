@@ -1,15 +1,1 @@
-<section class="services-main">
-    <div class="custom-container">
-        <div class="service-item-container">
-            <div class="service-item common-items">
-                <div class="title">
-                    <h5>with out best technology</h5>
-                    <h1>our services</h1>
-                </div>
-                <div class="item">
-                    <app-card class="main-ser-card" *ngFor="let item of services; let i=index;" [title]="item.title" [src]="item.image[0]" (click)="showDetails(i)" ></app-card>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<app-our-services [isHomePage]="false"></app-our-services>

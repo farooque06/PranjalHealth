@@ -1,0 +1,23 @@
+<section class="why-choose-section" id="why-choose-us">
+  <div class="custom-container">
+    
+    <div class="section-header-compact">
+      <span class="subtitle-badge"><i class="fa-solid fa-award"></i> Quality Standard</span>
+      <h2 class="section-heading">Why Choose <span class="heading-highlight">Pranjal Diagnostic?</span></h2>
+    </div>
+
+    <!-- Compact 4-Card Row -->
+    <div class="compact-pillars-grid">
+      <div *ngFor="let pillar of pillars" class="compact-card">
+        <div class="card-icon" [ngClass]="pillar.iconBgClass">
+          <i [class]="pillar.icon"></i>
+        </div>
+        <div class="card-text">
+          <h3 class="card-title">{{ pillar.title }}</h3>
+          <p class="card-desc">{{ pillar.desc }}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

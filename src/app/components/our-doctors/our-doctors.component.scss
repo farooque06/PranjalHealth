@@ -1,96 +1,405 @@
+/* ==========================================================================
+   OUR DOCTORS SECTION — Premium Modern Redesign
+   ========================================================================== */
 
-.ourdoctors-section{
-    background:  rgb(237, 64, 30,0.4);
-    clip-path: polygon(56% 5%, 100% 0, 100% 60%, 100% 100%, 0 100%, 0% 60%, 0 0);
-    .our-doctors{
-        clip-path: polygon(65% 6%, 100% 12%, 100% 60%, 100% 100%, 0 100%, 0% 60%, 0 0);
-        background: linear-gradient(rgba(26, 199, 179,), rgb(237, 64, 30,0.3));
-        .custom-container{
-            padding-top: 100px;
-            .doctors-container{
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                .text-container{
-                    width: 500px;
-                    margin: auto;                   
-                    .text{
-                        width: 100%;
-                        h3{
-                            text-transform: uppercase;
-                        }
-                        .title{
-                            margin-bottom: 20px;
-                        }
-                        .content{
-                            margin-bottom: 25px;
-    
-                        }
-                    }
-                }
-                .item-card{
-                    min-width: 300px;
-                    max-width: 1000px;
-                }
-    
-            }
-        }
-    }
+.doctors-section {
+  position: relative;
+  padding: 100px 0;
+  background: linear-gradient(180deg, #FFFFFF 0%, var(--bg-surface) 40%, #FFFFFF 100%);
+  overflow: hidden;
+
+  .custom-container {
+    position: relative;
+    z-index: 1;
+  }
 }
 
-// @media(max-width:1199px){
-//     .ourdoctors-section{
-//         .our-doctors{
-//             .custom-container{
-//                 padding-right: 5%;
-//                 .doctors-container{
-//                     .text-container{
-//                         width:35%;                   
-//                         .text{
-                            
-//                             .title{
-//                                 margin-bottom: 18px;
-//                             }
-//                             .content{
-//                                 margin-bottom: 20px;
-        
-//                             }
-//                         }
-//                     }
-//                     .item-card{
-//                         width: 65%;
-//                     }
-        
-//                 }
-//             }
-//         }
-//     }
-// }
-@media(max-width:767px){
-    .ourdoctors-section{
-        .our-doctors{
-            .custom-container{
-                padding-top: 40px 30px;
-                .doctors-container{
-                    .text-container{
-                        width: 85%;                 
-                        .text{
-                            .title{
-                                margin-bottom: 10px;
-                            }
-                            .content{
-                                margin-bottom: 15px;
-        
-                            }
-                        }
-                    }
-                    .item-card{
-                        width:100%;
-                    }
-        
-                }
-            }
-        }
+/* ------ Section Header ------ */
+.doctors-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  gap: 30px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 36px;
+  }
+
+  .header-left {
+    max-width: 580px;
+  }
+
+  .header-right {
+    flex-shrink: 0;
+
+    @media (max-width: 768px) {
+      display: none;
     }
-    
+  }
+
+  // Section Label
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+
+    .label-line {
+      width: 40px;
+      height: 3px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--primary-teal), var(--primary-teal-subtle));
+    }
+
+    .label-text {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary-teal);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+
+      i {
+        margin-right: 4px;
+      }
+    }
+  }
+
+  .doctors-heading {
+    font-family: var(--font-heading);
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.2;
+    margin-bottom: 14px;
+
+    .heading-highlight {
+      background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-subtle));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 30px;
+    }
+  }
+
+  .doctors-subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .view-all-btn {
+    padding: 12px 28px;
+  }
+}
+
+/* ------ Carousel Wrapper ------ */
+.doctors-carousel-wrapper {
+  position: relative;
+  margin-bottom: 50px;
+  padding: 10px 0;
+}
+
+/* ------ Override slick styles for doctor cards ------ */
+::ng-deep {
+  .doctors-carousel-wrapper {
+    .slick-slider {
+      margin-bottom: 0 !important;
+    }
+
+    .slick-list {
+      padding: 10px 0 20px !important;
+      margin: 0 -12px;
+    }
+
+    .slick-slide {
+      padding: 0 12px;
+    }
+
+    .slick-track {
+      display: flex !important;
+    }
+
+    // Doctor card styling override
+    .modern-card-wrapper {
+      border-radius: 18px !important;
+      border: 1px solid var(--border-light) !important;
+      background: #ffffff !important;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+
+      &:hover {
+        transform: translateY(-8px) !important;
+        box-shadow: 0 20px 40px -8px rgba(13, 138, 117, 0.18) !important;
+        border-color: rgba(13, 138, 117, 0.25) !important;
+      }
+
+      .card-image-box {
+        height: 260px !important;
+        position: relative;
+        background-color: #EDF2F7 !important;
+
+        .card-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center 15%;
+          filter: contrast(1.02) brightness(1.03);
+          transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                      filter 0.4s ease !important;
+        }
+
+        .card-overlay {
+          background: linear-gradient(
+            to top,
+            rgba(5, 75, 64, 0.85) 0%,
+            rgba(13, 138, 117, 0.3) 50%,
+            transparent 100%
+          ) !important;
+        }
+      }
+
+      &:hover .card-image-box .card-img {
+        filter: contrast(1.05) brightness(1.05);
+      }
+
+      .card-content-box {
+        padding: 22px 20px !important;
+        text-align: center;
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 20px;
+          right: 20px;
+          height: 3px;
+          background: linear-gradient(90deg, var(--primary-teal), var(--primary-teal-subtle));
+          border-radius: 0 0 4px 4px;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .card-title {
+          font-size: 17px !important;
+          font-weight: 700;
+          color: var(--text-main);
+          margin-bottom: 4px !important;
+        }
+
+        .card-desc {
+          font-size: 13px !important;
+          color: var(--primary-teal) !important;
+          font-weight: 600;
+          opacity: 0.85;
+        }
+      }
+
+      &:hover .card-content-box::before {
+        opacity: 1;
+      }
+    }
+
+    // Arrow redesign
+    .slick-prev,
+    .slick-next {
+      width: 44px !important;
+      height: 44px !important;
+      border-radius: 12px !important;
+      background: #ffffff !important;
+      border: 1px solid var(--border-light) !important;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08) !important;
+      z-index: 10;
+      transition: all 0.3s ease !important;
+
+      &:before {
+        color: var(--text-main) !important;
+        font-size: 15px !important;
+        opacity: 1 !important;
+      }
+
+      &:hover {
+        background: var(--primary-teal) !important;
+        border-color: var(--primary-teal) !important;
+        box-shadow: 0 8px 20px rgba(13, 138, 117, 0.3) !important;
+
+        &:before {
+          color: #ffffff !important;
+        }
+      }
+    }
+
+    .slick-prev {
+      left: -16px !important;
+
+      @media (max-width: 1100px) {
+        left: -8px !important;
+      }
+    }
+
+    .slick-next {
+      right: -16px !important;
+
+      @media (max-width: 1100px) {
+        right: -8px !important;
+      }
+    }
+
+    // Hide dots — too many slides makes dots look cluttered
+    .slick-dots {
+      display: none !important;
+    }
+  }
+}
+
+/* ------ Stats Bar ------ */
+.doctors-stats-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 28px 40px;
+  background: linear-gradient(135deg, var(--primary-teal-dark) 0%, var(--primary-teal) 100%);
+  border-radius: 20px;
+  box-shadow: 0 16px 40px -8px rgba(13, 138, 117, 0.35);
+  margin-top: 20px;
+
+  @media (max-width: 992px) {
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 24px 28px;
+    border-radius: 16px;
+  }
+
+  @media (max-width: 576px) {
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    justify-content: center;
+
+    @media (max-width: 992px) {
+      flex: 0 0 calc(50% - 10px);
+      justify-content: flex-start;
+    }
+
+    @media (max-width: 576px) {
+      flex: 0 0 100%;
+    }
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+
+      i {
+        font-size: 20px;
+        color: rgba(255, 255, 255, 0.95);
+      }
+    }
+
+    .stat-content {
+      display: flex;
+      flex-direction: column;
+
+      .stat-number {
+        font-family: var(--font-heading);
+        font-size: 26px;
+        font-weight: 800;
+        color: #ffffff;
+        line-height: 1.1;
+      }
+
+      .stat-label {
+        font-size: 13px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.75);
+        letter-spacing: 0.3px;
+      }
+    }
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+
+    @media (max-width: 992px) {
+      display: none;
+    }
+  }
+}
+
+/* ------ Mobile CTA ------ */
+.mobile-cta {
+  display: none;
+  text-align: center;
+  margin-top: 36px;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
+
+/* ------ Background Decorations ------ */
+.doctors-bg-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+
+  .decor-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.04;
+  }
+
+  .decor-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--primary-teal);
+    top: -100px;
+    right: -120px;
+    filter: blur(80px);
+  }
+
+  .decor-2 {
+    width: 300px;
+    height: 300px;
+    background: var(--secondary-coral);
+    bottom: -80px;
+    left: -100px;
+    filter: blur(60px);
+  }
+
+  .decor-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--primary-teal), transparent);
+    opacity: 0.15;
+  }
 }

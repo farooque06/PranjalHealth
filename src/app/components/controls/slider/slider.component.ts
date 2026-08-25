@@ -1,87 +1,63 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { SlickCarouselComponent } from 'ngx-slick-carousel';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-slider',
-  templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.scss']
+    selector: 'app-slider',
+    templateUrl: './slider.component.html',
+    styleUrls: ['./slider.component.scss'],
+    standalone: false
 })
 export class SliderComponent implements OnInit {
   slides = [
-    {img: "assets/images/home-page/banner/Building1.jpg"},
-    {img: "assets/images/home-page/banner/banner02.jpg"},
-    {img: "assets/images/home-page/banner/banner03.jpg"},
-    {img: "assets/images/home-page/banner/banner04.jpg"},
-    {img: "assets/images/home-page/banner/banner05.jpg"},
-    {img: "assets/images/home-page/banner/banner06.jpg"},
+    {
+      img: "assets/images/home-page/banner/Building1.jpg",
+      tag: "Modern Healthcare Facility",
+      title: "Advanced Diagnostic & Pathology Services",
+      desc: "Equipped with state-of-the-art pathology automation and diagnostic technology for fast, reliable health reports."
+    },
+    {
+      img: "assets/images/home-page/banner/banner02.jpg",
+      tag: "Expert Medical Team",
+      title: "Consultation with Specialist Doctors",
+      desc: "Book your appointment with experienced physicians, cardiologists, gynecologists, and pediatricians."
+    },
+    {
+      img: "assets/images/home-page/banner/banner03.jpg",
+      tag: "Precision Imaging",
+      title: "Digital X-Ray & Ultrasonography",
+      desc: "High-definition diagnostic imaging services conducted by certified radiology technicians."
+    },
+    {
+      img: "assets/images/home-page/banner/banner04.jpg",
+      tag: "Comprehensive Care",
+      title: "Echocardiography & ECG Testing",
+      desc: "Complete cardiac diagnostic evaluation with modern 4D Echocardiography equipment."
+    }
   ];
+
   slideConfig = {
-    "slidesToShow": 1, 
-    "slidesToScroll": 1,
-    "autoplay":true ,
-    "autoplaySpeed":2000
-    // "responsive": [
-    //   {
-    //     breakpoint: 1024,
-    //     settings: {
-    //       slidesToShow: 3
-    //     }
-    //   },
-    //   {
-    //     breakpoint: 800,
-    //     settings: {
-    //       slidesToShow: 2
-    //     }
-    //   },
-    //   {
-    //     breakpoint: 480,
-    //     settings: {
-    //       slidesToShow: 1
-    //     }
-    //   }
-    // ]
+    slidesToShow: 1, 
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3500, // slower, relaxed speed (5.5 seconds)
+    dots: true, // pagination dots enabled
+    arrows: true, // next/prev arrows enabled
+    fade: true, // smooth fade transition between slides
+    cssEase: 'linear',
+    pauseOnHover: true
   };
   
   slickInit(e: any) {
- //ks   console.log('slick initialized');
   }
   
   breakpoint(e: any) {
-    // this.carousel.config={
-    //   slidesToShow: e.breakpoint===400? 1 : 2
-    // }
-    // this.carousel.initSlick();
-    // console.log(this.carousel.config)
-    // if(e.breakpoint===400){
-    //   this.slideConfig = {
-    //     "slidesToShow": 1, 
-    //     "slidesToScroll": 1,
-    //     'responsive': [
-    //       {
-    //         'breakpoint': 400,
-    //         'slidesToShow': 1
-    //       },
-    //       {
-    //         'breakpoint': 767,
-    //         'slidesToShow': 1
-    //       },
-    //       {
-    //         'breakpoint': 1024,
-    //         'slidesToShow': 2
-    //       }
-    //     ]};
-    // }
-    console.log(e, 'breakpoint');
   }
   
   afterChange(e: any) {
-   // console.log('afterChange');
   }
   
   beforeChange(e: any) {
-   // console.log('beforeChange');
   }
-  ngOnInit(): void {
-      }
 
+  ngOnInit(): void {
+  }
 }

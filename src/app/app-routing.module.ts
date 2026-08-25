@@ -14,14 +14,14 @@ import { GalleryOptComponent } from './components/gallery-opt/gallery-opt.compon
 const routes: Routes = [
   { path: '',   redirectTo: '/home', pathMatch: 'full' }, // redirect to 
   { path: "home", component: HomeComponent },
-  { path: "about-us", component: AboutUsComponent },
+  { path: "about-us", redirectTo: '/about-page', pathMatch: 'full' },
   { path: "our-services-details/:index", component: OurServicesDetailsComponent },
-  { path: "our-doctors", component: OurDoctorsComponent },
   { path: "services-main", component: ServicesMainComponent },
+  { path: "our-doctors", redirectTo: '/doctors', pathMatch: 'full' },
   { path: "doctors", component: DoctorsComponent },
   { path: "contact", component: ContactComponent },
   { path: "gallery", component: GalleryComponent },
-  { path: "gallery-opt" , component: GalleryOptComponent},
+  { path: "gallery-opt", redirectTo: '/gallery', pathMatch: 'full' },
   { path: "about-page", component: AboutPageComponent },
   { path: "doctors-details/:index", component: DoctorsDetailsComponent },
   //{path:"full-image", component......}

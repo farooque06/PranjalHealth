@@ -1,140 +1,205 @@
-/* You can add global styles to this file, and also import other style files */
-body{
-    margin: 0 !important;
-    padding: 0 !important;
-    background-color:black !important; //#E3E6E3
-}
-ul{
-    margin: 0 !important;
-    padding: 0% !important;
-}
+@use 'bootstrap/scss/bootstrap';
 
-ul li{
-list-style: none;
-}
-a{
- text-decoration: none;
-}
-h1, h2, h3, h4, h5, h6{
-margin: 0;
-margin-bottom: 0%;
-}
-.co-btn{
-    min-width: 100px;
-    display: inline-block;
-    text-decoration: none;
-    width: auto;
-    outline: none;
-    border-radius: 20px;
-    padding: 15px;
-    text-align: center;
-    font-size: 16px;
-    line-height: 1em;
-    text-transform: capitalize;
-    color:black;
-    background-color:transparent;
-    &:hover,&:focus,&:active{
-        color:rgb(237, 64, 30);
-        font-size: 20px;
-        opacity: 0.4;
-    }
-  }
+/* ==========================================================================
+   PRANJAL HEALTHCARE GLOBAL THEME SYSTEM
+   ========================================================================== */
 
-  /*-------common for custom padding---------*/
-  .custom-container{
-   // padding: 5% 12%;
-   padding: 40px;
-  }
-  /*------common items for gallery ,services,and doctors page -------*/
-
-  .common-items{
-    .title{
-        margin-bottom: 50px ;
-        h5{
-            text-transform: capitalize;
-            color: rgba(237,64,30,0.9920343137254902); 
-        }
-        h1{
-            text-transform: uppercase;
-            color:aquamarine;
-        }
-
-    }
-    .item{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-        .main-ser-card{
-            min-width: 300px;
-            max-width: 450px;
-            margin-bottom: 40px ;
-        }
-        .main-gallery-card{
-            min-width: 300px;
-            max-width: 450px;
-            margin-bottom: 40px ;
-        }
-        .main-doctors-card{
-            min-width: 300px;
-            max-width: 450px;
-            margin-bottom: 40px ;
-        }
-
-    }
-}
-
-
-  /*------common items END -------*/
-
-
-  $breakpoint-desktop: 1024px;
-  $breakpoint-tablet: 8px;
-  $breakpoint-mobile: 480px;
-
-  /* Using SCSS variables to store breakpoints */
-
-
-  /* Using SCSS variables to store breakpoints */
-
-  /*------media query start-------*/
-//   @media (max-width:1399px){
-//     .custom-container{
-//         padding: 5% 10%;
-//       }
-//   }
+:root {
+  /* Brand Primary Palette (Extracted from Logo's Green Teal) */
+  --primary-teal: #0D8A75;
+  --primary-teal-dark: #054B40;
+  --primary-teal-light: #E6F7F4;
+  --primary-teal-subtle: #14B8A6;
+  --primary-teal-glow: rgba(13, 138, 117, 0.2);
   
-//   @media (max-width:1199px){
-//     .custom-container{
-//         padding: 5% 8%;
-//       }
-//       .common-items{
-//         .title{
-//             margin-bottom: 30px ;
-//         }
-//         .item{
-//           .main-ser-card{
-//                 margin-bottom: 25px ;
-//             }
-//             .main-gallery-card{
-//                 margin-bottom: 25px ;
-//             }
-//             .main-doctors-card{
-//                 margin-bottom: 25px ;
-//             }
-    
-//         }
-//     }
-//   }
+  /* Brand Secondary Palette (Extracted from Logo's Vibrant Coral) */
+  --secondary-coral: #F25C05;
+  --secondary-coral-dark: #C44600;
+  --secondary-coral-light: #FFF3EB;
+  --accent-coral: #FF7426;
+  --secondary-coral-glow: rgba(242, 92, 5, 0.25);
 
-@media(max-width:440px){
-    .custom-container{
-        padding: 40px 5px;
-    }
+  /* Modern Surface & Background Colors */
+  --bg-main: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --bg-surface: #F1F5F9;
+  --bg-dark: #0F172A;
+  --bg-dark-card: #1E293B;
+
+  /* Premium Typography Families */
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Typography Colors */
+  --text-main: #0F172A;
+  --text-body: #334155;
+  --text-muted: #64748B;
+  --text-light: #94A3B8;
+  --text-white: #FFFFFF;
+
+  /* Elevation Shadows & Glassmorphism Effects */
+  --border-light: #E2E8F0;
+  --border-focus: #0D8A75;
+  
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 14px -2px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 14px 30px -4px rgba(13, 138, 117, 0.14), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+  --shadow-hover: 0 20px 35px -8px rgba(13, 138, 117, 0.22);
+  
+  /* Border Radii */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  
+  /* Smooth Transitions */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-  /*------media query END-------*/
+/* Base Body Styles */
+* {
+  box-sizing: border-box;
+}
 
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: var(--font-body);
+  background-color: var(--bg-main) !important;
+  color: var(--text-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
 
-/* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+ul {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+/* Global Reusable Button Components */
+.co-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 28px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  background: linear-gradient(135deg, var(--primary-teal) 0%, var(--primary-teal-dark) 100%);
+  color: #FFFFFF !important;
+  box-shadow: var(--shadow-md);
+
+  i {
+    font-size: 14px;
+    transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+    color: #FFFFFF !important;
+
+    i {
+      transform: translateX(3px);
+    }
+  }
+
+  &.co-btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary-teal);
+    color: var(--primary-teal) !important;
+    box-shadow: none;
+
+    &:hover {
+      background: var(--primary-teal);
+      color: #FFFFFF !important;
+    }
+  }
+
+  &.co-btn-accent {
+    background: linear-gradient(135deg, var(--secondary-coral) 0%, var(--accent-coral) 100%);
+    box-shadow: 0 6px 18px var(--secondary-coral-glow);
+
+    &:hover {
+      box-shadow: 0 10px 24px var(--secondary-coral-glow);
+    }
+  }
+}
+
+/* Global Layout Containers */
+.custom-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+
+  @media (max-width: 992px) {
+    padding: 0 24px;
+  }
+  @media (max-width: 576px) {
+    padding: 0 16px;
+  }
+}
+
+/* Standard Section Header Badges & Titles */
+.common-items {
+  .title {
+    text-align: center;
+    margin-bottom: 48px;
+
+    .subtitle-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 18px;
+      background-color: var(--primary-teal-light);
+      color: var(--primary-teal);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: var(--radius-full);
+      margin-bottom: 12px;
+    }
+
+    h5 {
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      color: var(--secondary-coral);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 38px;
+      color: var(--text-main);
+      font-weight: 800;
+      line-height: 1.2;
+
+      @media (max-width: 768px) {
+        font-size: 28px;
+      }
+    }
+  }
+}

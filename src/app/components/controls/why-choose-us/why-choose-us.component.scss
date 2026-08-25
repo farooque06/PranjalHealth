@@ -1,0 +1,134 @@
+/* ==========================================================================
+   COMPACT & CLEAN WHY CHOOSE US SECTION
+   ========================================================================== */
+
+.why-choose-section {
+  padding: 35px 0;
+  background-color: var(--bg-main);
+}
+
+.section-header-compact {
+  text-align: center;
+  margin-bottom: 30px;
+
+  .subtitle-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    background-color: var(--primary-teal-light);
+    color: var(--primary-teal);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    border-radius: var(--radius-full);
+    margin-bottom: 8px;
+  }
+
+  .section-heading {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.2;
+    margin: 0;
+
+    .heading-highlight {
+      background: linear-gradient(135deg, var(--primary-teal), var(--primary-teal-subtle));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 22px;
+    }
+  }
+}
+
+/* Compact 4-Card Grid */
+.compact-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.compact-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 20px 18px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px -4px rgba(13, 138, 117, 0.12);
+    border-color: rgba(13, 138, 117, 0.25);
+
+    .card-icon {
+      transform: scale(1.08);
+    }
+  }
+
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: transform 0.25s ease;
+
+    &.icon-teal {
+      background: var(--primary-teal-light);
+      color: var(--primary-teal);
+    }
+    &.icon-coral {
+      background: var(--secondary-coral-light);
+      color: var(--secondary-coral);
+    }
+    &.icon-blue {
+      background: #EBF5FF;
+      color: #2563EB;
+    }
+    &.icon-emerald {
+      background: #ECFDF5;
+      color: #059669;
+    }
+  }
+
+  .card-text {
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 4px;
+      line-height: 1.25;
+    }
+
+    .card-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin: 0;
+    }
+  }
+}

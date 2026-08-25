@@ -1,0 +1,405 @@
+/* ==========================================================================
+   PRANJAL HEALTHCARE - HOME PAGE FLOATING DECORATIVE ELEMENTS
+   ========================================================================== */
+
+.home-page-wrapper {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+/* --------------------------------------------------------------------------
+   FLOATING DECORATIVE LAYER
+   Rendered ON TOP of all content with pointer-events: none so it never
+   blocks clicks. Subtle enough to add visual depth without distraction.
+   -------------------------------------------------------------------------- */
+.floating-deco-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+
+/* ---- Gradient Blobs ---- */
+.deco-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(110px);
+  will-change: transform;
+}
+
+.blob-1 {
+  width: 520px;
+  height: 520px;
+  background: var(--primary-teal, #0D8A75);
+  top: 2%;
+  left: -10%;
+  opacity: 0.10;
+  animation: blobFloat1 18s ease-in-out infinite alternate;
+}
+
+.blob-2 {
+  width: 440px;
+  height: 440px;
+  background: var(--secondary-coral, #F25C05);
+  top: 40%;
+  right: -8%;
+  opacity: 0.08;
+  animation: blobFloat2 22s ease-in-out infinite alternate;
+}
+
+.blob-3 {
+  width: 380px;
+  height: 380px;
+  background: #818CF8;
+  bottom: 8%;
+  left: 12%;
+  opacity: 0.06;
+  animation: blobFloat3 20s ease-in-out infinite alternate;
+}
+
+/* ---- Floating Geometric Lines ---- */
+.deco-line {
+  position: absolute;
+  border-radius: 4px;
+  will-change: transform;
+}
+
+.line-1 {
+  width: 320px;
+  height: 2px;
+  top: 16%;
+  left: 4%;
+  background: linear-gradient(90deg, transparent, var(--primary-teal, #0D8A75) 50%, transparent);
+  opacity: 0.12;
+  transform: rotate(-25deg);
+  animation: lineFloat1 14s ease-in-out infinite alternate;
+}
+
+.line-2 {
+  width: 260px;
+  height: 2px;
+  top: 50%;
+  right: 5%;
+  background: linear-gradient(90deg, transparent, var(--secondary-coral, #F25C05) 50%, transparent);
+  opacity: 0.10;
+  transform: rotate(18deg);
+  animation: lineFloat2 18s ease-in-out infinite alternate-reverse;
+}
+
+.line-3 {
+  width: 200px;
+  height: 2px;
+  bottom: 28%;
+  left: 28%;
+  background: linear-gradient(90deg, transparent, var(--primary-teal, #0D8A75) 50%, transparent);
+  opacity: 0.10;
+  transform: rotate(-12deg);
+  animation: lineFloat1 16s ease-in-out infinite alternate;
+}
+
+.line-4 {
+  width: 180px;
+  height: 2px;
+  top: 72%;
+  right: 16%;
+  background: linear-gradient(90deg, transparent, #818CF8 50%, transparent);
+  opacity: 0.08;
+  transform: rotate(30deg);
+  animation: lineFloat2 20s ease-in-out infinite alternate-reverse;
+}
+
+/* ---- Floating Shapes: Cross Characters (+) ---- */
+.shape-cross-1,
+.shape-cross-2 {
+  position: absolute;
+  font-size: 32px;
+  font-weight: 200;
+  line-height: 1;
+  will-change: transform;
+}
+
+.shape-cross-1 {
+  top: 10%;
+  right: 14%;
+  color: var(--primary-teal, #0D8A75);
+  opacity: 0.14;
+  animation: shapeSpin 28s linear infinite;
+}
+
+.shape-cross-2 {
+  bottom: 32%;
+  left: 7%;
+  font-size: 24px;
+  color: var(--secondary-coral, #F25C05);
+  opacity: 0.12;
+  animation: shapeSpin 36s linear infinite reverse;
+}
+
+/* ---- Floating Rings (Hollow Circles) ---- */
+.shape-ring {
+  position: absolute;
+  border-radius: 50%;
+  border-style: solid;
+  will-change: transform;
+}
+
+.ring-1 {
+  width: 90px;
+  height: 90px;
+  border-width: 2.5px;
+  border-color: var(--primary-teal, #0D8A75);
+  top: 20%;
+  right: 6%;
+  opacity: 0.12;
+  animation: ringFloat 16s ease-in-out infinite alternate;
+}
+
+.ring-2 {
+  width: 55px;
+  height: 55px;
+  border-width: 2px;
+  border-color: var(--secondary-coral, #F25C05);
+  top: 58%;
+  left: 5%;
+  opacity: 0.10;
+  animation: ringFloat 20s ease-in-out infinite alternate-reverse;
+}
+
+.ring-3 {
+  width: 40px;
+  height: 40px;
+  border-width: 2px;
+  border-color: #818CF8;
+  bottom: 16%;
+  right: 20%;
+  opacity: 0.10;
+  animation: ringFloat 18s ease-in-out infinite alternate;
+}
+
+/* ---- Floating Diamonds (Rotated Squares) ---- */
+.shape-diamond {
+  position: absolute;
+  border-radius: 3px;
+  will-change: transform;
+}
+
+.diamond-1 {
+  width: 18px;
+  height: 18px;
+  background: var(--primary-teal, #0D8A75);
+  top: 36%;
+  left: 10%;
+  opacity: 0.14;
+  transform: rotate(45deg);
+  animation: diamondFloat 14s ease-in-out infinite alternate;
+}
+
+.diamond-2 {
+  width: 14px;
+  height: 14px;
+  background: var(--secondary-coral, #F25C05);
+  bottom: 38%;
+  right: 9%;
+  opacity: 0.12;
+  transform: rotate(45deg);
+  animation: diamondFloat 18s ease-in-out infinite alternate-reverse;
+}
+
+/* ---- Floating Dots ---- */
+.shape-dot {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.dot-1 {
+  width: 10px;
+  height: 10px;
+  background: var(--primary-teal, #0D8A75);
+  top: 14%;
+  left: 40%;
+  opacity: 0.16;
+  animation: dotPulse 5s ease-in-out infinite alternate;
+}
+
+.dot-2 {
+  width: 8px;
+  height: 8px;
+  background: var(--secondary-coral, #F25C05);
+  top: 46%;
+  right: 28%;
+  opacity: 0.14;
+  animation: dotPulse 7s ease-in-out infinite alternate-reverse;
+}
+
+.dot-3 {
+  width: 12px;
+  height: 12px;
+  background: #818CF8;
+  bottom: 20%;
+  left: 52%;
+  opacity: 0.10;
+  animation: dotPulse 6s ease-in-out infinite alternate;
+}
+
+.dot-4 {
+  width: 9px;
+  height: 9px;
+  background: var(--primary-teal, #0D8A75);
+  top: 70%;
+  left: 16%;
+  opacity: 0.12;
+  animation: dotPulse 8s ease-in-out infinite alternate-reverse;
+}
+
+/* ---- Floating Medical Plus Crosses (FontAwesome) ---- */
+.shape-med-cross {
+  position: absolute;
+  will-change: transform;
+}
+
+.med-1 {
+  top: 7%;
+  left: 26%;
+  color: var(--primary-teal, #0D8A75);
+  font-size: 22px;
+  opacity: 0.10;
+  animation: medFloat 16s ease-in-out infinite alternate;
+}
+
+.med-2 {
+  top: 60%;
+  right: 12%;
+  color: var(--secondary-coral, #F25C05);
+  font-size: 18px;
+  opacity: 0.08;
+  animation: medFloat 20s ease-in-out infinite alternate-reverse;
+}
+
+.med-3 {
+  bottom: 14%;
+  left: 36%;
+  color: var(--primary-teal, #0D8A75);
+  font-size: 15px;
+  opacity: 0.07;
+  animation: medFloat 22s ease-in-out infinite alternate;
+}
+
+/* ---- Dot Grid Patterns ---- */
+.deco-dotgrid {
+  position: absolute;
+  will-change: transform;
+}
+
+.dotgrid-1 {
+  width: 130px;
+  height: 130px;
+  top: 26%;
+  right: 2%;
+  background-image: radial-gradient(circle, var(--primary-teal, #0D8A75) 1.5px, transparent 1.5px);
+  background-size: 18px 18px;
+  opacity: 0.07;
+  animation: gridFloat 20s ease-in-out infinite alternate;
+}
+
+.dotgrid-2 {
+  width: 110px;
+  height: 110px;
+  bottom: 10%;
+  left: 1.5%;
+  background-image: radial-gradient(circle, var(--secondary-coral, #F25C05) 1.3px, transparent 1.3px);
+  background-size: 16px 16px;
+  opacity: 0.05;
+  animation: gridFloat 24s ease-in-out infinite alternate-reverse;
+}
+
+/* --------------------------------------------------------------------------
+   KEYFRAME ANIMATIONS
+   -------------------------------------------------------------------------- */
+@keyframes blobFloat1 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(50px, 35px) scale(1.06); }
+  100% { transform: translate(-25px, 55px) scale(0.94); }
+}
+
+@keyframes blobFloat2 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(-35px, 45px) scale(1.08); }
+  100% { transform: translate(25px, -30px) scale(0.95); }
+}
+
+@keyframes blobFloat3 {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(35px, -25px) scale(1.05); }
+  100% { transform: translate(-18px, 30px) scale(0.97); }
+}
+
+@keyframes lineFloat1 {
+  0%   { transform: translateY(0) rotate(-25deg); }
+  50%  { transform: translateY(18px) rotate(-20deg); }
+  100% { transform: translateY(-12px) rotate(-28deg); }
+}
+
+@keyframes lineFloat2 {
+  0%   { transform: translateY(0) rotate(18deg); }
+  50%  { transform: translateY(-14px) rotate(22deg); }
+  100% { transform: translateY(10px) rotate(15deg); }
+}
+
+@keyframes shapeSpin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes ringFloat {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(15px, -20px) scale(1.1); }
+  100% { transform: translate(-10px, 12px) scale(0.92); }
+}
+
+@keyframes diamondFloat {
+  0%   { transform: rotate(45deg) translate(0, 0); }
+  50%  { transform: rotate(45deg) translate(12px, -14px); }
+  100% { transform: rotate(45deg) translate(-8px, 10px); }
+}
+
+@keyframes dotPulse {
+  0%   { transform: scale(1); opacity: 0.10; }
+  50%  { transform: scale(1.8); opacity: 0.20; }
+  100% { transform: scale(1); opacity: 0.10; }
+}
+
+@keyframes medFloat {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  50%  { transform: translate(10px, -16px) rotate(18deg); }
+  100% { transform: translate(-7px, 12px) rotate(-12deg); }
+}
+
+@keyframes gridFloat {
+  0%   { transform: translate(0, 0); }
+  50%  { transform: translate(12px, -10px); }
+  100% { transform: translate(-8px, 14px); }
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE: Thin out decorations on smaller screens
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .deco-blob {
+    filter: blur(130px);
+  }
+
+  .blob-1 { width: 320px; height: 320px; }
+  .blob-2 { width: 260px; height: 260px; }
+  .blob-3 { display: none; }
+
+  .line-3, .line-4 { display: none; }
+  .ring-3, .diamond-2 { display: none; }
+  .dot-3, .dot-4 { display: none; }
+  .med-3 { display: none; }
+  .dotgrid-2 { display: none; }
+
+  .deco-dotgrid { width: 80px; height: 80px; }
+}

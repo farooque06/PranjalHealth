@@ -1,132 +1,57 @@
-.logo-container{
+.logo-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  
+  .logo-icon-wrapper {
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
-    cursor: pointer;
-    .image-container{
-        width: 75px;
-        // height: 85px;
-           img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-           }
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: #ffffff;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-light);
+    padding: 4px;
+    transition: var(--transition);
+
+    .logo-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
     }
-    .text-container{
-        .text{
-           width: 100%;
-           margin-top: 8px;
-            h1{
-                text-transform: uppercase;
-                font-family:Arial, Helvetica, sans-serif;
-                color:#0C8A7C;
-                font-size: 2.4em;
-                font-weight: 700;
-                margin: 0;
-                padding: 0;
-            }
-            h4{
-                color: rgba(237,64,30,0.9920343137254902);
-                margin: 0%;
-                font-size: 1em;
-                line-height: 0.4;
-                font-weight: 800;
-            }
-            span{
-                font-size: larger;
-                font-weight: 700;
-            }
-        }
+  }
+
+  &:hover .logo-icon-wrapper {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md);
+  }
+
+  .logo-text-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    .logo-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: var(--primary-teal);
+      line-height: 1;
     }
-}
 
-// @media (max-width:1399px){
-//     .logo-container{
-//         .image-container{
-//             width: 75px;
-//             height: 75px;
-//         }
-//         .text-container{
-//             .text{
-//                margin-top: 9px;
-//                 h1{
-//                     font-size: 40px;
-//                 }
-//                 h4{
-//                     font-size: 18px;
-//                     line-height: 0.3;
-//                 }
-//             }
-//         }
-//     }
-
-// }
-
-// @media (max-width:1199px){
-//     .logo-container{
-//         .image-container{
-//             width: 65px;
-//             height: 65px;
-//         }
-//         .text-container{
-//             .text{
-//                margin-top: 7px;
-//                 h1{
-//                     font-size: 35px;
-//                 }
-//                 h4{
-//                     font-size: 18px;
-//                 }
-//             }
-//         }
-//     }
-// }
-
-// @media(max-width:991px){
-//     @media (max-width:1199px){
-//         .logo-container{
-//             .image-container{
-//                 width: 55px;
-//                 height: 55px;
-//             }
-//             .text-container{
-//                 .text{
-//                    margin-top: 5px;
-//                     h1{
-//                         font-size: 28px;
-//                     }
-//                     h4{
-//                         font-size: 16px;
-//                     }
-//                 }
-//             }
-//         }
-//     }
-    
-// }
-
-:host{
-    min-width: 330px
-}
-
-@media(max-width:415px){
-    .logo-container{
-        .image-container{
-            width: 55px;
-        }
-        .text-container{
-            .text{
-               margin-top: 8px;
-                h1{
-                    font-size: 1.8em;
-                }
-                h4{
-                    font-size: 0.8em;
-                }
-            }
-        }
+    .logo-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--secondary-coral);
+      letter-spacing: 0.5px;
+      margin-top: 3px;
+      line-height: 1;
     }
-    :host{
-        min-width: 250px
-    }
-    
+  }
 }

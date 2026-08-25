@@ -1,30 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IServices } from 'src/app/interfaces/service.interface';
 import { ServicesService } from 'src/app/services/services.service';
 
 @Component({
-  selector: 'app-our-services-details',
-  templateUrl: './our-services-details.component.html',
-  styleUrls: ['./our-services-details.component.scss']
+    selector: 'app-our-services-details',
+    templateUrl: './our-services-details.component.html',
+    styleUrls: ['./our-services-details.component.scss'],
+    standalone: false
 })
 export class OurServicesDetailsComponent implements OnInit {
-
-
-  data: IServices | any;
-
+  data: IServices | undefined;
+  allServices: IServices[] = [];
+  currentIndex: number = 0;
 
   constructor(
-    private activateRoute: ActivatedRoute,
+    private route: ActivatedRoute,
+    private router: Router,
     private service: ServicesService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    const index = this.activateRoute.snapshot.paramMap.get("index");
-    if(index){
-      this.data= this.service.getServiceByIndexNo(+index);
-    }
+    this.allServices = this.service.getServices();
 
+    this.route.paramMap.subscribe(params => {
+      const indexStr = params.get('index');
+      if (indexStr !== null) {
+        this.currentIndex = +indexStr;
+        this.data = this.service.getServiceByIndexNo(this.currentIndex);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
   }
 
+  navigateToService(index: number): void {
+    this.router.navigate(['/our-services-details', index]);
+  }
 }

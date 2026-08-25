@@ -1,31 +1,71 @@
-<section class="footer-section">
-    <div class="footer-container">
-        <div class="custom-container">
-            <div class="main-footer">
-                <div class="text-container">
-                    <div class="text">
-                        <ul>
-                            <li class="title"><span>get in touch with us</span> </li>
-                            <li class="contact">contact no : <a href="tel:+977-9865370270"><span>&emsp;+977-9865370270</span></a></li>
-                            <li class="email">email :<a href="mailto:pranjaldhc@gmail.com"><span>&emsp;:&emsp;pranjaldhc@gmail.com</span></a></li>
-                            <li><span>location :&emsp;:&emsp;Pepsicola Townplanning ,Kathmandu </span></li>
-                            <li><span>opening hour:&emsp;:&emsp;7:00 AM to 9:00 PM</span></li>
-                        </ul>
-                    </div>
-                    <div class="info-item">
-                        <ul>
-                            <li><a href="https://www.facebook.com/pepsitown" target="_blank"><img src="../../../../assets/images/icons/facebook.png" alt="fb"></a></li>
-                            <li><a href="#" target="_blank"><img src="../../../../assets/images/icons/whatsapp.png" alt="fb"></a></li>
-                            <li><a href="https://www.facebook.com/pepsitown" target="_blank"><img src="../../../../assets/images/icons/viber.png" alt="fb"></a></li>
-                            <li><a href="#"><img src="../../../../assets/images/icons/instagram.png" alt=""></a></li>
-                            <li><a href="mailto:pranjaldhc@gmail.com"><img src="../../../../assets/images/icons/gmail.png" alt=""></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="logo">
-                    <app-logo></app-logo>
-                </div>
-            </div>
+<footer class="footer-section">
+  <div class="custom-container">
+    <div class="footer-grid">
+      <!-- Brand & About -->
+      <div class="footer-col brand-col">
+        <app-logo></app-logo>
+        <p class="brand-desc">
+          Pranjal Diagnostic & Healthcare Center provides state-of-the-art diagnostic services, expert consultations, and personalized patient care in Pepsicola Townplanning, Kathmandu.
+        </p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/pepsitown" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" aria-label="Viber"><i class="fa-brands fa-viber"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="mailto:pranjaldhc@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         </div>
+      </div>
+
+      <!-- Quick Navigation -->
+      <div class="footer-col">
+        <h4 class="footer-title">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a routerLink="/about-page"><i class="fa-solid fa-chevron-right"></i> About Us</a></li>
+          <li><a routerLink="/services-main"><i class="fa-solid fa-chevron-right"></i> Diagnostic Services</a></li>
+          <li><a routerLink="/doctors"><i class="fa-solid fa-chevron-right"></i> Specialist Doctors</a></li>
+          <li><a routerLink="/gallery"><i class="fa-solid fa-chevron-right"></i> Center Gallery</a></li>
+          <li><a routerLink="/contact"><i class="fa-solid fa-chevron-right"></i> Contact & Directions</a></li>
+        </ul>
+      </div>
+
+      <!-- Working Hours -->
+      <div class="footer-col">
+        <h4 class="footer-title">Opening Hours</h4>
+        <div class="hours-list">
+          <div class="hour-row">
+            <span>Sunday - Friday</span>
+            <span class="badge">7:00 AM - 7:00 PM</span>
+          </div>
+          <div class="hour-row">
+            <span>Saturday</span>
+            <span class="badge badge-accent">Emergency / Closed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="footer-col">
+        <h4 class="footer-title">Get in Touch</h4>
+        <ul class="contact-info">
+          <li>
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Pepsicola Townplanning, Kathmandu, Nepal</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+977-9865370270">+977-9865370270</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:pranjaldhc&#64;gmail.com">pranjaldhc&#64;gmail.com</a>
+          </li>
+        </ul>
+      </div>
     </div>
-</section>
+
+    <!-- Sub Footer Copyright -->
+    <div class="sub-footer">
+      <p>&copy; {{ currentYear }} Pranjal Diagnostic & Healthcare Center. All rights reserved.</p>
+    </div>
+  </div>
+</footer>

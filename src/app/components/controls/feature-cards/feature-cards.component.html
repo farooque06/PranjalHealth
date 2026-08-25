@@ -1,0 +1,21 @@
+<section class="floating-features-section">
+  <div class="custom-container">
+    <div class="feature-cards-grid">
+      
+      <div *ngFor="let item of features" class="feature-card">
+        <div class="feature-icon-box" [ngClass]="item.iconClass">
+          <i [class]="item.icon"></i>
+        </div>
+        <div class="feature-content">
+          <span class="feature-tag" [ngClass]="item.tagClass">{{ item.tag }}</span>
+          <h3 class="feature-title">{{ item.title }}</h3>
+          <p class="feature-desc">{{ item.desc }}</p>
+          <a [routerLink]="item.link" class="feature-link" [ngClass]="item.linkClass">
+            {{ item.linkText }} <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

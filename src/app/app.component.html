@@ -1,7 +1,44 @@
-
-<div
-    style="max-width: 1440px; justify-content: center; margin: auto; background-color: aliceblue;">
-    <app-header></app-header>
+<div class="app-layout-wrapper">
+  <app-header></app-header>
+  <main class="main-content-area">
     <router-outlet></router-outlet>
-    <app-footer></app-footer>
+  </main>
+  <app-footer></app-footer>
+
+  <!-- Global Floating Quick-Action Bar (WhatsApp, Call, Scroll-to-Top) -->
+  <div class="floating-action-container">
+    <!-- Scroll to Top Button (Appears when scrolled down) -->
+    <button 
+      type="button"
+      class="fab-btn scroll-top-btn" 
+      [class.visible]="showScrollTop"
+      (click)="scrollToTop()" 
+      aria-label="Scroll to top"
+      title="Back to Top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- Direct Call Button -->
+    <a 
+      href="tel:+977-9865370270" 
+      class="fab-btn call-fab-btn" 
+      aria-label="Call Healthcare Center Directly"
+      title="Call Us Directly (+977-9865370270)">
+      <i class="fa-solid fa-phone"></i>
+      <span class="fab-tooltip">Call Direct</span>
+    </a>
+
+    <!-- WhatsApp Floating Action Button -->
+    <a 
+      href="https://wa.me/9779865370270?text=Hello%20Pranjal%20Healthcare,%20I%20would%20like%20to%20inquire%20about%20your%20services" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="fab-btn whatsapp-fab-btn" 
+      aria-label="Chat on WhatsApp"
+      title="Chat with us on WhatsApp">
+      <span class="fab-pulse"></span>
+      <i class="fa-brands fa-whatsapp"></i>
+      <span class="fab-tooltip">Chat on WhatsApp</span>
+    </a>
+  </div>
 </div>
