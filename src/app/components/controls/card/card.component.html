@@ -1,6 +1,6 @@
 <div class="modern-card-wrapper">
   <div class="card-image-box">
-    <img [src]="src" [alt]="title || 'Diagnostic Card Image'" class="card-img" (error)="onImageError($event)">
+    <img [src]="src" [alt]="title || 'Diagnostic Card Image'" class="card-img" loading="lazy" decoding="async" (error)="onImageError($event)">
     
     <span *ngIf="department" class="card-dept-badge">
       {{ department }}

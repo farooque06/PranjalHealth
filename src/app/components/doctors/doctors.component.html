@@ -119,7 +119,7 @@
           
           <!-- Portrait Frame -->
           <div class="doctor-image-frame">
-            <img [src]="doctor.image || placeholderImage" [alt]="doctor.title" class="doctor-portrait" (error)="onImageError($event)">
+            <img [src]="doctor.image || placeholderImage" [alt]="doctor.title" class="doctor-portrait" loading="lazy" decoding="async" (error)="onImageError($event)">
             
             <div class="image-overlay-gradient"></div>
             
