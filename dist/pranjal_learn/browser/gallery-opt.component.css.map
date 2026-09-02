@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/components/gallery-opt/gallery-opt.component.scss"],
-  "sourcesContent": [".gallery-section{\r\n      .gallery-container{\r\n        .gallery{\r\n          display: flex;\r\n          flex-wrap: wrap;\r\n          .colum{\r\n            width: 50%;\r\n            &:nth-last-child(1){\r\n              width: 100%;\r\n            }\r\n            .image-container{\r\n              .image{\r\n                padding: 8px;\r\n                img{\r\n                  width: 100%;\r\n                  height: 100%;\r\n                  object-fit: cover;\r\n                  object-position: center;\r\n\r\n                }\r\n\r\n              }\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  "],
-  "mappings": ";AAEQ,CAAA,gBAAA,CAAA,kBAAA,CAAA;AACE,WAAA;AACA,aAAA;;AACA,CAHF,gBAGE,CAHF,kBAGE,CAHF,QAGE,CAAA;AACE,SAAA;;AACA,CALJ,gBAKI,CALJ,kBAKI,CALJ,QAKI,CAFF,KAEE;AACE,SAAA;;AAGA,CATN,gBASM,CATN,kBASM,CATN,QASM,CANJ,MAMI,CAAA,gBAAA,CAAA;AACE,WAAA;;AACA,CAXR,gBAWQ,CAXR,kBAWQ,CAXR,QAWQ,CARN,MAQM,CAFF,gBAEE,CAFF,MAEE;AACE,SAAA;AACA,UAAA;AACA,cAAA;AACA,mBAAA;;",
-  "names": []
-}

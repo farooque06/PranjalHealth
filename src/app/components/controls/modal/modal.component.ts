@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ImagePlaceholderService } from 'src/app/services/image-placeholder.service';
 // import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -17,12 +18,17 @@ export class ModalComponent implements OnInit {
   }
   //modal: any;
   constructor(
+    private imagePlaceholderService: ImagePlaceholderService
    // private modalService: NgbModal
   ) {
 
   }
 
   ngOnInit(): void {
+  }
+
+  onImageError(event: any): void {
+    this.imagePlaceholderService.handleImageError(event, 'generic');
   }
 
 }

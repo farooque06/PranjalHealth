@@ -10,6 +10,17 @@ export class FeatureCardsComponent implements OnInit {
 
   features = [
     {
+      icon: 'fa-solid fa-user-doctor',
+      iconClass: 'icon-coral',
+      tag: 'Medical Team',
+      tagClass: 'tag-coral',
+      title: 'Specialized Doctors',
+      desc: 'Consultation with top specialists in Cardiology, Gynecology, Pediatrics, and General Medicine.',
+      link: '/doctors',
+      linkText: 'Meet Our Doctors',
+      linkClass: 'link-coral'
+    },
+    {
       icon: 'fa-solid fa-vial-circle-check',
       iconClass: 'icon-teal',
       tag: 'Pathology Lab',
@@ -19,17 +30,6 @@ export class FeatureCardsComponent implements OnInit {
       link: '/services-main',
       linkText: 'Explore Services',
       linkClass: ''
-    },
-    {
-      icon: 'fa-solid fa-user-doctor',
-      iconClass: 'icon-coral',
-      tag: 'Specialist Doctors',
-      tagClass: 'tag-coral',
-      title: 'Experienced Physicians',
-      desc: 'Consultation with top specialists in Cardiology, Gynecology, Pediatrics, and General Medicine.',
-      link: '/doctors',
-      linkText: 'Meet Our Doctors',
-      linkClass: 'link-coral'
     },
     {
       icon: 'fa-solid fa-x-ray',

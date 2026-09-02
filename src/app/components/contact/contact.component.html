@@ -86,22 +86,30 @@
               class="dept-phone-btn">
               <div class="phone-btn-icon"><i class="fa-solid fa-phone"></i></div>
               <div class="phone-btn-text">
-                <span class="phone-label">{{ phone.label }}</span>
+                <div class="phone-label-row">
+                  <span class="phone-label">{{ phone.label }}</span>
+                  <span *ngIf="phone.isWhatsApp" class="badge-wa-pill"><i class="fa-brands fa-whatsapp"></i> WhatsApp</span>
+                  <span *ngIf="phone.note" class="badge-no-wa-pill"><i class="fa-solid fa-phone"></i> {{ phone.note }}</span>
+                </div>
                 <span class="phone-number">{{ phone.formatted }}</span>
               </div>
               <i class="fa-solid fa-arrow-up-right-from-square call-arrow"></i>
             </a>
           </div>
 
-          <!-- Instant WhatsApp Action -->
-          <div class="dept-whatsapp-action">
+          <!-- Instant WhatsApp Action / Call Only Notice -->
+          <div class="dept-whatsapp-action" *ngIf="dept.whatsappNumber">
             <a 
-              [href]="getWhatsAppLink(dept.whatsappNumber, dept.whatsappMessage)" 
+              [href]="getWhatsAppLink(dept.whatsappNumber, dept.whatsappMessage || '')" 
               target="_blank" 
               class="dept-whatsapp-btn">
               <i class="fa-brands fa-whatsapp"></i>
-              <span>WhatsApp This Department</span>
+              <span>WhatsApp Available</span>
             </a>
+          </div>
+          <div class="dept-no-wa-box" *ngIf="!dept.whatsappNumber">
+            <i class="fa-solid fa-phone-volume"></i>
+            <span>No WhatsApp (Direct Voice Call Only)</span>
           </div>
 
           <!-- Card Timing & Info Footer -->
@@ -120,29 +128,29 @@
     </div>
   </section>
 
-  <!-- 3. Home Sample Collection & Urgent Helpline Banner -->
+  <!-- 3. Diagnostic & Doctor OPD Inquiries Banner -->
   <section class="home-collection-banner-section">
     <div class="custom-container">
       <div class="home-collection-card">
         <div class="banner-icon-box">
-          <i class="fa-solid fa-house-medical-circle-check"></i>
+          <i class="fa-solid fa-hospital-user"></i>
         </div>
         
         <div class="banner-content">
-          <span class="banner-tag">Doorstep Healthcare Support</span>
-          <h3>Need Home Blood Sample Collection or Urgent Care?</h3>
-          <p>Our certified phlebotomists provide safe, hygienic blood sample pickup at your home in Kathmandu.</p>
+          <span class="banner-tag">Patient Inquiries & Assistance</span>
+          <h3>Need Help With Lab Tests, Reports, or Doctor OPD?</h3>
+          <p>Connect directly with our healthcare desk for fast test guidance, report delivery updates, and specialist doctor consultation appointments.</p>
         </div>
 
         <div class="banner-actions">
-          <a href="tel:+9779865370270" class="co-btn co-btn-accent">
-            <i class="fa-solid fa-phone"></i> Call: +977-9865370270
+          <a href="tel:9851428080" class="co-btn co-btn-accent">
+            <i class="fa-solid fa-phone"></i> Support: 9851428080
           </a>
           <a 
-            [href]="getWhatsAppLink('9779865370270', 'Hello, I want to book a home blood sample collection.')" 
+            [href]="getWhatsAppLink('9779864156565', 'Hello, I have an inquiry about lab tests / doctor OPD appointments.')" 
             target="_blank" 
             class="co-btn whatsapp-cta-btn">
-            <i class="fa-brands fa-whatsapp"></i> Book via WhatsApp
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp: 9864156565
           </a>
         </div>
       </div>
@@ -212,7 +220,7 @@
             <div class="schedule-matrix">
               <div class="schedule-row">
                 <span class="service-name"><i class="fa-solid fa-flask-vial"></i> Pathology Lab & Fasting:</span>
-                <span class="time-badge">7:00 AM - 7:00 PM</span>
+                <span class="time-badge">7:00 AM - 8:00 PM</span>
               </div>
               <div class="schedule-row">
                 <span class="service-name"><i class="fa-solid fa-user-doctor"></i> Doctor OPD Clinics:</span>
@@ -220,15 +228,11 @@
               </div>
               <div class="schedule-row">
                 <span class="service-name"><i class="fa-solid fa-x-ray"></i> Digital X-Ray & USG:</span>
-                <span class="time-badge">8:00 AM - 6:00 PM</span>
+                <span class="time-badge">7:00 AM - 8:00 PM</span>
               </div>
               <div class="schedule-row">
                 <span class="service-name"><i class="fa-solid fa-pills"></i> On-Site Pharmacy:</span>
-                <span class="time-badge">7:00 AM - 7:30 PM</span>
-              </div>
-              <div class="schedule-row alt">
-                <span class="service-name"><i class="fa-solid fa-calendar-xmark"></i> Saturday:</span>
-                <span class="time-badge emergency-badge">Emergency & Urgent Care</span>
+                <span class="time-badge">7:00 AM - 10:00 PM</span>
               </div>
             </div>
           </div>
@@ -243,8 +247,8 @@
               <a href="mailto:pranjaldhc@gmail.com" class="social-btn mail">
                 <i class="fa-solid fa-envelope"></i> Email Us
               </a>
-              <a href="tel:+9779865370270" class="social-btn phone">
-                <i class="fa-solid fa-phone"></i> Call Direct
+              <a href="tel:9851428080" class="social-btn phone">
+                <i class="fa-solid fa-phone"></i> Call Support (9851428080)
               </a>
             </div>
           </div>
@@ -269,7 +273,7 @@
 
             <div class="map-iframe-frame">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.780701504399!2d85.36302955076013!3d27.693172032637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1b2516752c77%3A0xb1b22538a9ad460a!2sPranjal%20Diagnostic%20And%20Health%20Care%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1679487112756!5m2!1sen!2snp" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d220.79883387478733!2d85.36510579678888!3d27.693152241229146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb1b007291b2d5%3A0xc1d1372248597cff!2sPranjal%20Diagnostic%20and%20Healthcare%20Center!5e0!3m2!1sen!2snp!4v1788346711428!5m2!1sen!2snp" 
                 class="map-iframe" 
                 allowfullscreen="" 
                 loading="lazy" 

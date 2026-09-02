@@ -13,12 +13,15 @@
           <span class="separator"><i class="fa-solid fa-chevron-right"></i></span>
           <a routerLink="/services-main">Services</a>
           <span class="separator"><i class="fa-solid fa-chevron-right"></i></span>
-          <span class="current">{{ data.title }}</span>
+          <span class="current">{{ data.title }} <span *ngIf="data.titleNepali" class="breadcrumb-np">({{ data.titleNepali }})</span></span>
         </div>
 
         <div class="hero-category-wrap">
           <span class="hero-badge">
             <i class="fa-solid" [ngClass]="data.icon || 'fa-notes-medical'"></i> {{ data.category || 'Diagnostic Service' }}
+          </span>
+          <span *ngIf="data.badgeNepali" class="hero-badge hero-badge-np">
+            <i class="fa-solid fa-tag"></i> {{ data.badgeNepali }}
           </span>
           <span *ngIf="data.turnaround" class="hero-turnaround-badge">
             <i class="fa-regular fa-clock"></i> {{ data.turnaround }}
@@ -26,6 +29,10 @@
         </div>
 
         <h1 class="details-main-title">{{ data.title }}</h1>
+        <div class="details-nepali-title-banner" *ngIf="data.titleNepali">
+          <span class="nepali-kicker-tag"><i class="fa-solid fa-language"></i> सेवा:</span>
+          <span class="nepali-title-value">{{ data.titleNepali }}</span>
+        </div>
         <p *ngIf="data.subtitle" class="details-subtitle">{{ data.subtitle }}</p>
 
       </div>
@@ -42,7 +49,7 @@
           
           <!-- Featured Image Frame -->
           <div class="service-featured-image-card">
-            <img [src]="data.image[0]" [alt]="data.title" class="featured-img">
+            <img [src]="data.image[0]" [alt]="data.title" class="featured-img" (error)="onImageError($event)">
             <div class="img-glow-accent"></div>
             <div class="floating-verified-pill">
               <i class="fa-solid fa-shield-halved"></i> Certified Clinical Facility
@@ -104,13 +111,19 @@
             </div>
           </div>
 
-          <!-- Back Navigation Bar -->
+          <!-- Back Navigation & Direct Action Bar -->
           <div class="details-bottom-nav">
             <a routerLink="/services-main" class="co-btn co-btn-outline">
-              <i class="fa-solid fa-arrow-left"></i> Back to All Services
+              <i class="fa-solid fa-arrow-left"></i> All Services
+            </a>
+            <a 
+              [href]="getWhatsAppLink(data.title)" 
+              target="_blank" 
+              class="co-btn whatsapp-action-btn">
+              <i class="fa-brands fa-whatsapp"></i> Book via WhatsApp
             </a>
             <a routerLink="/contact" class="co-btn co-btn-accent">
-              <i class="fa-solid fa-calendar-check"></i> Book Consultation
+              <i class="fa-solid fa-calendar-check"></i> Center Contact
             </a>
           </div>
 
@@ -126,39 +139,42 @@
             </h3>
             
             <ul class="facts-list">
-              <li>
-                <span class="fact-label"><i class="fa-solid fa-layer-group"></i> Department:</span>
-                <span class="fact-value">{{ data.category || 'Clinical Diagnostics' }}</span>
+              <li *ngIf="data.titleNepali">
+                <span class="fact-label"><i class="fa-solid fa-language"></i> सेवाको नाम:</span>
+                <span class="fact-value text-teal font-nepali">{{ data.titleNepali }}</span>
               </li>
               <li>
-                <span class="fact-label"><i class="fa-regular fa-clock"></i> Turnaround:</span>
-                <span class="fact-value text-teal">{{ data.turnaround || 'Same-Day' }}</span>
+                <span class="fact-label"><i class="fa-solid fa-layer-group"></i> Division:</span>
+                <span class="fact-value">{{ data.category || 'Clinical Care' }}</span>
               </li>
               <li>
-                <span class="fact-label"><i class="fa-solid fa-file-lines"></i> Report Format:</span>
-                <span class="fact-value">Digital PDF & Hard Copy</span>
+                <span class="fact-label"><i class="fa-solid fa-tag"></i> Wing:</span>
+                <span class="fact-value text-teal">{{ data.categoryType === 'specialist' ? '01 — Specialist Services' : '02 — Diagnostic Services' }}</span>
               </li>
               <li>
-                <span class="fact-label"><i class="fa-solid fa-shield-virus"></i> Safety Protocol:</span>
-                <span class="fact-value">Sterile & Barcoded</span>
+                <span class="fact-label"><i class="fa-regular fa-clock"></i> Schedule / Turnaround:</span>
+                <span class="fact-value">{{ data.turnaround || 'Daily Service' }}</span>
               </li>
               <li>
                 <span class="fact-label"><i class="fa-solid fa-hospital"></i> Location:</span>
-                <span class="fact-value">Pepsicola Center, KTM</span>
+                <span class="fact-value">Pepsicola Townplanning, KTM</span>
               </li>
             </ul>
 
             <div class="sidebar-card-footer">
-              <a routerLink="/contact" class="co-btn w-100 text-center">
-                <i class="fa-solid fa-calendar-plus"></i> Inquire / Book Test
+              <a 
+                [href]="getWhatsAppLink(data.title)" 
+                target="_blank" 
+                class="co-btn co-btn-accent w-100 text-center">
+                <i class="fa-brands fa-whatsapp"></i> Inquire / Book Now
               </a>
             </div>
           </div>
 
-          <!-- All Diagnostic Services List -->
+          <!-- All Diagnostic & Specialist Services List -->
           <div class="sidebar-card services-nav-card">
             <h3 class="sidebar-card-title">
-              <i class="fa-solid fa-notes-medical"></i> Diagnostic Services
+              <i class="fa-solid fa-notes-medical"></i> All 24 Services Directory
             </h3>
 
             <ul class="services-nav-list">
@@ -166,7 +182,12 @@
                 <a (click)="navigateToService(s.index)">
                   <div class="nav-service-item">
                     <span class="nav-service-title">
-                      <i class="fa-solid" [ngClass]="s.icon || 'fa-notes-medical'"></i> {{ s.title }}
+                      <span class="service-prefix-badge">{{ s.index + 1 }}</span>
+                      <i class="fa-solid" [ngClass]="s.icon || 'fa-notes-medical'"></i>
+                      <span class="nav-text-col">
+                        <span class="nav-en-title">{{ s.title }}</span>
+                        <span class="nav-np-title" *ngIf="s.titleNepali">{{ s.titleNepali }}</span>
+                      </span>
                     </span>
                     <i class="fa-solid fa-chevron-right arrow-icon"></i>
                   </div>
@@ -181,11 +202,11 @@
               <i class="fa-solid fa-headset"></i>
             </div>
             <h4>Have Questions?</h4>
-            <p>Call our diagnostic desk for pricing, test preparation advice, or home sample collection.</p>
-            <a href="tel:+977-9865370270" class="helpline-phone-btn">
-              <i class="fa-solid fa-phone-volume"></i> +977-9865370270
+            <p>Call our healthcare support desk for doctor timings, test preparation advice, and guidance.</p>
+            <a href="tel:9851428080" class="helpline-phone-btn">
+              <i class="fa-solid fa-phone-volume"></i> Support: 9851428080
             </a>
-            <span class="helpline-timing">Sun - Fri: 7:00 AM - 7:00 PM</span>
+            <span class="helpline-timing">Inquiries: 01-5910285 / 01-5905600</span>
           </div>
 
         </aside>

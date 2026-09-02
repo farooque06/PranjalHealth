@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IDoctors } from 'src/app/interfaces/service.interface';
 import { DoctorsService } from 'src/app/services/doctors.service';
+import { ImagePlaceholderService } from 'src/app/services/image-placeholder.service';
 
 @Component({
     selector: 'app-doctors-details',
@@ -13,14 +14,18 @@ export class DoctorsDetailsComponent implements OnInit {
   data: IDoctors | undefined;
   relatedDoctors: IDoctors[] = [];
   currentIndex: number = 0;
+  placeholderImage: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    public doctorsService: DoctorsService
+    public doctorsService: DoctorsService,
+    private imagePlaceholderService: ImagePlaceholderService
   ) {}
 
   ngOnInit(): void {
+    this.placeholderImage = this.imagePlaceholderService.getDoctorPlaceholder();
+    
     this.route.paramMap.subscribe(params => {
       const indexStr = params.get('index');
       if (indexStr !== null) {
@@ -38,6 +43,10 @@ export class DoctorsDetailsComponent implements OnInit {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     });
+  }
+
+  onImageError(event: any): void {
+    event.target.src = this.placeholderImage;
   }
 
   navigateToDoctor(index: number): void {

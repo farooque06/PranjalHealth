@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { IGallery } from 'src/app/interfaces/service.interface';
 import { GalleryService } from 'src/app/services/gallery.service';
+import { ImagePlaceholderService } from 'src/app/services/image-placeholder.service';
 
 export interface IGalleryItem extends IGallery {
   id: number;
@@ -27,7 +28,10 @@ export class GalleryComponent implements OnInit {
   activeImageIndex: number = 0;
   isZoomed: boolean = false;
 
-  constructor(private galleryService: GalleryService) {}
+  constructor(
+    private galleryService: GalleryService,
+    private imagePlaceholderService: ImagePlaceholderService
+  ) {}
 
   ngOnInit(): void {
     const rawGallery = this.galleryService.getGallery();
@@ -161,5 +165,9 @@ export class GalleryComponent implements OnInit {
     } else if (event.key === 'ArrowLeft') {
       this.prevImage();
     }
+  }
+
+  onImageError(event: any): void {
+    this.imagePlaceholderService.handleImageError(event, 'gallery');
   }
 }

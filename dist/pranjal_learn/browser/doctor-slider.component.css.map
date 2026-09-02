@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/components/controls/doctor-slider/doctor-slider.component.scss"],
-  "sourcesContent": [".slider-container {\n  position: relative;\n\n  .slide {\n    outline: none;\n    cursor: pointer;\n  }\n}\n"],
-  "mappings": ";AAAA,CAAA;AACE,YAAA;;AAEA,CAHF,iBAGE,CAAA;AACE,WAAA;AACA,UAAA;;",
-  "names": []
-}

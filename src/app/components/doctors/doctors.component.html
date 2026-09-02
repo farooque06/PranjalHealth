@@ -34,7 +34,7 @@
           <div class="hero-stats-pills">
             <div class="stat-pill">
               <i class="fa-solid fa-award"></i>
-              <span>20+ Senior Specialists</span>
+              <span>25+ Senior Specialists</span>
             </div>
             <div class="stat-pill">
               <i class="fa-solid fa-hospital-user"></i>
@@ -71,13 +71,25 @@
           </button>
         </div>
 
-        <!-- Department Filter Pills -->
-        <div class="dept-filter-pills-wrap">
+        <!-- Filter Toggle Button -->
+        <div class="filter-toggle-container">
+          <button class="filter-toggle-btn" (click)="toggleFilters()" [class.expanded]="showFilters">
+            <i class="fa-solid fa-sliders"></i>
+            <span>Departments</span>
+            <i class="fa-solid" [ngClass]="showFilters ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+          </button>
+          <span class="filter-count" *ngIf="selectedDepartment !== 'All'">
+            <i class="fa-solid fa-check"></i> {{ selectedDepartment }}
+          </span>
+        </div>
+
+        <!-- Department Filter Pills (Collapsible) -->
+        <div class="dept-filter-pills-wrap" [class.show]="showFilters">
           <button 
             *ngFor="let dept of departments" 
             class="dept-pill" 
             [class.active]="selectedDepartment === dept"
-            (click)="setDepartment(dept)">
+            (click)="setDepartment(dept); showFilters = false">
             <span>{{ dept }}</span>
           </button>
         </div>
@@ -107,7 +119,7 @@
           
           <!-- Portrait Frame -->
           <div class="doctor-image-frame">
-            <img [src]="doctor.image" [alt]="doctor.title" class="doctor-portrait">
+            <img [src]="doctor.image || placeholderImage" [alt]="doctor.title" class="doctor-portrait" (error)="onImageError($event)">
             
             <div class="image-overlay-gradient"></div>
             
@@ -123,11 +135,17 @@
           <!-- Doctor Body Details -->
           <div class="doctor-card-body">
             
-            <h3 class="doctor-name">
-              {{ doctor.title }} <i class="fa-solid fa-circle-check verified-icon" title="Verified Specialist"></i>
-            </h3>
+            <div class="doctor-name-wrap">
+              <h3 class="doctor-name">
+                {{ doctor.title }} <i class="fa-solid fa-circle-check verified-icon" title="Verified Specialist"></i>
+              </h3>
+              <span *ngIf="doctor.titleNepali" class="doctor-name-nepali">{{ doctor.titleNepali }}</span>
+            </div>
 
-            <p class="doctor-designation">{{ doctor.content }}</p>
+            <div class="doctor-designation-wrap">
+              <p class="doctor-designation">{{ doctor.content }}</p>
+              <p *ngIf="doctor.contentNepali" class="doctor-designation-nepali">{{ doctor.contentNepali }}</p>
+            </div>
 
             <!-- Qualifications List -->
             <div class="doctor-qualifications">

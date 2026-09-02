@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ImagePlaceholderService } from 'src/app/services/image-placeholder.service';
 
 @Component({
     selector: 'app-modal-gallery',
@@ -14,8 +15,18 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class ModalGalleryComponent  {
 
   closeResult: string="";
+  placeholderImage: string = "";
 
-	constructor(private modalService: NgbModal) {}
+	constructor(
+    private modalService: NgbModal,
+    private imagePlaceholderService: ImagePlaceholderService
+  ) {
+    this.placeholderImage = this.imagePlaceholderService.getDoctorPlaceholder();
+  }
+
+  onImageError(event: any): void {
+    event.target.src = this.placeholderImage;
+  }
 
 	openBackDropCustomClass(content: any) {
 		this.modalService.open(content, { backdropClass: 'light-blue-backdrop' });

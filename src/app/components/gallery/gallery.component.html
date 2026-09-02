@@ -112,7 +112,7 @@
           (click)="openLightbox(i)">
 
           <div class="bento-item-inner">
-            <img [src]="item.image" [alt]="item.title || 'Pranjal Healthcare Facility'" class="bento-image" loading="lazy">
+            <img [src]="item.image" [alt]="item.title || 'Pranjal Healthcare Facility'" class="bento-image" loading="lazy" (error)="onImageError($event)">
             
             <div class="bento-glass-overlay">
               <div class="overlay-top">
@@ -154,7 +154,7 @@
           (click)="openLightbox(i)">
 
           <div class="grid-card-frame">
-            <img [src]="item.image" [alt]="item.title || 'Pranjal Healthcare'" class="grid-card-img" loading="lazy">
+            <img [src]="item.image" [alt]="item.title || 'Pranjal Healthcare'" class="grid-card-img" loading="lazy" (error)="onImageError($event)">
             <div class="grid-card-overlay">
               <div class="zoom-circle"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
             </div>
@@ -292,6 +292,7 @@
             [src]="filteredGallery[activeImageIndex].image" 
             [alt]="filteredGallery[activeImageIndex].title || 'Pranjal Healthcare'" 
             class="lightbox-active-img"
+            (error)="onImageError($event)"
           />
         </div>
 

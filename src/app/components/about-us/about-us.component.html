@@ -13,13 +13,13 @@
         <div class="image-composition">
           <!-- Main Image -->
           <div class="main-image-frame">
-            <img src="assets/images/home-page/banner/Building1.jpg" alt="Pranjal Healthcare Center" class="main-img">
+            <img src="assets/images/home-page/banner/Building1.jpg" alt="Pranjal Healthcare Center" class="main-img" (error)="onImageError($event)">
             <div class="image-glow"></div>
           </div>
 
           <!-- Secondary Image -->
           <div class="secondary-image-frame">
-            <img src="assets/images/home-page/about-section/DSC_0095.jpg" alt="Healthcare Facility" class="secondary-img">
+            <img src="assets/images/home-page/about-section/DSC_0095.jpg" alt="Healthcare Facility" class="secondary-img" (error)="onImageError($event)">
           </div>
 
           <!-- Floating Experience Badge -->

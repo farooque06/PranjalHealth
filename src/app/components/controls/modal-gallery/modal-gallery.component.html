@@ -34,7 +34,7 @@
 		<button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
 	</div> -->
 
-    <img src="assets/images/home-page/doctors-image/manishaPaneru.jpg">
+    <img src="assets/images/home-page/doctors-image/manishaPaneru.jpg" (error)="onImageError($event)">
 </ng-template>
 
 <ng-template #longContent let-modal>

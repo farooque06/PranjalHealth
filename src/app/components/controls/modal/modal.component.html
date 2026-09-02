@@ -5,6 +5,6 @@
             (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body"> -->
-        <img [src]="imageSrc">
+        <img [src]="imageSrc" (error)="onImageError($event)">
     <!-- </div> -->
 <!-- </ng-template> -->

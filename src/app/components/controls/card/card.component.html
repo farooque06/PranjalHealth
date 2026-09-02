@@ -1,12 +1,21 @@
 <div class="modern-card-wrapper">
   <div class="card-image-box">
     <img [src]="src" [alt]="title || 'Diagnostic Card Image'" class="card-img" (error)="onImageError($event)">
+    
+    <span *ngIf="department" class="card-dept-badge">
+      {{ department }}
+    </span>
+
     <div class="card-overlay">
       <span class="view-badge"><i class="fa-solid fa-arrow-right"></i> View Details</span>
     </div>
   </div>
   <div *ngIf="showBody" class="card-content-box">
-    <h5 class="card-title">{{title}}</h5>
+    <h5 class="card-title">
+      {{title}}
+      <span *ngIf="titleNepali" class="title-nepali">{{titleNepali}}</span>
+    </h5>
     <p class="card-desc">{{content}}</p>
+    <p *ngIf="contentNepali" class="card-desc-nepali">{{contentNepali}}</p>
   </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ImagePlaceholderService } from 'src/app/services/image-placeholder.service';
 
 @Component({
     selector: 'app-gallery-opt',
@@ -8,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GalleryOptComponent implements OnInit {
 
-  constructor() { }
+  constructor(private imagePlaceholderService: ImagePlaceholderService) { }
 
   ngOnInit(): void {
+  }
+
+  onImageError(event: any): void {
+    this.imagePlaceholderService.handleImageError(event, 'gallery');
   }
 
 }

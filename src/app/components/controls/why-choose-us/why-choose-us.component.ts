@@ -35,10 +35,10 @@ export class WhyChooseUsComponent implements OnInit {
       desc: 'Every report reviewed & signed by certified MD specialists.'
     },
     {
-      icon: 'fa-solid fa-house-chimney-medical',
+      icon: 'fa-solid fa-pills',
       iconBgClass: 'icon-emerald',
-      title: 'Home Sample Collection',
-      desc: 'Doorstep blood & urine testing with safe sample transit.'
+      title: 'Complete Healthcare Hub',
+      desc: 'Diagnostics, doctor OPD clinics, and on-site pharmacy under one roof.'
     }
   ];
 

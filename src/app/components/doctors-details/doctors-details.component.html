@@ -26,9 +26,14 @@
         </div>
 
         <h1 class="doctor-hero-title">
-          {{ data.title }} <i class="fa-solid fa-circle-check verified-icon" title="Verified Specialist"></i>
+          {{ data.title }} 
+          <span *ngIf="data.titleNepali" class="hero-title-nepali">({{ data.titleNepali }})</span>
+          <i class="fa-solid fa-circle-check verified-icon" title="Verified Specialist"></i>
         </h1>
-        <p class="doctor-hero-designation">{{ data.content }}</p>
+        <p class="doctor-hero-designation">
+          {{ data.content }}
+          <span *ngIf="data.contentNepali" class="hero-desc-nepali"> • {{ data.contentNepali }}</span>
+        </p>
 
       </div>
     </div>
@@ -45,7 +50,7 @@
           <!-- Top Doctor Summary Header Card -->
           <div class="profile-header-card">
             <div class="doctor-avatar-box">
-              <img [src]="data.image" [alt]="data.title" class="doctor-avatar-img">
+              <img [src]="data.image || placeholderImage" [alt]="data.title" class="doctor-avatar-img" (error)="onImageError($event)">
               <div class="avatar-badge">
                 <i class="fa-solid fa-shield-heart"></i> Verified Faculty
               </div>
@@ -53,7 +58,10 @@
 
             <div class="doctor-info-box">
               <div class="name-rating-row">
-                <h2>{{ data.title }}</h2>
+                <h2>
+                  {{ data.title }}
+                  <span *ngIf="data.titleNepali" class="header-name-nepali">{{ data.titleNepali }}</span>
+                </h2>
                 <div class="ratings-stars">
                   <i class="fa-solid fa-star"></i>
                   <i class="fa-solid fa-star"></i>
@@ -64,7 +72,10 @@
                 </div>
               </div>
 
-              <p class="doctor-designation-text">{{ data.content }}</p>
+              <div class="doctor-designation-text-wrap">
+                <p class="doctor-designation-text">{{ data.content }}</p>
+                <p *ngIf="data.contentNepali" class="doctor-designation-text-nepali">{{ data.contentNepali }}</p>
+              </div>
 
               <!-- Fast Info Badges -->
               <div class="info-chips-row">
@@ -228,7 +239,7 @@
 
             <div class="related-doctors-list">
               <div *ngFor="let doc of relatedDoctors" class="mini-doc-item" (click)="navigateToDoctor(doc.index)">
-                <img [src]="doc.image" [alt]="doc.title" class="mini-doc-img">
+                <img [src]="doc.image || placeholderImage" [alt]="doc.title" class="mini-doc-img" (error)="onImageError($event)">
                 <div class="mini-doc-info">
                   <h5>{{ doc.title }}</h5>
                   <span class="mini-doc-dept">{{ doc.content }}</span>

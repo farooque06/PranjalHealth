@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IServices } from 'src/app/interfaces/service.interface';
 import { ServicesService } from 'src/app/services/services.service';
+import { ImagePlaceholderService } from 'src/app/services/image-placeholder.service';
 
 export interface IHealthPackage {
   title: string;
@@ -22,19 +23,19 @@ export interface IHealthPackage {
 export class OurServicesComponent implements OnInit {
   @Input() isHomePage: boolean = true;
 
-  services: IServices[] = [];
-  displayServices: IServices[] = [];
-  filteredServices: IServices[] = [];
-  selectedCategory: string = 'All';
+  allServices: IServices[] = [];
+  specialistServices: IServices[] = [];
+  diagnosticServices: IServices[] = [];
 
-  categories: string[] = [
-    'All',
-    'Pathology & Lab',
-    'Radiology & Imaging',
-    'Cardiology',
-    'Specialized Therapy',
-    'Pharmacy & Care'
-  ];
+  // Home Page Collapse / Expand States
+  showAllSpecialistHome: boolean = false;
+  showAllDiagnosticHome: boolean = false;
+
+  // Filter & Search states
+  activeTab: 'all' | 'specialist' | 'diagnostic' = 'all';
+  searchQuery: string = '';
+  filteredSpecialist: IServices[] = [];
+  filteredDiagnostic: IServices[] = [];
 
   healthPackages: IHealthPackage[] = [
     {
@@ -105,27 +106,70 @@ export class OurServicesComponent implements OnInit {
 
   constructor(
     private serviceService: ServicesService,
-    private router: Router
+    private router: Router,
+    private imagePlaceholderService: ImagePlaceholderService
   ) {}
 
   ngOnInit(): void {
-    this.services = this.serviceService.getServices();
-    
-    if (this.isHomePage) {
-      this.displayServices = this.services.slice(0, 4);
-    } else {
-      this.displayServices = this.services;
-      this.filteredServices = this.services;
-    }
+    this.allServices = this.serviceService.getServices();
+    this.specialistServices = this.serviceService.getSpecialistServices();
+    this.diagnosticServices = this.serviceService.getDiagnosticServices();
+    this.applyFilter();
   }
 
-  setCategory(category: string): void {
-    this.selectedCategory = category;
-    if (category === 'All') {
-      this.filteredServices = this.displayServices;
+  get displayedSpecialistHome(): IServices[] {
+    return this.showAllSpecialistHome ? this.specialistServices : this.specialistServices.slice(0, 6);
+  }
+
+  get displayedDiagnosticHome(): IServices[] {
+    return this.showAllDiagnosticHome ? this.diagnosticServices : this.diagnosticServices.slice(0, 6);
+  }
+
+  toggleSpecialistHome(): void {
+    this.showAllSpecialistHome = !this.showAllSpecialistHome;
+  }
+
+  toggleDiagnosticHome(): void {
+    this.showAllDiagnosticHome = !this.showAllDiagnosticHome;
+  }
+
+  setActiveTab(tab: 'all' | 'specialist' | 'diagnostic'): void {
+    this.activeTab = tab;
+    this.applyFilter();
+  }
+
+  onSearchChange(): void {
+    this.applyFilter();
+  }
+
+  clearSearch(): void {
+    this.searchQuery = '';
+    this.applyFilter();
+  }
+
+  applyFilter(): void {
+    const q = this.searchQuery.trim().toLowerCase();
+
+    if (!q) {
+      this.filteredSpecialist = [...this.specialistServices];
+      this.filteredDiagnostic = [...this.diagnosticServices];
     } else {
-      this.filteredServices = this.displayServices.filter(
-        s => s.category?.toLowerCase() === category.toLowerCase()
+      this.filteredSpecialist = this.specialistServices.filter(s =>
+        s.title.toLowerCase().includes(q) ||
+        (s.titleNepali && s.titleNepali.toLowerCase().includes(q)) ||
+        (s.badgeNepali && s.badgeNepali.toLowerCase().includes(q)) ||
+        (s.subtitle && s.subtitle.toLowerCase().includes(q)) ||
+        (s.badge && s.badge.toLowerCase().includes(q)) ||
+        s.content.toLowerCase().includes(q)
+      );
+
+      this.filteredDiagnostic = this.diagnosticServices.filter(s =>
+        s.title.toLowerCase().includes(q) ||
+        (s.titleNepali && s.titleNepali.toLowerCase().includes(q)) ||
+        (s.badgeNepali && s.badgeNepali.toLowerCase().includes(q)) ||
+        (s.subtitle && s.subtitle.toLowerCase().includes(q)) ||
+        (s.badge && s.badge.toLowerCase().includes(q)) ||
+        s.content.toLowerCase().includes(q)
       );
     }
   }
@@ -134,25 +178,28 @@ export class OurServicesComponent implements OnInit {
     this.router.navigate(['our-services-details', index]);
   }
 
-  getShortExcerpt(text: string): string {
-    if (!text) return '';
-    return text.length > 120 ? text.substring(0, 120) + '...' : text;
+  scrollToSection(sectionId: string): void {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
-  getServiceIcon(index: number): string {
-    const service = this.services.find(s => s.index === index);
-    if (service && service.icon) {
-      return service.icon;
-    }
-    const fallbackIcons = [
-      'fa-flask-vial',
-      'fa-x-ray',
-      'fa-heart-pulse',
-      'fa-wave-square',
-      'fa-heart',
-      'fa-person-walking',
-      'fa-pills'
-    ];
-    return fallbackIcons[index % fallbackIcons.length] || 'fa-notes-medical';
+  getShortExcerpt(text: string, maxLen: number = 115): string {
+    if (!text) return '';
+    return text.length > maxLen ? text.substring(0, maxLen) + '...' : text;
+  }
+
+  getServiceIcon(item: IServices): string {
+    return item.icon || 'fa-notes-medical';
+  }
+
+  onImageError(event: any): void {
+    this.imagePlaceholderService.handleImageError(event, 'gallery');
+  }
+
+  getWhatsAppAppointmentLink(serviceTitle: string): string {
+    const msg = encodeURIComponent(`Hello Pranjal Healthcare, I would like to inquire/book an appointment for: ${serviceTitle}.`);
+    return `https://wa.me/9779864156565?text=${msg}`;
   }
 }

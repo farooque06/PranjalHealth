@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IServices } from 'src/app/interfaces/service.interface';
 import { ServicesService } from 'src/app/services/services.service';
+import { ImagePlaceholderService } from 'src/app/services/image-placeholder.service';
 
 @Component({
     selector: 'app-our-services-details',
@@ -17,7 +18,8 @@ export class OurServicesDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: ServicesService
+    private service: ServicesService,
+    private imagePlaceholderService: ImagePlaceholderService
   ) {}
 
   ngOnInit(): void {
@@ -35,5 +37,14 @@ export class OurServicesDetailsComponent implements OnInit {
 
   navigateToService(index: number): void {
     this.router.navigate(['/our-services-details', index]);
+  }
+
+  onImageError(event: any): void {
+    this.imagePlaceholderService.handleImageError(event, 'gallery');
+  }
+
+  getWhatsAppLink(title: string = ''): string {
+    const text = encodeURIComponent(`Hello Pranjal Healthcare, I want to inquire/book an appointment for: ${title}`);
+    return `https://wa.me/9779864156565?text=${text}`;
   }
 }
