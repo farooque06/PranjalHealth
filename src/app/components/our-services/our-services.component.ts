@@ -117,12 +117,19 @@ export class OurServicesComponent implements OnInit {
     this.applyFilter();
   }
 
+  private get initialLimit(): number {
+    if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+      return 3; // Show only 3 services on mobile view as requested
+    }
+    return 6; // Standard 6 on desktop
+  }
+
   get displayedSpecialistHome(): IServices[] {
-    return this.showAllSpecialistHome ? this.specialistServices : this.specialistServices.slice(0, 6);
+    return this.showAllSpecialistHome ? this.specialistServices : this.specialistServices.slice(0, this.initialLimit);
   }
 
   get displayedDiagnosticHome(): IServices[] {
-    return this.showAllDiagnosticHome ? this.diagnosticServices : this.diagnosticServices.slice(0, 6);
+    return this.showAllDiagnosticHome ? this.diagnosticServices : this.diagnosticServices.slice(0, this.initialLimit);
   }
 
   toggleSpecialistHome(): void {

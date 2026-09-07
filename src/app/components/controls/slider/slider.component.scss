@@ -21,7 +21,10 @@
     align-items: center;
 
     @media (max-width: 768px) {
-      min-height: 520px;
+      min-height: 480px; // Bigger mobile hero height as requested
+    }
+    @media (max-width: 480px) {
+      min-height: 430px; // Generous height to show the imagery clearly
     }
   }
 
@@ -41,6 +44,14 @@
         rgba(13, 138, 117, 0.4) 50%, 
         rgba(15, 23, 42, 0.25) 100%
       );
+
+      @media (max-width: 768px) {
+        background: linear-gradient(
+          180deg,
+          rgba(15, 23, 42, 0.75) 0%,
+          rgba(15, 23, 42, 0.85) 100%
+        );
+      }
     }
   }
 
@@ -56,13 +67,17 @@
       padding: 40px 30px;
     }
     @media (max-width: 576px) {
-      padding: 30px 20px;
+      padding: 40px 22px 50px 22px; // Balanced vertical padding for taller mobile slide
     }
   }
 
   .caption-content {
     max-width: 660px;
     color: #ffffff;
+
+    @media (max-width: 768px) {
+      max-width: 100%;
+    }
 
     .hero-tag {
       display: inline-flex;
@@ -79,6 +94,11 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-bottom: 20px;
+
+      // User request: "on slider remove ourcervices button and top tag" on mobile view
+      @media (max-width: 768px) {
+        display: none !important;
+      }
     }
 
     .hero-title {
@@ -102,7 +122,11 @@
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 
         @media (max-width: 768px) {
-          font-size: 17px;
+          font-size: 16px;
+          margin-top: 6px;
+        }
+        @media (max-width: 480px) {
+          font-size: 14.5px;
         }
       }
 
@@ -110,7 +134,8 @@
         font-size: 34px;
       }
       @media (max-width: 576px) {
-        font-size: 26px;
+        font-size: 22px;
+        margin-bottom: 0;
       }
     }
 
@@ -122,8 +147,8 @@
       font-weight: 400;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 
-      @media (max-width: 576px) {
-        font-size: 14px;
+      @media (max-width: 768px) {
+        display: none; // Remove bulky prompt/description on mobile view to make it neat, simple, and clean
       }
     }
 
@@ -133,14 +158,41 @@
       gap: 16px;
       flex-wrap: wrap;
 
+      @media (max-width: 768px) {
+        display: none !important; // User request: remove buttons on slider on mobile view
+      }
+
       .hero-btn {
         padding: 13px 30px;
         font-size: 15px;
+
+        @media (max-width: 576px) {
+          padding: 10px 22px;
+          font-size: 13.5px;
+        }
+      }
+
+      .btn-booking-hero {
+        @media (max-width: 768px) {
+          display: none !important;
+        }
+      }
+
+      .btn-services-hero {
+        @media (max-width: 768px) {
+          display: none !important;
+        }
       }
 
       .btn-white {
         border-color: rgba(255, 255, 255, 0.7);
         color: #ffffff !important;
+
+        @media (max-width: 768px) {
+          background: rgba(255, 255, 255, 0.2);
+          backdrop-filter: blur(8px);
+          border-color: rgba(255, 255, 255, 0.5);
+        }
 
         &:hover {
           background: #ffffff;
@@ -175,6 +227,10 @@
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.3);
       transition: var(--transition);
+
+      @media (max-width: 768px) {
+        display: none !important; // Clean swipe on mobile without intrusive arrows
+      }
 
       &:before {
         font-family: 'FontAwesome';

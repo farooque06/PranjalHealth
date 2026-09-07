@@ -361,6 +361,11 @@
     box-shadow: var(--shadow-sm, 0 1px 3px rgba(15, 23, 42, 0.06));
     transition: all 0.35s ease;
 
+    @media (max-width: 576px) {
+      padding: 20px 16px;
+      border-radius: 18px;
+    }
+
     &:hover {
       transform: translateY(-6px);
       box-shadow: 0 18px 36px -10px rgba(13, 138, 117, 0.18);
@@ -441,6 +446,11 @@
       color: var(--text-muted, #64748B);
       line-height: 1.55;
       margin-bottom: 22px;
+
+      // On mobile: remove content/desc to make it simple and clean as requested
+      @media (max-width: 768px) {
+        display: none !important;
+      }
     }
 
     .specialty-pills-list {
@@ -449,6 +459,11 @@
       gap: 8px;
       margin-bottom: 26px;
       flex-grow: 1;
+
+      @media (max-width: 768px) {
+        margin-bottom: 14px;
+        gap: 6px;
+      }
 
       .spec-pill {
         display: inline-flex;
@@ -463,6 +478,14 @@
         color: #334155;
         cursor: pointer;
         transition: all 0.2s ease;
+
+        @media (max-width: 576px) {
+          padding: 8px 12px;
+          font-size: 12px;
+          border-radius: 8px;
+          width: 100%; // Clean stacked or pill list on mobile
+          justify-content: flex-start;
+        }
 
         .pill-en {
           font-weight: 700;
@@ -514,6 +537,10 @@
       margin-bottom: 20px;
       text-align: center;
 
+      @media (max-width: 768px) {
+        margin-bottom: 12px;
+      }
+
       .btn-expand-pills {
         display: inline-flex;
         align-items: center;
@@ -556,6 +583,10 @@
       padding-top: 18px;
       border-top: 1px solid var(--border-light, #E2E8F0);
 
+      @media (max-width: 768px) {
+        padding-top: 12px;
+      }
+
       .wing-action-btn {
         display: inline-flex;
         align-items: center;
@@ -570,6 +601,11 @@
         font-weight: 700;
         text-decoration: none;
         transition: all 0.25s ease;
+
+        @media (max-width: 576px) {
+          padding: 10px 14px;
+          font-size: 13px;
+        }
 
         &:hover {
           background: #0D8A75;
@@ -595,11 +631,16 @@
     }
   }
 
-  /* Home Featured Strip */
+  /* Home Featured Strip (4 cards shown in user screenshot) */
   .home-featured-strip {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
+
+    // User requested: "remove this part from mobile to" (attached screenshot of these 4 strip cards)
+    @media (max-width: 768px) {
+      display: none !important;
+    }
 
     @media (max-width: 992px) {
       grid-template-columns: repeat(2, 1fr);

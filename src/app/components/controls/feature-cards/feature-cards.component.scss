@@ -4,6 +4,11 @@
   margin-top: -60px;
   padding-bottom: 30px;
 
+  @media (max-width: 768px) {
+    margin-top: -24px;
+    padding-bottom: 20px;
+  }
+
   .custom-container {
     padding-top: 0;
     padding-bottom: 0;
@@ -14,9 +19,16 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 
-    @media (max-width: 992px) {
-      grid-template-columns: 1fr;
+    @media (max-width: 992px) and (min-width: 769px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
       margin-top: 20px;
+    }
+
+    // Mobile: 3 cards on the SAME LINE (compact grid) without clutter
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
     }
   }
 
@@ -30,11 +42,28 @@
     align-items: flex-start;
     gap: 20px;
     transition: var(--transition);
+    text-decoration: none;
+    color: inherit;
+
+    // Compact mobile style
+    @media (max-width: 768px) {
+      padding: 12px 8px;
+      gap: 8px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
 
     &:hover {
       transform: translateY(-8px);
       box-shadow: var(--shadow-hover);
       border-color: rgba(13, 138, 117, 0.3);
+
+      @media (max-width: 768px) {
+        transform: translateY(-2px);
+      }
 
       .feature-link i {
         transform: translateX(4px);
@@ -50,6 +79,14 @@
       align-items: center;
       justify-content: center;
       font-size: 24px;
+
+      @media (max-width: 768px) {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        border-radius: 10px;
+        font-size: 17px;
+      }
     }
 
     .icon-teal {
@@ -66,6 +103,11 @@
       display: flex;
       flex-direction: column;
 
+      @media (max-width: 768px) {
+        align-items: center;
+        width: 100%;
+      }
+
       .feature-tag {
         font-size: 11px;
         font-weight: 700;
@@ -77,6 +119,11 @@
         &.tag-coral {
           color: var(--secondary-coral);
         }
+
+        // On mobile, hide extra tag to keep it clean and minimal
+        @media (max-width: 768px) {
+          display: none;
+        }
       }
 
       .feature-title {
@@ -86,13 +133,30 @@
         color: var(--text-main);
         margin-bottom: 8px;
         line-height: 1.25;
+
+        // On mobile, small and clean heading only
+        @media (max-width: 768px) {
+          font-size: 12.5px;
+          margin-bottom: 0;
+          font-weight: 700;
+          line-height: 1.25;
+          word-break: break-word;
+        }
+        @media (max-width: 420px) {
+          font-size: 11.5px;
+        }
       }
 
+      // On mobile: HIDE description completely as requested ("without content just with heading")
       .feature-desc {
         font-size: 13.5px;
         color: var(--text-muted);
         line-height: 1.55;
         margin-bottom: 16px;
+
+        @media (max-width: 768px) {
+          display: none !important;
+        }
       }
 
       .feature-link {
@@ -103,6 +167,11 @@
         display: inline-flex;
         align-items: center;
         gap: 6px;
+
+        // On mobile, hide extra link button as the whole card is clickable
+        @media (max-width: 768px) {
+          display: none !important;
+        }
 
         i {
           font-size: 12px;
