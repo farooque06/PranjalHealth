@@ -27,46 +27,24 @@
     </div>
 
     <!-- Stats Bar -->
-    <div class="doctors-stats-bar">
-      <div class="stat-item">
+    <div class="doctors-stats-bar" #statsBar>
+      <div class="stat-item" *ngFor="let stat of stats; let last = last">
         <div class="stat-icon">
-          <i class="fa-solid fa-user-doctor"></i>
+          <i class="fa-solid" [ngClass]="{
+            'fa-user-doctor': stat.label === 'Expert Doctors',
+            'fa-stethoscope': stat.label === 'Specializations',
+            'fa-hospital': stat.label === 'Patients Treated',
+            'fa-award': stat.label === 'Patient Satisfaction'
+          }"></i>
         </div>
         <div class="stat-content">
-          <span class="stat-number">25+</span>
-          <span class="stat-label">Expert Doctors</span>
+          <span class="stat-number">{{ displayedValues[stats.indexOf(stat)] }}{{ stat.suffix }}</span>
+          <span class="stat-label">{{ stat.label }}</span>
         </div>
       </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <div class="stat-icon">
-          <i class="fa-solid fa-stethoscope"></i>
-        </div>
-        <div class="stat-content">
-          <span class="stat-number">15+</span>
-          <span class="stat-label">Specializations</span>
-        </div>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <div class="stat-icon">
-          <i class="fa-solid fa-hospital"></i>
-        </div>
-        <div class="stat-content">
-          <span class="stat-number">50K+</span>
-          <span class="stat-label">Patients Treated</span>
-        </div>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat-item">
-        <div class="stat-icon">
-          <i class="fa-solid fa-award"></i>
-        </div>
-        <div class="stat-content">
-          <span class="stat-number">100%</span>
-          <span class="stat-label">Patient Satisfaction</span>
-        </div>
-      </div>
+      <ng-container *ngIf="stats.length > 1">
+        <div class="stat-divider" *ngFor="let stat of stats.slice(0, -1)"></div>
+      </ng-container>
     </div>
 
     <!-- Mobile CTA -->
