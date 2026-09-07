@@ -19,6 +19,10 @@
   pointer-events: none;
   z-index: 5;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    display: none; // Keep mobile view clean, lightweight and without visual clutter
+  }
 }
 
 /* ---- Gradient Blobs ---- */
