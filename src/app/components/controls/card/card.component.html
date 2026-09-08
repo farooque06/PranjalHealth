@@ -17,5 +17,9 @@
     </h5>
     <p class="card-desc">{{content}}</p>
     <p *ngIf="contentNepali" class="card-desc-nepali">{{contentNepali}}</p>
-  </div>
+    <div *ngIf="education && education.length" class="card-education">
+      <span class="edu-badge" *ngFor="let edu of education">
+        <i class="fa-solid fa-graduation-cap"></i> {{ edu }}
+      </span>
+    </div>
 </div>

@@ -17,6 +17,7 @@ export class CardComponent implements OnInit {
   private _contentNepali: string = "";
   private _department: string = "";
   private _departmentNepali: string = "";
+  private _education: string[] = [];
 
   @Input() set title(val: string) {
     this._title = val;
@@ -60,6 +61,12 @@ export class CardComponent implements OnInit {
     this._departmentNepali = val;
   } get departmentNepali() {
     return this._departmentNepali;
+  }
+
+  @Input() set education(val: string[]) {
+    this._education = val || [];
+  } get education() {
+    return this._education;
   }
 
   @Input() set showBody(val: boolean) {

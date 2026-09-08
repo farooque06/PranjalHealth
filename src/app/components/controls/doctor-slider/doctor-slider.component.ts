@@ -56,6 +56,7 @@ export class DoctorSliderComponent implements OnInit {
         subTitleNepali: element.contentNepali,
         department: element.department,
         departmentNepali: element.departmentNepali,
+        education: element.education || [],
         index: element.index
       });
     });

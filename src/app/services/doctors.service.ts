@@ -40,7 +40,7 @@ export class DoctorsService {
         index: 1,
         title: "Dr. Srijan Malla",
         titleNepali: "डा. सृजन मल्ल",
-        image: "",
+        image: "assets/images/home-page/doctors-image/drSrijanMalla.jpg",
         content: "Sr. Consultant General & Laparoscopic Surgeon",
         contentNepali: "वरिष्ठ जनरल तथा ल्याप्रोस्कोपिक सर्जन",
         department: "General & Laparoscopic Surgery",
