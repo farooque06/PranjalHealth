@@ -37,10 +37,10 @@ export class SliderComponent implements OnInit {
       desc: ""
     },
     {
-      img: "assets/images/home-page/banner/Endo.jpeg",
-      tag: "Endoscopy • इन्डोस्कोपी",
-      title: "Endoscopy Service",
-      titleNepali: "इन्डोस्कोपी सेवा",
+      img: "assets/images/home-page/services/ECHO.jpeg",
+      tag: "Echocardiogram • इकोकार्डियोग्राम",
+      title: "Echocardiogram Service",
+      titleNepali: "इकोकार्डियोग्राम सेवा",
       desc: ""
     },
     {

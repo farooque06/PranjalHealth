@@ -33,10 +33,6 @@
         <div class="hero-highlights">
           <div class="hero-highlight-item">
             <i class="fa-solid fa-circle-check"></i>
-            <span>ISO Standard Testing</span>
-          </div>
-          <div class="hero-highlight-item">
-            <i class="fa-solid fa-circle-check"></i>
             <span>20+ Expert Doctors</span>
           </div>
           <div class="hero-highlight-item">
@@ -245,7 +241,7 @@
     </div>
   </section>
 
-  <!-- 4. Key Facilities & Clinical Capabilities Showcase -->
+  <!-- 4. Key Facilities Showcase (Compact Interactive Tabs) -->
   <section class="facilities-showcase-section">
     <div class="custom-container">
       
@@ -255,134 +251,57 @@
         <p class="section-subtitle">Equipped with cutting-edge medical equipment to ensure accurate diagnoses and superior treatment.</p>
       </div>
 
-      <div class="facilities-grid">
+      <div class="facilities-showcase-box">
+        <!-- Tab Navigation Bar -->
+        <div class="facility-tabs-nav">
+          <button 
+            *ngFor="let item of facilities; let i = index"
+            type="button"
+            class="tab-btn"
+            [class.active]="activeFacility === i"
+            (click)="setFacility(i)">
+            <i [class]="item.tabIcon"></i>
+            <span>{{ item.tabLabel }}</span>
+          </button>
+        </div>
 
-        <!-- Facility 1 -->
-        <div class="facility-card">
-          <div class="facility-image-wrap">
-            <img src="assets/images/home-page/services/service1.jpg" alt="Automated Clinical Laboratory" loading="lazy" decoding="async" (error)="onImageError($event)">
-            <span class="facility-category-badge">Diagnostic Wing</span>
+        <!-- Tab Active Showcase Card -->
+        <div class="facility-active-panel" *ngIf="facilities[activeFacility]">
+          <div class="panel-visual">
+            <img 
+              [src]="facilities[activeFacility].image" 
+              [alt]="facilities[activeFacility].title" 
+              loading="lazy" 
+              decoding="async" 
+              (error)="onImageError($event)">
+            <span class="panel-dept-badge">{{ facilities[activeFacility].badge }}</span>
           </div>
-          <div class="facility-content">
-            <div class="facility-header">
-              <div class="icon-chip"><i class="fa-solid fa-flask-vial"></i></div>
-              <h3>Automated Clinical Pathology</h3>
+
+          <div class="panel-content">
+            <div class="panel-header">
+              <div class="panel-icon-chip">
+                <i [class]="facilities[activeFacility].tabIcon"></i>
+              </div>
+              <div>
+                <span class="panel-sub-label">Facility Capability</span>
+                <h3 class="panel-title">{{ facilities[activeFacility].title }}</h3>
+              </div>
             </div>
-            <p>
-              Our diagnostic lab features automated biochemistry, hematology, and hormone analyzers, delivering high-precision results for blood profiles, kidney/liver panels, lipid profiles, and specialized immunoassays.
-            </p>
-            <div class="facility-footer">
-              <span class="facility-tag"><i class="fa-solid fa-bolt"></i> Same-Day Results</span>
-              <a routerLink="/services-main" class="link-arrow">Details <i class="fa-solid fa-arrow-right"></i></a>
+
+            <p class="panel-desc">{{ facilities[activeFacility].desc }}</p>
+
+            <div class="panel-footer">
+              <div class="panel-tag">
+                <i [class]="facilities[activeFacility].tagIcon"></i>
+                <span>{{ facilities[activeFacility].tag }}</span>
+              </div>
+              <a [routerLink]="facilities[activeFacility].link" class="panel-link-btn">
+                <span>Explore Full Details</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
             </div>
           </div>
         </div>
-
-        <!-- Facility 2 -->
-        <div class="facility-card">
-          <div class="facility-image-wrap">
-            <img src="assets/images/home-page/services/digitalXray.jpg" alt="Digital X-Ray Radiography" loading="lazy" decoding="async" (error)="onImageError($event)">
-            <span class="facility-category-badge">Imaging Wing</span>
-          </div>
-          <div class="facility-content">
-            <div class="facility-header">
-              <div class="icon-chip"><i class="fa-solid fa-x-ray"></i></div>
-              <h3>High-Definition Digital X-Ray</h3>
-            </div>
-            <p>
-              Equipped with low-radiation digital radiography systems that produce ultra-clear skeletal, chest, and orthopedic images instantly, analyzed by expert radiologists for precise diagnostic reporting.
-            </p>
-            <div class="facility-footer">
-              <span class="facility-tag"><i class="fa-solid fa-shield"></i> Low-Radiation Tech</span>
-              <a routerLink="/services-main" class="link-arrow">Details <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Facility 3 -->
-        <div class="facility-card">
-          <div class="facility-image-wrap">
-            <img src="assets/images/home-page/services/ultraSono2.jpg" alt="Ultrasonography & USG" loading="lazy" decoding="async" (error)="onImageError($event)">
-            <span class="facility-category-badge">Radiology Wing</span>
-          </div>
-          <div class="facility-content">
-            <div class="facility-header">
-              <div class="icon-chip"><i class="fa-solid fa-wave-square"></i></div>
-              <h3>Ultrasonography (USG) & Doppler</h3>
-            </div>
-            <p>
-              Modern ultrasound machines operated by skilled sonologists for abdominal, pelvic, obstetrics, pregnancy scans, small parts, and vascular Doppler studies with exceptional clarity.
-            </p>
-            <div class="facility-footer">
-              <span class="facility-tag"><i class="fa-solid fa-user-nurse"></i> Specialist Sonologist</span>
-              <a routerLink="/services-main" class="link-arrow">Details <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Facility 4 -->
-        <div class="facility-card">
-          <div class="facility-image-wrap">
-            <img src="assets/images/gallery/gallery6.jpg" alt="Specialist Doctor OPD Consultation" loading="lazy" decoding="async" (error)="onImageError($event)">
-            <span class="facility-category-badge">Consultation Wing</span>
-          </div>
-          <div class="facility-content">
-            <div class="facility-header">
-              <div class="icon-chip"><i class="fa-solid fa-user-doctor"></i></div>
-              <h3>Multi-Specialty OPD Consultations</h3>
-            </div>
-            <p>
-              Daily outpatient clinics featuring senior consultants across Cardiology, Gynecology & Obstetrics, Pediatrics, Orthopedics, ENT, Dermatology, and General Internal Medicine.
-            </p>
-            <div class="facility-footer">
-              <span class="facility-tag"><i class="fa-solid fa-calendar-check"></i> Daily OPD Available</span>
-              <a routerLink="/doctors" class="link-arrow">Our Doctors <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Facility 5 -->
-        <div class="facility-card">
-          <div class="facility-image-wrap">
-            <img src="assets/images/pharmacy/insight.jpg" alt="Pranjal Healthcare Pharmacy" loading="lazy" decoding="async" (error)="onImageError($event)">
-            <span class="facility-category-badge">Pharmacy Wing</span>
-          </div>
-          <div class="facility-content">
-            <div class="facility-header">
-              <div class="icon-chip"><i class="fa-solid fa-pills"></i></div>
-              <h3>Full-Service On-Site Pharmacy</h3>
-            </div>
-            <p>
-              Stocked with 100% genuine pharmaceuticals, life-saving medicines, surgical supplies, and health supplements under the supervision of qualified registered pharmacists.
-            </p>
-            <div class="facility-footer">
-              <span class="facility-tag"><i class="fa-solid fa-circle-check"></i> Genuine Medicines</span>
-              <a routerLink="/services-main" class="link-arrow">Details <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Facility 6 -->
-        <div class="facility-card">
-          <div class="facility-image-wrap">
-            <img src="assets/images/home-page/services/ECG.jpg" alt="Cardiac Care ECG Echo" loading="lazy" decoding="async" (error)="onImageError($event)">
-            <span class="facility-category-badge">Cardiac & Wellness</span>
-          </div>
-          <div class="facility-content">
-            <div class="facility-header">
-              <div class="icon-chip"><i class="fa-solid fa-heart-pulse"></i></div>
-              <h3>ECG, Echocardiography & Checkups</h3>
-            </div>
-            <p>
-              Comprehensive cardiovascular evaluations including 12-lead ECG, Echo, and tailored whole-body preventive health checkup packages designed for proactive lifestyle disease prevention.
-            </p>
-            <div class="facility-footer">
-              <span class="facility-tag"><i class="fa-solid fa-shield-heart"></i> Preventive Care</span>
-              <a routerLink="/services-main" class="link-arrow">Details <i class="fa-solid fa-arrow-right"></i></a>
-            </div>
-          </div>
-        </div>
-
       </div>
 
     </div>
