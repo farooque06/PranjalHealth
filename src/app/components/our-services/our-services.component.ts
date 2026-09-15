@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { IServices } from 'src/app/interfaces/service.interface';
 import { ServicesService } from 'src/app/services/services.service';
 import { ImagePlaceholderService } from 'src/app/services/image-placeholder.service';
+import { SeoService } from 'src/app/services/seo.service';
 
 export interface IHealthPackage {
   title: string;
@@ -107,7 +108,8 @@ export class OurServicesComponent implements OnInit {
   constructor(
     private serviceService: ServicesService,
     private router: Router,
-    private imagePlaceholderService: ImagePlaceholderService
+    private imagePlaceholderService: ImagePlaceholderService,
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
@@ -115,6 +117,15 @@ export class OurServicesComponent implements OnInit {
     this.specialistServices = this.serviceService.getSpecialistServices();
     this.diagnosticServices = this.serviceService.getDiagnosticServices();
     this.applyFilter();
+
+    if (!this.isHomePage) {
+      this.seoService.updateSeo({
+        title: 'Best Clinical & Diagnostic Services in Kathmandu | Pranjal Healthcare',
+        description: 'Explore 24+ clinical diagnostic and medical services in Kathmandu: Automated Pathology Lab, Digital X-Ray, 4D USG Doppler, Cardiology ECG, specialist OPD clinics, and Pharmacy.',
+        keywords: 'diagnostic services Kathmandu, pathology test Pepsicola, best blood test lab Kathmandu, digital X-Ray Nepal, USG Doppler Kathmandu, specialist OPD services Nepal',
+        url: '/services-main'
+      });
+    }
   }
 
   private get initialLimit(): number {

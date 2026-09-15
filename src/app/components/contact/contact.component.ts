@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SeoService } from 'src/app/services/seo.service';
 
 export interface IDepartmentContact {
   id: string;
@@ -108,9 +109,16 @@ export class ContactComponent implements OnInit {
 
   activeFaqIndex: number | null = 0;
 
-  constructor() {}
+  constructor(private seoService: SeoService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.seoService.updateSeo({
+      title: 'Contact & Appointments | Pranjal Healthcare Center Kathmandu',
+      description: 'Contact Pranjal Diagnostic & Healthcare Center in Pepsicola Townplanning, Kathmandu. Call 01-5910285, WhatsApp 9864156565, or 9851428080. Open Sun-Fri 7 AM - 7 PM.',
+      keywords: 'Pranjal Healthcare contact, clinic phone number Kathmandu, book doctor appointment Pepsicola, diagnostic center location Kathmandu',
+      url: '/contact'
+    });
+  }
 
   toggleFaq(index: number): void {
     this.activeFaqIndex = this.activeFaqIndex === index ? null : index;

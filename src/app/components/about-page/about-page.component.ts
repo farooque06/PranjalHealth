@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImagePlaceholderService } from 'src/app/services/image-placeholder.service';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
     selector: 'app-about-page',
@@ -9,9 +10,18 @@ import { ImagePlaceholderService } from 'src/app/services/image-placeholder.serv
 })
 export class AboutPageComponent implements OnInit {
 
-  constructor(private imagePlaceholderService: ImagePlaceholderService) { }
+  constructor(
+    private imagePlaceholderService: ImagePlaceholderService,
+    private seoService: SeoService
+  ) { }
 
   ngOnInit(): void {
+    this.seoService.updateSeo({
+      title: 'About Pranjal Healthcare | Best Diagnostic Center in Kathmandu',
+      description: 'Learn about Pranjal Diagnostic & Healthcare Center Pvt. Ltd. Founded in Pepsicola, Kathmandu to deliver accurate automated pathology, digital X-Ray, USG, and expert OPD care.',
+      keywords: 'about Pranjal Healthcare, best clinic Kathmandu, diagnostic center Pepsicola, trusted lab Nepal, medical clinic Kathmandu',
+      url: '/about-us'
+    });
   }
 
   activeFacility: number = 0;

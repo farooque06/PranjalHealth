@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IDoctors } from 'src/app/interfaces/service.interface';
 import { DoctorsService } from 'src/app/services/doctors.service';
 import { ImagePlaceholderService } from 'src/app/services/image-placeholder.service';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
     selector: 'app-doctors-details',
@@ -20,7 +21,8 @@ export class DoctorsDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     public doctorsService: DoctorsService,
-    private imagePlaceholderService: ImagePlaceholderService
+    private imagePlaceholderService: ImagePlaceholderService,
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
@@ -33,6 +35,9 @@ export class DoctorsDetailsComponent implements OnInit {
         this.data = this.doctorsService.getDoctorBYIndexNO(this.currentIndex);
         
         if (this.data) {
+          // Dynamic SEO and Physician Schema for Google Ranking
+          this.seoService.setDoctorSeo(this.data);
+
           // Get other doctors for the sidebar
           this.relatedDoctors = this.doctorsService
             .getDoctors()

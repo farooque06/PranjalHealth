@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { IDoctors } from 'src/app/interfaces/service.interface';
 import { DoctorsService } from 'src/app/services/doctors.service';
 import { ImagePlaceholderService } from 'src/app/services/image-placeholder.service';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
     selector: 'app-doctors',
@@ -22,7 +23,8 @@ export class DoctorsComponent implements OnInit {
   constructor(
     private doctorsService: DoctorsService,
     private router: Router,
-    private imagePlaceholderService: ImagePlaceholderService
+    private imagePlaceholderService: ImagePlaceholderService,
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +32,13 @@ export class DoctorsComponent implements OnInit {
     this.filteredDoctors = this.doctors;
     this.departments = ['All', ...this.doctorsService.getDepartments()];
     this.placeholderImage = this.imagePlaceholderService.getDoctorPlaceholder();
+
+    this.seoService.updateSeo({
+      title: 'Best Specialist Doctors in Kathmandu, Nepal | OPD Schedule',
+      description: 'Consult top specialist doctors in Kathmandu at Pranjal Healthcare Center. Experienced consultants in Cardiology, Gynecology, Orthopedics, Pediatrics, Radiology & Psychiatry with daily OPD.',
+      keywords: 'best doctors Kathmandu, specialist doctors Nepal, cardiologist Kathmandu, gynecologist Kathmandu, orthopedic surgeon Nepal, psychiatrist Kathmandu, OPD clinic Pepsicola',
+      url: '/doctors'
+    });
   }
 
   onSearchChange(): void {

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IServices } from 'src/app/interfaces/service.interface';
 import { ServicesService } from 'src/app/services/services.service';
 import { ImagePlaceholderService } from 'src/app/services/image-placeholder.service';
+import { SeoService } from 'src/app/services/seo.service';
 
 @Component({
     selector: 'app-our-services-details',
@@ -19,7 +20,8 @@ export class OurServicesDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private service: ServicesService,
-    private imagePlaceholderService: ImagePlaceholderService
+    private imagePlaceholderService: ImagePlaceholderService,
+    private seoService: SeoService
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +32,9 @@ export class OurServicesDetailsComponent implements OnInit {
       if (indexStr !== null) {
         this.currentIndex = +indexStr;
         this.data = this.service.getServiceByIndexNo(this.currentIndex);
+        if (this.data) {
+          this.seoService.setServiceSeo(this.data);
+        }
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     });
